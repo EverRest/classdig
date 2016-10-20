@@ -1,4 +1,5 @@
 angular.module('classDigApp')
+
   .controller("myController", function ($scope) {
 
     var click = function () {
@@ -29,7 +30,7 @@ angular.module('classDigApp')
 
   })
 
-  .directive('customButton', ['$timeout', function ($timeout) {
+  .directive('custombutton', ['$timeout', function ($timeout) {
 
     return {
       template: " <div  id = 'datalist' ng-show = 'showlist'><ul class = 'custom-button-ul'><li ng-repeat='x in data.items'><div><p class = 'grey-bg'> {{x.text}}</p><button class = 'button-inside' ng-click = x.click()><img src={{x.img}}></button></div></li></ul></div>" + "<button class ='custom_button' ng-click = 'CustomButtonClick()' ><div id = 'rotate_btn'>+</div></button>",
