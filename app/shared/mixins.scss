@@ -1,0 +1,18 @@
+$bg-color-teacher: #4b93eb;
+$bg-color-student: #ffae24;
+$bg-color-perents: #ff6d15;
+$bg-color-text: #ffffff;
+
+
+@mixin color-role($role){
+ // $role: student;
+  @if $role == teacher {
+    background-color: $bg-color-teacher;
+  }
+  @else if $role == student {
+    background-color: $bg-color-student;
+  }
+  @else {
+    background-color: $bg-color-perents;
+  }
+}

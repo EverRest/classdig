@@ -1,0 +1,36 @@
+#header {
+  .header {
+    .navbar {
+      &.bg-teacher {
+        @include color-role(teacher);
+      }
+      &.bg-perents {
+        @include color-role(perents);
+      }
+      &.bg-student {
+        @include color-role(student);
+      }
+      a {
+        color: $bg-color-text;
+        font-weight: 600;
+      }
+
+      .navbar-header {
+        a.ClassDig {
+          width: 128px;
+          height: 40px;
+          font-family: Jalal;
+          font-size: 35.8px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          text-align: center;
+          color: #ffffff
+        }
+      }
+      .navbar-collapse {
+      }
+
+    }
+  }
+}
