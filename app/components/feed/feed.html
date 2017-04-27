@@ -1,0 +1,60 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/feed/menuFeed/menuFeed.html'" class="col-md-3" style = "padding: 0 ;background: white;"></div>
+
+<div  ng-controller="FeedController" class="feedMainContainer">
+
+  <!------------- Create new feed ----------------->
+
+<div ng-if="user.data.role !=='parent'" class = "create-new-feed-container">
+  <div class="create-new-feed" ng-show="createNewFeed">
+
+    <div class="create-new-feed-header">
+      <div class="ava-container"  style="background-image: url({{userAva}})">
+        <!--<img ng-src="{{userAva}}">-->
+      </div>
+      <div class = "feed-story">
+        <textarea placeholder="Write your story" maxlength="200" minlength="2" ng-model="newFeed.content"></textarea>
+      </div>
+    </div>
+
+    <div class="create-new-feed-footer" style = "position:relative">
+
+      <div class = "add-more-container {{userData.color}}">
+      <div class="add-feed-photo cursorPointer">
+
+        <div ngf-select
+             ng-model="newFeed.picFile"
+             ngf-validate="{size: {max: '25MB'}, height: {max: 12000}, width: {max: 12000}, duration: {max: '30h'}}"
+             accept="/*" valid-file>
+          <div ng-click="attachFeedFileFunction()" style="display: flex">
+            <div class = "add-more-img-container">
+              <img ng-src="{{userData.iconAddPhoto}}" style="margin-top: -3px;">
+            </div>
+            <div>{{addPhotoText}}</div>
+          </div>
+        </div>
+<!-- ngf-resize="{width: 240, height: 160, centerCrop: true}"-->
+        <div class = "add-feed-link {{placeholder}}">
+          <div class = "add-more-img-container">
+            <img ng-src="{{userData.iconAddLink}}">
+          </div>
+          <input placeholder="Attach file, link" ng-model="newFeed.link">
+        </div>
+      </div>
+      </div>
+      <div>
+        <button class="post-feed-button {{userData.background}}" ng-click="postFeedFunction()">POST</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!------------- End Create new feed ----------------->
+  <!------------- Feed List --------------------------->
+  <div class="feed-list-container" id="feedList" ng-class="{'parentFeedView': user.data.role==='parent'}">
+    <feed-list feed-url="feedUrl+'&page='"></feed-list>
+  </div>
+  <!------------- End Feed List --------------------------->
+</div>

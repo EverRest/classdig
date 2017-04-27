@@ -1,0 +1,13 @@
+<div class="are-u-sure-modal">
+ <div class="modal-question">
+   <span>Do you really want to {{$ctrl.items.actionTitle}}</span>
+   <span ng-show="$ctrl.items.current.length === 1">{{$ctrl.items.current[0].name}} assignment?</span>
+   <span ng-show="$ctrl.items.current.length !== 1">selected assignment?</span>
+ </div>
+  <div class="modal-footer">
+    <div class="btn-group modal-buttons">
+      <button type="button" class="btn {{'c-'+role}}" ng-click="$ctrl.cancel()">cancel</button>
+      <button type="button" class="btn {{'c-'+role}}" ng-click="$ctrl.approve()">{{$ctrl.items.actionTitle}}</button>
+    </div>
+  </div>
+</div>

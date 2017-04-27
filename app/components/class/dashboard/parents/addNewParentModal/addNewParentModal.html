@@ -1,0 +1,151 @@
+<form name="CreateParentModal"  ng-submit="" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">Add new parent</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+  </div>
+
+  <div class="sub-header">
+    <h3>PARENT</h3>
+  </div>
+
+  <div class="personal-information-container">
+    <div class="top-block">
+      <div class="img-upload-container">
+        <div class="upload-form">
+
+          <button id="btn-add-photo-parent-one"
+                  type="image"
+                  name="fileParent"
+                  accept="image/*"
+                  ng-model="parentImage"
+                  ngf-change="uploaded($files, 1)"
+                  ngf-select
+                  ngf-max-size="5MB"
+                  ngf-pattern="'image/*'"
+                  ngf-accept="'image/*'"
+                  ngf-resize="{width: 200, height: 200}"
+                  required>
+
+            <img class="add-photo clip-circle"
+                 ng-hide="parentImage"
+                 src="images/auth/add-photo_3x.png">
+            <img class="thumb profile-file clip-circle"
+                 ng-show="CreateParentModal.file.$valid"
+                 ngf-thumbnail="parentImage">
+
+          </button>
+          <div class="errors">
+            <p ng-show="CreateParentModal.fileParent.$error.maxSize " class="help-block">File exceeds allowed size </p>
+            <p ng-show="createParentClicked && CreateParentModal.fileParent.$error.required " class="help-block">Parent photo is required </p>
+            <p ng-show="CreateParentModal.fileParent.$error.minWidth " class="help-block">File invalid min width </p>
+            <p ng-show="CreateParentModal.fileParent.$error.minHeight " class="help-block">File invalid min height </p>
+          </div>
+        </div>
+      </div>
+      <div class="name-container">
+        <div class="first-middle-name">
+          <div style="display: flex">
+            <div class="first-name form-padding">
+              <input class="greyFont new-student-form-input"
+                     ng-model='newParent.first_name'
+                     name='parent_first_name'
+                     ng-minlength="2"
+                     placeholder="First Name*"
+                     required>
+              <div class="errors">
+                <p ng-show="createParentClicked && CreateParentModal.parent_first_name.$error.required || CreateParentModal.parent_first_name.$dirty && CreateParentModal.parent_first_name.$error.required" class="help-block">First name is required.</p>
+                <p ng-show="CreateParentModal.parent_first_name.$error.minlength" class="help-block">First name is to short</p>
+              </div>
+            </div>
+            <div class="middle-name form-padding">
+              <input class="greyFont new-student-form-input"
+                     ng-model='newParent.middle_name'
+                     name='parent_middle_name'
+                     ng-minlength="2"
+                     placeholder="Middle Name">
+              <div class="errors">
+                <p ng-show="CreateParentModal.parent_middle_name.$error.minlength" class="help-block">Middle name is to short</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="last-name form-padding">
+          <input class="greyFont new-student-form-input"
+                 ng-model='newParent.last_name'
+                 name='parent_last_name'
+                 ng-minlength="2"
+                 placeholder="Last Name*"
+                 required>
+          <div class="errors">
+            <p ng-show="createParentClicked && CreateParentModal.parent_last_name.$error.required || CreateParentModal.parent_last_name.$dirty && CreateParentModal.parent_last_name.$error.required" class="help-block">Last name is required.</p>
+            <p ng-show="CreateParentModal.parent_last_name.$error.minlength" class="help-block">Last name is to short</p>
+          </div>
+        </div>
+      </div>
+      <div class="phone-email-container">
+        <div class="phone form-padding">
+          <input class="greyFont new-student-form-input"
+                 ng-model='newParent.phone'
+                 name='parent_phone'
+                 placeholder="Phone"
+                 type="tel">
+        </div>
+        <div class="email form-padding">
+          <input type="text"
+                 name="parent_email"
+                 class="greyFont new-student-form-input"
+                 placeholder="Email*"
+                 ng-model="newParent.email"
+                 ng-maxlength="40"
+                 ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                 required/>
+          <div class="errors">
+            <div ng-messages="CreateParentModal.parent_email.$error">
+              <div ng-message="pattern" class="help-block">Please enter a valid email address.</div>
+            </div>
+            <p class="help-block" ng-show="CreateParentModal.parent_email.$dirty && CreateParentModal.parent_email.$error.maxlength">E-mail is too long.</p>
+            <p class="help-block" ng-show="createParentClicked  && CreateParentModal.parent_email.$error.required">Parent E-mail is required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-block">
+      <div class="gender-container greyFont">
+        <div class="gender gender-student male" ng-click="setGender(1)">
+          <span ng-class="{'picked-gender' : newParent.gender === 1}">Male</span>
+          <img ng-show="newParent.gender === 1" src="../images/students/underline.svg">
+        </div>
+        <div class="gender gender-student female" ng-click="setGender(2)">
+          <span ng-class="{'picked-gender' : newParent.gender === 2}">Female</span>
+          <img ng-show="newParent.gender === 2" src="../images/students/underline.svg">
+        </div>
+        <div class="gender gender-student other" ng-click="setGender(3)">
+          <span ng-class="{'picked-gender' : newParent.gender === 3}">Other</span>
+          <img ng-show="newParent.gender === 3" src="../images/students/underline.svg">
+        </div>
+      </div>
+      <div class="student-id-container">
+        <div class= "student-id">
+          <span class="text">
+            By adding parent email, he will automaticaly invited to join this class in ClassDig.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER-->
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass {{userData.background}}"
+            style="width: auto;"
+            type="submit"
+            ng-click="createParentClicked = true; ok()">ADD PARENT
+    </button>
+
+  </div>
+</form>

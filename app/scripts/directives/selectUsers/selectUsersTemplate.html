@@ -1,0 +1,41 @@
+<div class="modal-section">
+
+  <div class="sub-header select-users" ng-show="showMembersHeader">
+    <h3 class="select-users-modal-subtitle">SELECT {{memberRole}}</h3>
+    <div class="select-users-select-all">
+
+      <div class="custom-toggle {{'c-' + role}}"  ng-show="memberRole=='students'">
+        <input ng-click="selectAll('users')" type="checkbox" ng-model="allSelected" id="select-all"/>
+        <label for="select-all"><span class="{{'c-' + role}} " style = "padding-right: 30px;margin-right: -30px;">Select All</span></label>
+      </div>
+
+      <div class="custom-toggle" ng-show="memberRole=='parents'">
+        <input ng-click="selectAll('parents')" type="checkbox" ng-model="allSelectedParent" id="select-all-parent" />
+        <label for="select-all-parent"><span class="{{'c-' + role}}" style = "padding-right: 30px;margin-right: -30px;">Select All</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div id="user-list" class="user-list">
+    <div ng-click='selectUser(user)'
+         class="user"
+         ng-repeat="user in filteredItems = (users.items | filter: {type: userRole, class: classToSortBy})">
+
+      <div class="row margin padding">
+        <div class="padding col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="user-img-right-block-general-info" style="width: 42px; height: 42px;" ng-class = "{'{{'border-bg-'+role}}': selectedUsers[user.id]}" ng-style="{'background-image':'url({{user.image}})'}"></div>
+        </div>
+        <div class="padding col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <p class="name">{{user.first_name + ' ' + user.last_name}}
+            <span ng-show='selectedUsers[user.id]' style="float: right"
+                  class="glyphicon glyphicon-ok {{ 'c-' + role}}"></span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div ng-hide="filteredItems.length || users.busy" style="text-align: center">no results</div>
+    <div id='user-loader' class="loader" style="display: none"></div>
+  </div>
+</div>
+

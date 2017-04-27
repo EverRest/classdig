@@ -1,0 +1,86 @@
+<div class="distinguished-additional-info">
+  <div class="marks-cont" ng-if="marks">
+    <div class="title">Grades</div>
+    <div class="class-menu-item student-parent-marks">
+      <nvd3 options="configDiagramMarks" data="dataForDiagramMarks"></nvd3>
+      <div class="student-parent-marks-legend">
+        <div class="mark-table" ng-repeat="table in chunkedData  track by $index">
+          <div class="mark-item" ng-repeat="value in table  track by $index">
+            <span class="mark-rectangle" style="background-color: {{value.color}}"></span>
+            <span>{{value.id}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marks-cont" ng-if="attendance">
+    <div class="title">Attendance</div>
+
+    <div class="student-parent-behavior">
+      <div class="behavior-doughnut-legend">
+        <div class="student-behiviour-item">
+          <span class="behavior-rectangle" style="background-color: #1EA66D"></span>
+          <span>Present</span>
+        </div>
+        <div class="student-behiviour-item">
+          <span class="behavior-rectangle" style="background-color: #F93640"></span>
+          <span>Absent</span>
+        </div>
+        <div class="student-behiviour-item">
+          <span class="behavior-rectangle" style="background-color: #FFC600"></span>
+          <span>Late</span>
+        </div>
+      </div>
+      <div class="list-container">
+        <div class="behavior-doughnut-container" ng-repeat="element in attendanceDataByStudent track by $index">
+          <div>{{element.class}}</div>
+          <div class="attendance-pie">
+            <div class="first-layer"></div>
+            <div class="second-layer"></div>
+            <div class="third-layer"></div>
+            <div class="fourth-layer"></div>
+            <canvas id="pieAttendance"
+                    class="chart chart-pie"
+                    chart-data="element.general"
+                    chart-hover="none"
+                    chart-legend="false"
+                    chart-labels="configChartAttendance.attendanceLabels"
+                    chart-options="configChartAttendance.options"
+                    chart-colors="configChartAttendance.attendanceBackgroundColor">
+            </canvas>
+          </div>
+          <div class="behavior-doughnut-title">
+            <span style="color: #1EA66D">{{element.present}}</span>
+            <span style="color: #F93640">{{element.absent}}</span>
+            <span style="color: #FFC600">{{element.late}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div class="class-menu-item student-parent-marks">-->
+      <!--<nvd3 options="configDiagramMarks" data="dataForDiagramMarks"></nvd3>-->
+      <!--<div class="student-parent-marks-legend">-->
+        <!--<div class="mark-table" ng-repeat="table in chunkedData  track by $index">-->
+          <!--<div class="mark-item" ng-repeat="value in table  track by $index">-->
+            <!--<span class="mark-rectangle" style="background-color: {{value.color}}"></span>-->
+            <!--<span>{{value.id}}</span>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+
+
+  <!--<div class="class-menu-item-block-center">-->
+    <!--<div class="class-menu-item-notexist"></div>-->
+    <!--<div class="class-menu-item-exist" style="overflow-y: hidden">-->
+
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+</div>

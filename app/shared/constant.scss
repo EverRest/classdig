@@ -1,3 +1,84 @@
-$bg-color-teacher: blue;
-$bg-color-student: green;
-$bg-color-perents: red;
+//== Media queries breakpoints
+//
+//## Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs: 480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min: $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone: $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm: 768px !default;
+$screen-sm-min: $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet: $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md: 992px !default;
+$screen-md-min: $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop: $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg: 1200px !default;
+$screen-lg-min: $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop: $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+
+//===================================================================
+$background: #f2f2f2;
+$border-grey: #f0f0f0;
+$text-color: #606060;
+
+$events-text-color: #797979;
+$user-text-color: #333c48;
+$behavior-header-text-color: #7b7b7b;
+$general-border-color: #e1dede;
+
+$bg-color-teacher: #4b93eb;
+$bg-color-student: #3d8e78;
+$bg-color-parents: #ba4a56;
+$bg-color-icon-teacher: #4785d6;
+$bg-color-icon-student: #357c69;
+$bg-color-icon-parents: #a8434e;
+$bg-color-text: #ffffff;
+
+$bg-login: #191919;
+
+$active-link-teacher: #4b93eb;
+$active-link-student: #3d8e78;
+$active-link-perents: #cf515d;
+
+$active-dropdoun-link: #428bca;
+$dropdown-border: #e7e7e7;
+
+$subject-text: #efefef;
+$subject-menu-text: #686868;
+$subject-menu-hover: #f0f0f0;
+
+$size-nav-menu-icon: 27px;
+$size-menu-class-icon: 16px;
+
+$size-no-responsive-screen: 1270px;
+
+$color-help-text: #f4a322;
+$color-facebook: #3b5998;
+
+$classes-text-info: #606060;
+$classes-member: #b2b2b2;
+$unread-messages-color: #878787;
+
+$attendance-present-color: #1ea66d;
+$attendance-absent-color: #f93640;
+$attendance-late-color: #ffc600;

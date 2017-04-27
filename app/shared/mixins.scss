@@ -1,18 +1,178 @@
 $bg-color-teacher: #4b93eb;
-$bg-color-student: #ffae24;
-$bg-color-perents: #ff6d15;
+$bg-color-student: #3d8e78;
+
+$bg-color-parents: #ba4a56;
 $bg-color-text: #ffffff;
 
+$bg-login: #191919;
 
-@mixin color-role($role){
- // $role: student;
-  @if $role == teacher {
-    background-color: $bg-color-teacher;
-  }
-  @else if $role == student {
-    background-color: $bg-color-student;
-  }
-  @else {
-    background-color: $bg-color-perents;
+$active-link-teacher: #4b93eb;
+$active-link-student: #4b93eb;
+$active-link-perents: #4b93eb;
+
+$active-dropdoun-link: #428bca;
+$dropdown-border: #e7e7e7;
+
+$subject-text: #efefef;
+$subject-menu-text: #686868;
+$subject-menu-hover: #f0f0f0;
+
+$size-nav-menu-icon: 24px;
+$size-menu-class-icon: 16px;
+
+$size-no-responsive-screen: 1270px;
+$message-border: #d8d8d8;
+$color-help-text: #f4a322;
+$color-facebook: #3b5998;
+$color-hint-text: #606060;
+
+$modal-section-header-background: #f0f0f0;
+$modal-section-header-color: #7b7b7b;
+$modal-line-color: #d9d9d9;
+$chat-recipients-color: #8c8c8c;
+
+@font-face {
+  font-family: "KacstArt";
+  src: url('../fonts/kacstart/kacstart.ttf') format("truetype");
+}
+@font-face {
+  font-family: "Lato-medium";
+  src: url('../fonts/lato-medium/Lato-medium.ttf') format("truetype");
+}
+
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto');
+
+/* MIXINS */
+
+// Different devices resolutions
+@mixin respond-to($media) {
+  @if $media==old-phones {
+    @media only screen and (max-width: 320px) {
+      @content;
+    }
+  } @else if $media==phones {
+    @media only screen and (max-width: $screen-xs) {
+      @content;
+    }
+  } @else if $media==tablets-small {
+    @media only screen and (max-width: $screen-xs-max) {
+      @content;
+    }
+  } @else if $media==nexus7 {
+    @media only screen and (max-width: 960px) {
+      @content;
+    }
+  } @else if $media==tablets-large {
+    @media only screen and (max-width: $screen-sm-max) {
+      @content;
+    }
+  } @else if $media==desktops {
+    @media only screen and (max-width: $screen-md-max) {
+      @content;
+    }
+  } @else if $media==desktops-large {
+    @media only screen and (min-width: $screen-lg) {
+      @content;
+    }
   }
 }
+
+
+
+@mixin role($role) {
+  $currerntColor: null;
+  @if $role == 'teacher' {
+    $currerntColor: $bg-color-teacher !global;
+  } @else if $role == 'student' {
+    //$currerntColor: $bg-color-student !global;
+  } @else {
+    //$currerntColor: $bg-color-parents !global;
+  }
+}
+
+@mixin border-left-color-role($role) {
+  @if $role == 'teacher' {
+    border-left-color: $bg-color-teacher !important;
+  } @else if $role == 'student' {
+    border-left-color: $bg-color-student !important;
+  } @else {
+    border-left-color: $bg-color-parents !important;
+  }
+}
+
+@mixin set-color-role($role, $border: 4px) {
+  @if $role == 'teacher' {
+    border-bottom: solid $border $bg-color-teacher !important;
+  } @else if $role == 'student' {
+    border-bottom: solid $border $bg-color-student !important;
+  } @else {
+    border-bottom: solid $border $bg-color-parents !important;
+  }
+}
+
+@mixin background-role-image($path) {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  &.teacher {
+    background: url('../images/' + $path + '-teacher.png');
+  }
+  &.parent {
+    background: url('../images/' + $path + '-parent.png');
+  }
+  &.student {
+    background: url('../images/' + $path + '-student.png');
+  }
+}
+
+.bg-teacher {
+  background-color: $bg-color-teacher !important;
+}
+
+.bg-student {
+  background-color: $bg-color-student !important;
+
+}
+
+.bg-parent,
+.bg-parents{
+  background-color: $bg-color-parents !important;
+}
+
+.c-teacher {
+  color: $bg-color-teacher !important;
+}
+
+.c-student {
+  color: $bg-color-student !important;
+
+}
+
+.c-parent {
+  color: $bg-color-parents !important;
+}
+
+.border-bg-teacher {
+  border: solid 3px $bg-color-teacher !important;
+}
+
+.border-bg-parent {
+  border: solid 3px $bg-color-parents !important;
+}
+
+.border-bg-student {
+  border: solid 3px $bg-color-student !important;
+}
+
+.border-top-teacher {
+  border-top: solid 1px $bg-color-teacher !important;
+}
+
+.border-top-parent {
+  border-top: solid 1px $bg-color-parents !important;
+}
+
+.border-top-student {
+  border-top: solid 1px $bg-color-student !important;
+}
+
+

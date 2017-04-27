@@ -1,0 +1,41 @@
+
+  <div class="class-menu-item-block-right-header {{userData.color}}">
+    <h3 class="{{'c-' + role}}">GRADABLE ITEMS</h3>
+  </div>
+  <div class="gradable-items-not-exist" ng-show="false">
+    <div class="student-info">
+      <div class ='no-gradable-items'>
+        <img src="images/grades/grades.svg">
+        <p>You have no gradable items yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gradable-items-not-exist" ng-show="true" style="height: 65vh;overflow: auto; padding: 10px 0">
+    <div ng-repeat="gradableItem in listOfGradableItems">
+      <div class = 'gradable-item'>
+        <div  class = "gradable-item-information">
+          <div class = 'gradable-item-name'>{{gradableItem.name}}</div>
+          <div class = 'gradable-item-data'>
+            <div class = 'gradable-item-category'>{{gradableItem.category}}</div>
+            <div class = 'gradable-item-max-grade'>Max Grade {{gradableItem.max_grade}}</div>
+          </div>
+        </div>
+        <div class = 'gradable-item-weight'>{{gradableItem.weight}} % </div>
+
+        <div>
+
+          <div class="controll-button">
+            <button class="btn-default btn"><img src="images/events/controll-button.svg"></button>
+            <div class="inside-menu dropdown-menu">
+              <div class="menu-option" ng-click="editGradableItem(gradableItem,$index)">Edit</div>
+              <div class="menu-option" ng-click="deleteGradableItem(gradableItem,$index)">Delete</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+

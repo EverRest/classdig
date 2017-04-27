@@ -1,0 +1,21 @@
+.see-voter-results{
+  width:67px;
+
+  p{
+    margin: 10px 0 10px;
+    color: #b2b2b2;
+  }
+}
+
+.details-img-container{
+  display: flex;
+  justify-content: space-around;
+}
+.poll-modal-details .img-container{
+  width: 40px;
+  height: 40px;
+  img{
+    width: 100%;
+    height: auto;
+  }
+}

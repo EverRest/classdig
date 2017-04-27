@@ -1,0 +1,42 @@
+<!--<div class="attendance">-->
+    <div ng-class="displayMode === true ? 'attendance-list-users-list-mode' : 'attendance-list-users'">
+        <div class="student"
+             ng-repeat="student in students | orderBy:propertyName : sorting | filterBySearch : searchBy"
+             ng-click="pickStudent(student);">
+            <div class="image" ng-style="{'background-image':'url({{student.photo || student.image}})'}"
+                 ng-class="{'atendance-list-user-active {{userData.color}} {{userData.userListBorder}}': student.state === true}">
+              <div class="name">
+                {{student.first_name}} {{student.last_name}}
+              </div>
+            </div>
+            <div class="student-status">
+                <img ng-if="student.type === 3" ng-src={{lateIcon}}>
+                <img ng-if="student.type === 2" ng-src={{absentIcon}}>
+                <img ng-if="student.type === 1" ng-src={{presentIcon}}>
+                <img ng-if="student.distinguished" ng-src={{distinguishedIcon}}>
+                <img ng-if="student.behavior_type === 1" ng-src={{positiveIcon}}>
+                <img ng-if="student.behavior_type === 2" ng-src={{negativeIcon}}>
+            </div>
+
+        </div>
+    </div>
+
+
+<!--
+    <div class="pieContainer">
+        <div class="pieBackground"></div>
+        <div class="pieBackground2"></div>
+        <div class="pieBackground3"></div>
+        <div class="pieBackground4"></div>
+        <div id="pieSliceRed" class="hold"><div class="pie"></div></div>
+        <div id="pieSliceYellow" class="hold"><div class="pie"></div></div>
+    </div>
+-->
+<!--</div>-->
+
+
+<!--
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjczLCJpc3MiOiJodHRwOlwvXC9hcGkuY2xhc3NkaWcuY29tXC9sb2dpbiIsImlhdCI6MTQ3OTM3NDI0MywiZXhwIjoxNDgyMDAyMjQzLCJuYmYiOjE0NzkzNzQyNDMsImp0aSI6ImEzNzA2OWQxMThjMmE0YTQxZGNiYTdjZDI0YThkYzRhIn0.JIC7JGQUZ3T8FlUw3GycW32bAMrMU6XQQcKaxYeW3yY
+-->
+
+<!--eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMyLCJpc3MiOiJodHRwOlwvXC9hcGkuY2xhc3NkaWcuY29tXC9sb2dpbiIsImlhdCI6MTQ3OTM4NDUxMiwiZXhwIjoxNDgyMDEyNTEyLCJuYmYiOjE0NzkzODQ1MTIsImp0aSI6IjlmMzZmZmJkOTExOGMzOTA2NTdmYWI1ZWE4MDU5MWUwIn0.wcrMKBy0c6z6m322s6vCz6aErqDX0tq95aNHnxxmS8Q-->

@@ -1,0 +1,123 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+<div class="class-menu">
+<div class="premium-header">
+  <div class="premium-header-title {{userData.color}}"> My Profile</div>
+</div>
+
+<div class = "class-menu-item-container profile-menu-item-container">
+
+  <div class = "class-menu-item-block-right-container profile-right-container" style="position : relative">
+    <div class="class-menu-item-block-right class-menu-item-block-right-profile refreshProfile" style="overflow-y: auto !important; overflow-x: hidden;">
+      <user-info show-additional-info="true" selected-user="updateUserProfile" ng-show="showProfile"></user-info>
+
+      <!--show followers list button-->
+
+      <div class = 'parent-request-button' ng-click = 'seeRequestToFollow()' ng-show="requestedUsers.length>0 && showProfile" >
+        <img src="../images/parents/icon-invite-parent.svg">
+        <span ng-show="requestedUsers.length===1"> {{requestedUsers.length}} REQUEST TO FOLLOW</span>
+        <span ng-show="requestedUsers.length>1"> {{requestedUsers.length}} REQUESTS TO FOLLOW</span>
+      </div>
+      <!------------------------------>
+
+      <!--list of followers-->
+
+      <!--<div class="student-info">-->
+        <div class="student-in-requests-container" ng-repeat="user in requestedUsers" ng-show="!showProfile">
+          <div class="student-in-requests">
+            <div  class="container-flex container-button-flex">
+              <div class="container-flex container-button-flex">
+              <div class="student-img" ng-style="{'background-image':'url({{user.user.photo || user.user.image}})'}"></div>
+              <div class="student-name">
+                <div>
+                  {{user.user.first_name}} {{user.user.last_name}}
+                </div>
+              </div>
+              </div>
+              <div class="buttons">
+                <div>
+                  <button class="btn approve-btn {{userData.background}} white-color "  ng-click="approveReject(user, 1)">Accept</button>
+                  <button class="btn approve-btn {{userData.color}} {{userData.border}}"  ng-click="approveReject(user, 2)">Reject</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--</div>-->
+
+        <!--end followers list-->
+
+      </div>
+
+      <div ng-show="requestedUsers.length===0 && !showProfile" class="no-results-massage">There are no followers </div>
+
+      <div class = 'parent-request-button' ng-click = 'seeProfile()' ng-show="!showProfile">
+        BACK
+      </div>
+    </div>
+    <div class="edit-profile-button-container" ng-click="editProfile()">
+      <img src="images/profile/edit_button.png" style="width: 78px; height: 78px;">
+    </div>
+  </div>
+
+  <div class = "class-menu-item-block-center-container profile-block-center-container">
+    <div class="class-menu-item-block-center profile-center-container">
+      <div class="profile-subheader">
+        <div class="profile-subheader-item" id = "Upcoming" ng-click = "switchUpcoming()">Upcoming </div>
+        <div class="profile-subheader-item" id = "Schedule" ng-click = "switchSchedule()">Schedule</div>
+        <div class="profile-subheader-item" id = "Activities" ng-click = "switchActivities()">Activities</div>
+      </div>
+
+      <div class="upcomingContainer" ng-show="showUpcoming">
+        <div class="upcomingList">
+          <div ng-repeat="upcomingEvent in listOfUpcomingEvents" class="upcoming-item">
+            <div class="upcoming-item-left">
+              <div class="upcoming-item-date" style="background-color: {{upcomingEvent.color | colorParse}} ">
+               <span>{{functionGetEventTime(upcomingEvent.due_date)}}</span>
+                {{functionGetEventTimeMonth(upcomingEvent.due_date)}}
+              </div>
+
+              <div class="upcoming-item-star-container">
+                <img class="active-star" ng-class="{'mark-active-star': upcomingEvent.owner_id===user.data.id}" src="images/profile/icon-star-important.svg" ng-if="upcomingEvent.important" ng-click="markImportantItem(0,upcomingEvent.id ,$index,upcomingEvent.owner_id)">
+                <img class="star" ng-class="{'mark-star': upcomingEvent.owner_id===user.data.id}" src="images/profile/icon-star.svg" ng-if="!upcomingEvent.important" ng-click="markImportantItem(1,upcomingEvent.id,$index,upcomingEvent.owner_id)">
+              </div>
+              <div class="upcoming-item-title">{{upcomingEvent.title}}<br>
+              <span class="upcoming-item-time">{{upcomingEvent.time_start}}</span></div>
+              </div>
+
+            <div class="upcoming-item-right">
+              <div class="upcoming-item-class-data">
+                <div class="upcoming-item-class">{{upcomingEvent.class.name}}</div>
+                <div class="upcoming-item-location" ng-show="upcomingEvent.location"><img src="images/modal/location-grey.svg">{{upcomingEvent.location}}</div>
+              </div>
+              <div class="controll-button" ng-if="upcomingEvent.owner_id===user.data.id">
+                <button class="btn-default btn"><img src="images/events/controll-button.svg"></button>
+                <div class="inside-menu dropdown-menu">
+                  <div class="menu-option" ng-click="editEvent(upcomingEvent,$index)">Edit</div>
+                  <div class="menu-option" ng-click="deleteEvent(upcomingEvent,$index)">Delete</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div ng-show="requestUpcomingInProgress" class="loader"></div>
+      </div>
+
+      <div class="scheduleContainer" ng-show="showSchedule" style="position: relative">
+        <div class="schedule-time-header" ng-show="!requestInProgress">Time</div>
+
+        <div class="events-calendar">
+          <div id="calendar" class="arrow-color-{{role}}" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="cdCalendar" data-calendar="myCalendar"></div>
+          <div ng-show="requestInProgress" class="loader"></div>
+        </div>
+      </div>
+      <div class="activitiesContainer" id="feedList" ng-if="showActivities">
+        <feed-list feed-url="feedUrl+'?page='"></feed-list>
+      </div>
+      <div class="testContainer" id="test1" ng-show="showTest">
+        <p>test info</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>

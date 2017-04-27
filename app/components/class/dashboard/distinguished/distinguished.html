@@ -1,0 +1,105 @@
+<!-- Header -->
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/class/menuClass/menuClass.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}}" ng-controller="distinguishedController">
+  <div class="class-item-header ">
+    <div class="col-md-7 col-sm-6 class-menu-item-main-header">
+      <div class="{{'c-'+role}}">Distinguished</div>
+      <div class="amount-of-students" ng-hide="whatToDisplay == 3">{{students.length}} students</div>
+    </div>
+    <div class="col-md-5 col-sm-6 classes-context-menu">
+      <context-menu ng-hide="whatToDisplay == 3"></context-menu>
+    </div>
+    <div class="class-menu-item-main-subheader"></div>
+  </div>
+
+  <div class="class-menu-item-container">
+
+    <div class="class-menu-item-block-center-container">
+      <div class="class-menu-item-block-center">
+
+        <div class="class-menu-item-notexist"></div>
+
+        <div class="class-menu-item-exist" style="overflow: hidden">
+
+
+
+          <div class="slider-container-distinguished">
+            <button ng-hide="whatToDisplay == 0 || whatToDisplay == 3" type="button" class="slick-prev {{userData.color}}" ng-click="prev()">
+              <img src="{{iconArrow}}">
+            </button>
+
+            <slick ng-if="whatToDisplay == 0">
+              <div class="slick-item">
+                <span class="slide-name">{{semester.name}}</span>
+                <span class="slide-year">{{semester.year}}</span>
+              </div>
+            </slick>
+
+            <slick ng-if="whatToDisplay == 3">
+              <div class="slick-item">
+                <span class="slide-name-error">No semester was chosen during the class creation.</span>
+              </div>
+            </slick>
+
+            <slick
+              ng-if="whatToDisplay == 1"
+              prev-arrow=".slick-prev"
+              next-arrow=".slick-next"
+              infinite=true
+              draggable=false
+              slides-to-show=1
+              slides-to-scroll=1>
+              <div class="slick-item" ng-repeat="item in months">
+                <span class="slide-name">{{item.name}}</span>
+                <span class="slide-year">{{item.year}}</span>
+              </div>
+            </slick>
+
+            <slick
+              ng-if="whatToDisplay == 2"
+              prev-arrow=".slick-prev"
+              next-arrow=".slick-next"
+              infinite=true
+              draggable=false
+              slides-to-show=1
+              slides-to-scroll=1>
+              <div class="slick-item" ng-repeat="item in weeks">
+                <span class="slide-year fix">{{item.year}}</span>
+                <span class="slide-name fix2">{{item.name}}</span>
+                <div>{{item.subName}}</div>
+              </div>
+            </slick>
+
+            <button ng-hide="whatToDisplay == 0 || whatToDisplay == 3" type="button" class="slick-next {{userData.color}}" ng-click="next()">
+              <img src="{{iconArrow}}">
+            </button>
+          </div>
+
+
+
+          <div class="class-menu-item class-menu-item-distinguished">
+            <pick-students ng-hide="whatToDisplay == 3"></pick-students>
+          </div>
+
+          <div class="class-menu-item-add" ng-hide="hideCustomButton || role === 'parent'">
+            <custom-button ng-hide="whatToDisplay == 3" ng-click="openModal()"></custom-button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="class-menu-item-block-right-container" ng-if="pickedStudents.length === 1">
+      <div class="class-menu-item-block-right" style="overflow-y: auto !important; overflow-x: hidden">
+        <user-info selected-user="studentInformation" show-distinguished-additional-info="true"></user-info>
+        <!--<div class="class-menu-item-block-right-header">-->
+        <!--</div>-->
+        <!--<div class="student-info"></div>-->
+      </div>
+    </div>
+  </div>
+</div>
+

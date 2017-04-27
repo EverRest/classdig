@@ -1,0 +1,41 @@
+.exams-help-block{
+  .help-block{
+    margin-left: 0;
+  }
+}
+.exam-date-time{
+  hr{
+    margin:0;
+  };
+  .exam-time{
+    display:flex;
+    justify-content: space-between;
+    overflow: hidden;
+
+    .dig-prop{
+      width: 150px;
+      overflow: hidden;
+      border-bottom: 1px solid  #eeeeee;
+      input{
+        width: 100px;
+      }
+    }
+  }
+}
+.exam-note{
+  padding: 20px 24px;
+  .exam-note-input{
+    width: 100%;
+    border:none;
+    border-bottom: 1px solid  #eeeeee;
+    font-family: 'Roboto',sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.94;
+    color: #b2b2b2;
+  }
+}
+
+

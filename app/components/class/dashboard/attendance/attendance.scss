@@ -1,0 +1,547 @@
+.attendance-general-block {
+  .data-absent {
+    font-family: 'Lato', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 13px 10px;
+    color: #797a7b;
+  }
+  .attendance-pie {
+    //border-bottom: solid 1px #f0f0f0;
+    display: flex;
+    justify-content: center;
+    .diagram-holder {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      margin: 25px 0;
+      .first-layer {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+      .second-layer {
+        width: 70%;
+        height: 70%;
+        opacity: 0.23;
+        background-color: #ffffff;
+        position: absolute;
+        top: 15%;
+        left: 15%;
+        z-index: 20;
+        border-radius: 50px;
+      }
+      .third-layer {
+        width: 30%;
+        height: 30%;
+        opacity: 0.23;
+        background-color: #ffffff;
+        position: absolute;
+        top: 35%;
+        left: 35%;
+        z-index: 30;
+        border-radius: 50px;
+      }
+      .fourth-layer {
+        width: 4%;
+        height: 4%;
+        background-color: #ffffff;
+        position: absolute;
+        top: 48%;
+        left: 48%;
+        z-index: 40;
+        border-radius: 50px;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .student-attendance-items {
+      padding: 0 0 0 37px;
+      margin: 25px 0;
+
+      .student-attendance-item {
+        font-family: 'Lato', sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 0.57;
+        text-align: left;
+        padding: 13px 0;
+        .attendance-present {
+          color: $attendance-present-color;
+        }
+        .attendance-late {
+          color: $attendance-late-color;
+        }
+        .attendance-absent {
+          color: $attendance-absent-color;
+        }
+      }
+      .attendance-text {
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        color: $user-text-color;
+      }
+    }
+  }
+  .small-attendance-list {
+    padding: 9px 16px 3px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    .attendance-present-bg {
+      background-color: $attendance-present-color;
+    }
+    .attendance-late-bg {
+      background-color: $attendance-late-color;
+    }
+    .attendance-absent-bg {
+      background-color: $attendance-absent-color;
+    }
+    .small-attendance-list-header {
+      display: flex;
+      .emblem {
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+      .text {
+        font-family: 'Lato', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        color: $user-text-color;
+        line-height: 1;
+      }
+    }
+    .actual-list {
+      margin: 9px 0 0 20px;
+      .student {
+        margin: 0 18px 6px 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        outline: none;
+        color: #333c48;
+        display: inline-block;
+        .image {
+          width: 100%;
+          height: 100%;
+          background-origin: border-box;
+          background-position: center;
+          background-size: cover;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+      }
+    }
+  }
+}
+.no-attendance-information {
+  color: #dd2c00;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+.class-menu-item-date {
+  .dropdown {
+    text-align: center;
+    .dropdown-toggle {
+      color: #606060;
+      i {
+        font-size: 12px;
+        top: 1px;
+      }
+      &:hover, &:active, &:focus, &:visited {
+        outline: none;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.datetimepicker .active {
+  background-color: $bg-color-teacher !important;
+  background-image: none;
+  &:hover {
+    background-color: $bg-color-teacher !important;
+    background-image: none;
+  }
+}
+
+.loader-fixed {
+  margin: 13px auto !important;
+}
+
+.class-menu-item-block-right-container {
+  .student-teacher {
+    .attendance-student-info {
+      padding: 0 24px;
+      display: block;
+      height: auto;
+      border-bottom: solid 1px #f0f0f0;
+    }
+    .user-data {
+      display: flex;
+      margin-top: 5px;
+
+      .attendance-user-username {
+        width: auto;
+      }
+    }
+    .user-diagram {
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      .attendance-pie {
+        width: 120px;
+        height: 120px;
+      }
+      .student-attendance-items {
+        padding: 0 0 0 37px;
+        .student-attendance-item {
+          font-family: 'Lato', sans-serif;
+          font-size: 28px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 0.57;
+          text-align: left;
+          padding: 13px 0;
+          display: flex;
+          .attendance-present {
+            color: $attendance-present-color;
+          }
+          .attendance-late {
+            color: $attendance-late-color;
+          }
+          .attendance-absent {
+            color: $attendance-absent-color;
+          }
+        }
+        .attendance-text {
+          font-family: 'Lato', sans-serif;
+          font-size: 20px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1;
+          color: $user-text-color;
+        }
+      }
+    }
+  }
+}
+.number-position-fixed {
+  position: relative;
+  left: -11px;
+}
+
+.attendance-student-info-list-holder {
+  height: 65vh;
+  overflow: auto;
+}
+
+.attendance-student-info {
+  display: flex;
+  //height: 84px;
+  padding: 12px 0px 12px 24px;
+  border-bottom: solid 2px $border-grey;
+  // photo of user
+  .attendance-short-info {
+    //width: 50%;
+    //.attendance-short-info-image {
+      width: 4vw;
+      height: 4vw;
+      margin: 0px 1vw 0px 0px;
+      //img {
+      //  width: 4vw;
+      //  height: 4vw;
+      //  border-radius: 55px;
+      //}
+    //}
+  }
+  // username
+  .attendance-user-username {
+    width: 6vw;
+    height: 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .attendance-short-info-username {
+      object-fit: contain;
+      font-family: 'Lato', sans-serif;
+      font-size: 1.3vw;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.13;
+      color: $user-text-color;
+    }
+  }
+  // chart
+  .attendance-pie {
+    margin: 3px 0 3px 0.4vw;
+    width: 4vw;
+    height: 4vw;
+    position: relative;
+    .first-layer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    .second-layer {
+      width: 70%;
+      height: 70%;
+      opacity: 0.23;
+      background-color: #ffffff;
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      z-index: 20;
+      border-radius: 50px;
+    }
+    .third-layer {
+      width: 30%;
+      height: 30%;
+      opacity: 0.23;
+      background-color: #ffffff;
+      position: absolute;
+      top: 35%;
+      left: 35%;
+      z-index: 30;
+      border-radius: 50px;
+    }
+    .fourth-layer {
+      width: 4%;
+      height: 4%;
+      background-color: #ffffff;
+      position: absolute;
+      top: 48%;
+      left: 48%;
+      z-index: 40;
+      border-radius: 50px;
+    }
+  }
+  // list of attendance
+  .student-attendance-items {
+    padding: 0 0 0 2vw;
+
+    .student-attendance-item {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.4vw;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 0.57;
+      text-align: left;
+      padding: 5px 0;
+      .attendance-present {
+        color: $attendance-present-color;
+      }
+      .attendance-late {
+        color: $attendance-late-color;
+      }
+      .attendance-absent {
+        color: $attendance-absent-color;
+      }
+    }
+    .attendance-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.2vw;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      color: $user-text-color;
+    }
+  }
+}
+
+
+
+.overflow-fixed {
+  overflow-y: hidden !important;
+}
+
+.class-menu-item-holder {
+  width: 100%;
+  //height: 85vh;
+  //position: relative;
+  .control-button {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+  }
+}
+
+.late {
+  background-color: #ffc600;
+  border-color: #ffc600;
+}
+
+.absent {
+  background-color: #f93640;
+  border-color: #f93640;
+}
+
+.present {
+  background-color: #1ea66d;
+  border-color: #1ea66d;
+}
+
+.events-calendar {
+
+  &.c-teacher {
+    .fc-icon {
+      color: $bg-color-icon-teacher;
+      font-size: 2em;
+    }
+  }
+  &.c-student {
+    .fc-icon {
+      color: $bg-color-icon-student;
+      font-size: 2em;
+    }
+  }
+  &.c-parent {
+    .fc-icon {
+      color: $bg-color-icon-parents;
+      font-size: 2em;
+    }
+  }
+  .fc-next-button, .fc-prev-button {
+    height: 8vh !important;
+  }
+  .fc-state-default.fc-corner-left {
+    //height: 80px;
+    height: 8vh;
+    border: none;
+    background: none;
+    outline: none;
+  }
+
+  //.test {
+  //  width: 100%;
+  //  height: 80px;
+  //  background-color: #00b3ee;
+  //  position: relative;
+  //  top: 0;
+  //}
+
+  .fc-prev-button > span, .fc-next-button > span {
+    display: block;
+    height: 100%;
+  }
+
+
+
+  .arrow-color-parent {
+    .fc-next-button > span::after {
+      content: url(../images/distinguished/icon-arrow-parent.png);
+    }
+    .fc-prev-button > span::after {
+      content: url(../images/distinguished/icon-arrow-parent.png);
+    }
+  }
+  .arrow-color-student {
+    .fc-next-button > span::after {
+      content: url(../images/distinguished/icon-arrow-student.png);
+    }
+    .fc-prev-button > span::after {
+      content: url(../images/distinguished/icon-arrow-student.png);
+    }
+  }
+  .arrow-color-teacher {
+    .fc-next-button > span::after {
+      content: url(../images/distinguished/icon-arrow-teacher.png);
+    }
+    .fc-prev-button > span::after {
+      content: url(../images/distinguished/icon-arrow-teacher.png);
+    }
+  }
+
+  .fc-next-button > span::after {
+    font-size: 200%;
+    top: 0 !important;
+    //height: 60px;
+    height: 6vh;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+    transform: rotate(180deg);
+  }
+
+  .fc-prev-button > span::after {
+    font-size: 200%;
+    top: 0 !important;
+    //height: 60px;
+    height: 6vh;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 0;
+  }
+
+  .fc-today {
+    color: red !important;
+    background: none;
+  }
+  .fc-basic-view td.fc-week-number span, .fc-basic-view td.fc-day-number {
+    padding-top: 20px;
+  }
+}
+
+.student-short-info {
+  margin: 20px 0 0 0;
+
+  .student-short-info-image {
+    width: 55px;
+    height: 55px;
+    margin: 0px 15px 0px 0px;
+    img {
+      //width: 100%;
+      //height: 100%;
+      width: 55px;
+      height: 55px;
+      border-radius: 55px;
+    }
+  }
+  .student-short-info-username {
+    object-fit: contain;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    color: $user-text-color;
+  }
+  .pieChart {
+    width: 65px;
+    height: 65px;
+  }
+}
+.user-img-right-block {
+  width: 4vw;
+  height: 4vw;
+  background-origin: border-box;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  //position: absolute;
+}

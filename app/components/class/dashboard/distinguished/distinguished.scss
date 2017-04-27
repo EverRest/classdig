@@ -1,0 +1,70 @@
+.amount-of-students {
+  color: #878787 !important;
+  font-size: 18px !important;
+}
+.with-amount-of-students {
+  padding: 25px 25px 0 25px !important;
+}
+.class-menu-item-distinguished {
+  overflow-y: auto;
+  height: 86%;
+}
+.slider-container-distinguished {
+  display: flex;
+  border-bottom: solid 3px #f8f8f8;
+  height: 85px;
+  max-height: 85px;
+  slick {
+    margin: 0 auto;
+    width: 84%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    overflow-y: hidden;
+    .slick-slide {
+      display: block !important;
+    }
+    .slick-item {
+      .slide-name {
+        font-size: 36px;
+        font-weight: bold;
+        color: #818181;
+        text-transform: uppercase;
+        margin-right: 10px;
+      }
+      .slide-name-error {
+        color: #dd2c00;
+        font-family: 'Roboto', sans-serif;
+        font-size: 24px;
+      }
+      .slide-year {
+        font-size: 36px;
+        color: #818181;
+        //font-weight: 300;
+      }
+      .fix {
+        left: 120px;
+        position: relative;
+      }
+      .fix2 {
+        position: relative;
+        left:-30px;
+      }
+    }
+  }
+  .slick-next, .slick-prev {
+    width: 8%;
+    background: none;
+    border: none;
+    font-size: 32px;
+    img {
+      height: 33px !important;
+      width: auto;
+    }
+  }
+  .slick-next img {
+    transform: rotate(180deg);
+  }
+}
+

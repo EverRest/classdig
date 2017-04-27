@@ -1,0 +1,223 @@
+.negative-event {
+  background-color: #f93640;
+  border-color: #f93640;
+}
+
+.positive-event {
+  background-color: #1ea66d;
+  border-color: #1ea66d;
+}
+
+.class-menu-item-block-right-container {
+  .class-menu-item-block-right {
+  border: solid 1px $general-border-color;
+    .behavior-general-block{
+      .behavior-general-block-title{
+        padding: 17px 0 7px 14px;
+        background-color: $border-grey;
+        font-family: 'Roboto', sans-serif;
+        font-size: 17px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        color: $behavior-header-text-color;
+      }
+      .behavior-general-block-detail{
+        background-color: white;
+        border-bottom: solid 1px #d8d8d8;
+        .behavior-general-block-detail-header{
+          margin: 10px 18px 10px 18px;
+          font-family: 'Lato', sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          color: $behavior-header-text-color;
+          .behavior-icon{
+            display: inline-block;
+            margin: 0 0px;
+            //padding: 0px 10px;
+            width: 16px;
+            height: 16px;
+            &.positive-icon-0{
+              background: url(/images/classes/behavior/working-hard.svg) no-repeat;
+            }
+            &.positive-icon-1{
+              background: url(/images/classes/behavior/participating.svg) no-repeat;
+            }
+            &.positive-icon-2{
+              background: url(/images/classes/behavior/progress.svg) no-repeat;
+            }
+            &.positive-icon-3{
+              background: url(/images/classes/behavior/focused.svg) no-repeat;
+            }
+            &.negative-icon-0{
+              background: url(/images/classes/behavior/off-task.svg) no-repeat;
+            }
+            &.negative-icon-1{
+              background: url(/images/classes/behavior/talking.svg) no-repeat;
+            }
+            &.negative-icon-2{
+              background: url(/images/classes/behavior/unprepared.svg) no-repeat;
+            }
+            &.negative-icon-3{
+              background: url(/images/classes/behavior/not-focused.svg) no-repeat;
+            }
+          }
+
+        }
+        .behavior-general-block-detail-content{
+          display: flex;
+          padding: 0px 9px 9px 27px;
+          flex-wrap: wrap;
+          .behavior-general-block-detail-photo{
+            margin: 0px 9px 9px 9px;
+            img{
+              width: 55px;
+              height: 55px;
+              border-radius: 28px;
+            }
+          }
+        }
+      }
+    }
+    .behaviour-student-info {
+      border-bottom: solid 1px #f0f0f0;
+      padding: 20px 0;
+      .student-short-info {
+        margin: 0 24px 21px 24px;
+
+        .student-short-info-image {
+          width: 55px;
+          height: 55px;
+          margin: 0px 15px 0px 0px;
+          img {
+            //width: 100%;
+            //height: 100%;
+            width: 55px;
+            height: 55px;
+            border-radius: 55px;
+          }
+        }
+        .student-short-info-username {
+          object-fit: contain;
+          font-family: 'Lato', sans-serif;
+          font-size: 16px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.13;
+          color: $user-text-color;
+        }
+        .pieChart {
+          width: 65px;
+          height: 65px;
+        }
+      }
+      .students-positive-and-negative {
+      display: flex;
+      .student-list-behiviour {
+        width: 50%;
+        .behaviour-pie {
+          display: block;
+          margin: 0 auto 13px;
+          width: 65px;
+          height: 65px;
+          position: relative;
+          .first-layer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+          }
+        }
+        .student-positive-behiviour,
+        .student-negative-behiviour{
+          .student-behiviour-items {
+            .student-behiviour-item {
+              margin: 0;
+              font-family: 'Lato', sans-serif;
+              font-size: 14px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              color: $text-color;
+              .behavior-rectangle{
+                display: inline-block;
+                margin: 0 10px 0 20px;
+                height: 11px;
+                width: 11px;
+                background-color: blue;
+              }
+            }
+          }
+        }
+        //.student-negative-behiviour {
+        //  .student-behiviour-pie {
+        //  }
+        //  ul.student-behiviour-items {
+        //    li.student-behiviour-item {
+        //    }
+        //  }
+        //}
+      }
+    }
+  }
+}
+
+}
+
+canvas {
+  //width: 65px !important;
+  //height: 65px !important;
+}
+.data-absent {
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 13px 10px;
+  //border-bottom: solid 1px #f0f0f0;
+  color: #797a7b;
+}
+.no-behaviour-information {
+  color: #dd2c00;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  padding: 0 24px;
+}
+
+
+
+.late {
+  background-color: #ffc600;
+  border-color: #ffc600;
+}
+
+.absent {
+  background-color: #f93640;
+  border-color: #f93640;
+}
+
+.present {
+  background-color: #1ea66d;
+  border-color: #1ea66d;
+}
+
+.student-short-info-flex {
+  display: flex;
+  align-items: center;
+  .student-short-info-username {
+    margin-left: 10px;
+  }
+}
+.user-img-right-block-general-info {
+  width: 55px;
+  height: 55px;
+  background-origin: border-box;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}

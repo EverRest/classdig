@@ -1,0 +1,229 @@
+user-info {
+  .profile-bg-teacher{
+    background-image: url("../../images/profile/profile-bg-teacher.png")!important;
+  }
+  .profile-bg-student{
+    background-image: url("../../images/profile/profile-bg-student.png")!important;
+  }
+  .profile-bg-parent{
+    background-image: url("../../images/profile/profile-bg-parent.png")!important;
+  }
+  .class-menu-item-block-right-header {
+    width: 100%;
+    height: 350px !important;
+    position: relative;
+    padding: 0 !important;
+    background-image: url("../../images/profile/profile-bg-teacher.png");
+    background-size: cover;
+    .main-user-data {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 264px;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .main-user-data-item {
+        width: 100%;
+        font-family: 'Lato', sans-serif;
+        font-size: 30px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.13;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        text-transform: capitalize;
+
+        .user-data-info-location {
+          font-size: 14px;
+          img {
+            width: auto;
+            height: 13px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+          }
+        }
+
+      }
+      .user-data-info {
+        div {
+          margin: 5px;
+        }
+      }
+
+      .user-data-ava {
+        .user-ava-container {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          /* overflow: hidden; */
+          margin: auto;
+          /* display: flex; */
+          border: solid 1px #979797;
+          /* justify-content: center; */
+          /* align-items: center; */
+          background-origin: border-box;
+          background-position: center;
+          background-size: cover;
+          img {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+
+    }
+    .additional-user-data-shadow {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 55px;
+      background: #000;
+      opacity: 0.4;
+    }
+    .additional-user-data {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 55px;
+      background-image: url("../../images/profile/icon-profile-ava-background-top2.svg");
+      background-size: cover;
+      display: flex;
+      /*padding: 5px;*/
+
+      #followers {
+        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
+      }
+
+      .additional-user-data-item {
+        width: calc(100% / 3);
+        text-align: center;
+        padding: 11px;
+
+        .count {
+          font-size: 22px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 0.86;
+          letter-spacing: normal;
+          text-align: center;
+          color: #ffffff;
+        }
+        .description {
+          font-size: 12px;
+          font-weight: 300;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.58;
+          letter-spacing: normal;
+          text-align: center;
+          //color: #aecef5;
+          text-transform: capitalize;
+        }
+
+        &.active {
+          background: #4a9bea;
+          color: #fff;
+
+          .description.teacher-color {
+            color: #b3d3f9!important;
+          }
+        }
+      }
+    }
+  }
+
+  .first-border{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: auto;
+    border: solid 1px #979797;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .user-first-addition-ava{
+      width: 28px !important;
+      height: 28px !important;
+      position: absolute;
+      right: -14px;
+      top: 47px;
+    }
+  }
+  .second-border{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: auto;
+    border: solid 1px #979797;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .user-second-addition-ava{
+      width: 28px !important;
+      height: 28px !important;
+      position: absolute;
+      left: -3px;
+      top: 109px;
+    }
+
+  }
+
+  .user-follow_list {
+    padding: 20px;
+  }
+
+  .followItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+
+    .followItem-right {
+      height: 40px;
+      background-color: #4a9bea;
+      color: #fff;
+      text-align: center;
+      font-size: 14px!important;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 13px 10px 0;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #197dea;
+      }
+    }
+
+    .followItem-left {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .user-img {
+      width:50px;
+      height:50px;
+      margin-right: 10px;
+
+
+      img {
+        width: 50px;
+        height:50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+  }
+
+
+}

@@ -1,0 +1,80 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+<div class="class-menu">
+<div class="premium-header">
+  <div class="premium-header-title" ng-show="showDiscount" >Premium</div>
+  <div class="premium-header-back" ng-click="functionHideDiscount()" ng-show="!showDiscount"><img src="images/files-library/icon-arrow-back-teacher.svg"><span> Back</span> </div>
+</div>
+
+<div class = "class-menu-item-container">
+  <div class = "class-menu-item-block-center-container">
+
+    <div class="class-menu-item-block-center-premium">
+      <div class="premium-logo-container">
+        <img src="images/logos/logo-login.png">
+      </div>
+
+      <div class="premium-information-container" ng-show="showDiscount">
+        <div class="subscribe-header">Subscribe now to enjoy best features of ClassDig</div>
+
+        <div class="premium-button-container">
+          <button ng-click="openPaymentModal({'period': 1,'money':2.99, 'cummon':false})"><span class="cost">$2.99</span><br><span class="time">monthly</span></button>
+          <button ng-click="openPaymentModal({'period': 2,'money':29.99, 'cummon':false})"><span class="cost">$29.99</span><br><span class="time">yearly</span></button>
+        </div>
+
+        <div class="subscribe-header">
+          <div class="promo-code">GO WITH PROMOTION CODE</div>
+          <div class="promo-code-sub">huge discount for school package</div>
+        </div>
+
+        <div class="premium-button-container premium-button-container-code">
+          <button ng-click="functionShowDiscount()"><span class="code">GET A CODE</span></button>
+          <button ng-click="functionEnterClassCode()"><span class="code">I HAVE A CODE</span></button>
+        </div>
+
+      </div>
+
+
+      <div class="premium-discount-container" ng-show="!showDiscount">
+        <div class="discount-table-container">
+          <table>
+            <tr>
+              <td class="discount-data discount-table-data">
+                <span class="discount-percent"> 30%</span>
+                <span> discount</span>
+              </td>
+              <td class="discount-data discount-table-data">
+                <span class="discount-percent"> 40%</span>
+                <span> discount</span>
+              </td>
+              <td class="discount-data discount-table-data">
+                <span class="discount-percent"> 50%</span>
+                <span> discount</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="discount-information discount-table-data">
+                <div>School package for up <br> to 30 teachers.</div>
+                <button class="buy-discount-button" ng-click="openPaymentModal({'period': 2,'money':2.99, 'cummon': true, 'discount': 30})">BUY</button>
+              </td>
+              <td class="discount-information discount-table-data">
+                <div>School package for up <br> to 40 teachers.</div>
+                <button class="buy-discount-button" ng-click="openPaymentModal({'period': 2,'money':2.99, 'cummon': true,'discount': 40})">BUY</button>
+              </td>
+              <td class="discount-information discount-table-data">
+                <div>School package for up <br> to 50 teachers.</div>
+                <button class="buy-discount-button" ng-click="openPaymentModal({'period': 2,'money':2.99, 'cummon': true,'discount': 50})">BUY</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class = "class-menu-item-block-right-container">
+
+  </div>
+</div>
+</div>

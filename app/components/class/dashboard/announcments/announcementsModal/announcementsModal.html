@@ -1,0 +1,116 @@
+<form name="CreatePollModal" ng-submit="submitCreatePollModal()" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">{{$ctrl.modalConstant.header}}</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="$ctrl.cancel()">+</button>
+  </div>
+<div ng-show="createPollModal">
+  <div class="sub-header">
+    <h3>ANNOUNCEMENT DESCRIPTION</h3>
+  </div>
+  <div class="poll-modal-create-question" >
+    <div class = "question" >
+      <input id="poll-question" ng-model="newAnnouncement.title" class="{{userData.color}}" type="text"
+             placeholder="Announcement Title"
+             style = "font-size: 22px;"
+             name = "PollTittle"
+             ng-minlength="2"
+             ng-maxlength="250"
+             required>
+
+      <p ng-show="CreatePollModal.PollTittle.$dirty && CreatePollModal.PollTittle.$error.minlength" class="help-block red-help-block">Announcement tittle is too short.</p>
+      <p ng-show="CreatePollModal.PollTittle.$dirty && CreatePollModal.PollTittle.$error.maxlength" class="help-block red-help-block">Announcement tittle is too long.</p>
+      <p ng-show="submitted && CreatePollModal.PollTittle.$error.required" class="help-block red-help-block">Announcement tittle is required.</p>
+    </div>
+
+    <div class="add-img-to-question colorcover">
+    </div>
+
+  </div>
+
+
+  <div class="sub-header">
+    <h3>DESCRIPTION</h3>
+  </div>
+
+  <div class="poll-modal-create-question poll-modal-details">
+    <div class="question">
+
+      <!-- ===== Date ===== -->
+      <div class="poll-answears">
+        <div class="poll-answears details">
+          <div class="answear details-section anonymouslyVoteCtrl" style = "border-bottom: 1px solid #d9d9d9">
+            <input class="{{userData.color}}" style="border: none; outline: none; font-size:16px" placeholder="Write details" ng-model="newAnnouncement.description">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== See result Id ===== -->
+
+  </div>
+
+
+  <div class="sub-header">
+    <h3>WHO CAN SEE</h3>
+  </div>
+
+  <div class="poll-modal-create-question poll-modal-details">
+    <div class="question">
+
+      <div class="poll-answears">
+        <div class="answear details-section votersCtrl" >
+
+          <h4>Announcement for</h4>
+          <span class ={{userData.color}}  ng-click = "showParticipantsList()" ng-show = "userData.role ==='student'" style = "padding-top: 9px">Only Students</span>
+          <span class ={{userData.color}}  ng-click = "showParticipantsList()" ng-show = "userData.role ==='teacher'" style = "padding-top: 9px">Students and Parents</span>
+          <!--<div><custom-selector class ={{userData.color}} options="votersOptions" ></custom-selector></div>-->
+        </div>
+
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="$ctrl.cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass add-poll {{userData.background}}"
+            type="submit" style = "width:auto"
+            ng-click="submitted=true; $ctrl.ok() ">{{$ctrl.modalConstant.buttonSubmit}}
+    </button>
+
+  </div>
+</div>
+
+
+  <div ng-show = "addVoters">
+
+    <div class="sub-header">
+      <h3>Choose role</h3>
+    </div>
+
+    <choose-user-role ></choose-user-role>
+    <select-users ></select-users>
+  </div>
+
+  <div class="modal-footer" ng-show = "addVoters">
+
+    <!--<div class="modal-footer">-->
+      <button class="btn-cansel {{userData.color}}"
+              type="button"
+              ng-click="cancelVoteParticipants()">Cancel
+      </button>
+
+      <button class="btn-createClass add-poll {{userData.background}}"
+              ng-click="addVoteParticipants()">Add
+      </button>
+
+    <!--</div>-->
+
+  </div>
+
+</form>

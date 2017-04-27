@@ -1,0 +1,294 @@
+<form name="CreateClassModal" ng-submit="submitCreateClassModal()" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">{{$ctrl.modalConstant.header}}</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+  </div>
+
+  <!-- =============== Class Details =======================-->
+  <div class="sub-header">
+    <h3>Class details &amp; Code</h3>
+  </div>
+  <div class="colorcover">
+    <div class="color">
+      <div class="choose-semester">
+
+        <!-- ===== Name Class ===== -->
+        <div class="dig-prop">
+          <!--<label class="dig-label class-name" for = "className">Class name</label>-->
+          <input
+                  id = "className"
+                  class="class-name greyFont"
+                 ng-model='currentClass.name'
+                 name='ClassName'
+                 ng-minlength="2"
+                 ng-maxlength="32"
+                  placeholder="Class name"
+                 required>
+        </div>
+        <hr>
+        <p ng-show="CreateClassModal.ClassName.$dirty && CreateClassModal.ClassName.$error.minlength" class="help-block fixed-error-massage">Class name is too short.</p>
+        <p ng-show="CreateClassModal.ClassName.$dirty && CreateClassModal.ClassName.$error.maxlength" class="help-block fixed-error-massage">Class name is too long.</p>
+        <!--<p ng-show="CreateClassModal.ClassName.$dirty && CreateClassModal.ClassName.$error.required" class="help-block">Class name is required.</p>-->
+        <p ng-show="submitted && CreateClassModal.ClassName.$error.required" class="help-block fixed-error-massage">Class name is required.</p>
+        <!--<p ng-show="CreateClassModal.ClassName.$invalid && !CreateClassModal.ClassName.$pristine" class="help-block">-->
+          <!--Class name is required.</p>-->
+
+        <!-- ===== Short Name ===== -->
+        <div class="dig-prop">
+          <!--<label class="dig-label" for="shortName">Short name</label>-->
+          <input id = "shortName"
+                 class="greyFont"
+                 ng-model='currentClass.short_name'
+                 name='ClassName_short'
+                 ng-minlength="2" ng-maxlength="5"
+                 placeholder="Short name"
+                 required>
+        </div>
+        <hr>
+        <p ng-show="CreateClassModal.ClassName_short.$dirty && CreateClassModal.ClassName_short.$error.minlength" class="help-block fixed-error-massage">Class short name is too
+          short.</p>
+        <p ng-show="CreateClassModal.ClassName_short.$dirty && CreateClassModal.ClassName_short.$error.maxlength" class="help-block fixed-error-massage">Class short name is too
+          long.</p>
+        <!--<p ng-show="CreateClassModal.ClassName_short.$dirty && CreateClassModal.ClassName_short.$error.required" class="help-block">Class short name is-->
+          <!--required.</p>-->
+        <p ng-show="submitted && CreateClassModal.ClassName_short.$error.required" class="help-block fixed-error-massage">Class short name is required.</p>
+        <!--<p ng-show="CreateClassModal.ClassName_short.$invalid && !CreateClassModal.ClassName_short.$pristine"-->
+           <!--class="help-block">Class short name is required.</p>-->
+
+        <!-- ===== Location ===== -->
+        <div class="dig-prop" style="justify-content: initial" >
+          <img src="images/modal/location-grey.svg">
+          <!--<label class="dig-label" for="classLocation"><img src="images/modal/location-grey.svg" style="">Location</label>-->
+          <input id ="classLocation"
+                 class="locationInput greyFont"
+                 ng-model='currentClass.location'
+                 name='Class_location'
+                 ng-minlength="2"
+                 ng-maxlength="50"
+                 placeholder="Location">
+        </div>
+        <hr>
+        <p ng-show="CreateClassModal.Class_location.$dirty && CreateClassModal.Class_location.$error.minlength" class="help-block">Class location is too
+          short.</p>
+        <p ng-show="CreateClassModal.Class_location.$dirty && CreateClassModal.Class_location.$error.maxlength" class="help-block">Class location is too long.</p>
+        <!--<p ng-show="CreateClassModal.Class_location.$dirty && CreateClassModal.Class_location.$error.required" class="help-block">Class location is required.</p>-->
+        <!--<p ng-show="submitted && CreateClassModal.Class_location.$error.required" class="help-block">Class location is required.</p>-->
+      </div>
+    </div>
+
+    <!-- ===== Class code ===== -->
+    <div class="color" ng-show="userData.role ==='teacher'">
+      <h4 id='class-code-header'>When enabled, students or parents have to enter the class code to join the class.</h4>
+      <div class="choose-semester">
+        <div class="semester-prop">
+          <h4>Access with code</h4>
+
+          <div class="onoffswitch">
+            <input  type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch" ng-click="functionHideCode()">
+              <span class="onoffswitch-inner {{userData.background}}"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
+
+        </div>
+        <div class="semester-prop">
+          <h4>Class code</h4>
+          <input ng-show="clickcount" class="{{userData.color}} " ng-model="currentClass.code" id="ClassCode" readonly="readonly">
+        </div>
+        <hr>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== Color &amp; Cover =======================-->
+  <div class="sub-header">
+    <h3>Color &amp; Cover</h3>
+  </div>
+  <div class="colorcover">
+
+    <!-- ===== Class Color ===== -->
+    <!--TODO show color on update-->
+    <div class="color">
+      <h4>Class color</h4>
+      <color-picker selected-color="currentClass.color" function-select-color="functionSelectColor"></color-picker>
+    </div>
+
+    <!-- ===== Add Cover Image ===== -->
+    <div class="addImg">
+      <h4 ng-click="uploadPic(picFile)">
+        <img src="images/modal/icon-camera_3x.jpg" style="margin-right:10px;width: 16px;
+    height: 12px;margin-bottom: 1px">
+        Add Cover image</h4>
+      <div class="uploadImg {{userData.color}}">
+        <div class="{{userData.border}} from-disk cursorPointer"
+             name = "pictureUpload"
+             ngf-select
+             ng-model="picFile"
+             ngf-min-widht="240"
+             ngf-min-height="160"
+             ngf-max-size="5MB"
+             ngf-resize="{width: 240, height: 160, centerCrop: true}"
+             ngf-accept="'image/*'" valid-file >
+          <img class="upload-pic" ng-src={{userData.iconPlus}} style="margin:9px">
+          <p> {{ data.src }}Upload picture</p></div>
+        <!--<div class={{userData.border}}>-->
+          <!--<img class="library-img" ng-src={{userData.iconCamera}} >-->
+          <!--<p>Choose from library</p></div>-->
+        <div ng-show="picFile " class='UploadedPicture'
+             ngf-select
+             ng-model="picFile"
+             ngf-accept="'image/*'">
+          <img class="thumb" ngf-thumbnail="picFile"/></div>
+      </div>
+      <div ng-show="picFile.progress >=0 && picFile.progress<100"
+           style="position: absolute;width: 82px;">
+        <progress-bar progress-number='progressNumber'></progress-bar>
+      </div>
+      <div class="upload-file-error">
+        <p style = "color:red;" class="help-block" ng-show="CreateClassModal.pictureUpload.$error.maxSize">'Maximum picture size is 5 Mb</p>
+        <p style = "color:red;" class="help-block" ng-show="CreateClassModal.pictureUpload.$error.minHeight">Minimum picture size is 240 x 160 pixels</p>
+        <p style = "color:red;" class="help-block" ng-show="CreateClassModal.pictureUpload.$error.minWidth">Minimum picture size is 240 x 160 pixels</p>
+      </div>
+
+      <!--<div class="progress" ng-show="picFile.progress >=0 && picFile.progress<100" style = "position: absolute;width: 82px; margin-left: 34px;" ><div  class ="{{userData.background}}"  style="color:white; width:{{picFile.progress +'%'}};margin:0">{{picFile.progress+'%'}}</div></div>-->
+      <!---->
+    </div>
+  </div>
+
+  <!-- =============== Continue  =======================-->
+  <div ng-hide="showContinue == 1">
+    <div class="sub-header ClossAddDataTime">
+      <h3></h3>
+    </div>
+    <div class="colorcover ClossAddDataTime">
+      <div class="color">
+        <div class={{userData.color}} id='CloseTime' style="display: flex">
+          <img ng-src={{userData.iconAddButton}} ng-click="showContinue=1">
+          <p>Add date &amp; time</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="showContinue == 1" id="AddDateTime">
+    <!-- =============== Date =======================-->
+    <div class="sub-header">
+      <h3>Date</h3>
+    </div>
+    <div class="colorcover">
+      <div class="color">
+        <h4 class="auto-archived">Class will be automatically archived 5 days after the end of the class date</h4>
+        <div class="choose-semester">
+          <div class="dig-prop">
+            <label class="dig-label">Semester name</label>
+              <custom-selector class="{{role + '-color'}}" options="semesterNames"
+                               selected-option="currentClass.semester.name">
+              </custom-selector>
+          </div>
+          <hr>
+          <p
+            ng-show="CreateClassModal.semester.$invalid && CreateClassModal.semester.$dirty || CreateClassModal.semester.$invalid && CreateClassModal.semester.$submitted"
+            class="help-block">Your semester is required</p>
+
+          <!-- TODO show date from scope on update-->
+          <!-- ===== From ===== -->
+          <div class="dig-prop">
+            <label class="dig-label">From</label>
+            <!-- TODO must be format -->
+            <input ng-model="dateForUpdate.from" class="{{userData.color}} datetimepickerMonthFrom text-right cursorPointer">
+          </div>
+          <hr>
+          <!-- ===== To ===== -->
+          <div class="dig-prop">
+            <label class="dig-label">To</label>
+            <input ng-model="dateForUpdate.to" class="{{userData.color}} datetimepickerMonthTo text-right cursorPointer">
+          </div>
+          <hr>
+
+        </div>
+      </div>
+      <!--<button ng-click='UploadAllFiles()'>Upload</button>-->
+
+      <!-- ===== Upload file ===== -->
+      <div class="addImg" id="addImg">
+        <h4><img src="images/modal/icon-clip-gray.png" style="width: 10px; margin-right:10px; margin-bottom: 4px">Upload syllabus</h4>
+        <div class="uploadImg  {{userData.color}}">
+          <div style="margin: 0; !important;" class="{{userData.border}} cursorPointer"
+               name = "uploadFile"
+               ngf-select
+               ng-model="UploadFile"
+               ngf-max-size="25MB">
+            <img ng-src={{userData.iconPlus}} style="margin:9px;">
+            <p id="uploadFile">Upload file</p>
+          </div>
+          <div class='UploadFiles'>
+            <ul id='ListOfUploadFiles'>
+              <li id='{{item.id}}' ng-repeat="item in ArrayOfUploadFiles ">
+                <button ng-click="DeleteFileFromSyllabus($event)">x</button>
+                {{item.name}}
+              </li>
+              <li class="progress" ng-show="UploadFile.progress >= 0 && UploadFile.progress<100"
+                  style="margin-top:{{UploadFileHeight+'px'}}; position:absolute; width:180px">
+                <progress-bar progress-number='progressNumber' style='margin:0; padding:0'></progress-bar>
+              </li>
+              <!--<li class="progress" ng-show="UploadFile.progress >= 0 && UploadFile.progress<100" style = "margin-top:{{UploadFileHeight+'px'}}; position:absolute; width:180px" ><div  class ="{{userData.background}}"  style="color:white; width:{{UploadFile.progress +'%'}};  margin:0">{{UploadFile.progress+'%'}}</div></li>-->
+              <!---->
+            </ul>
+          </div>
+        </div>
+        <div class="upload-file-error">
+          <p style = "color:red;" class="help-block" ng-show="CreateClassModal.uploadFile.$error.maxSize">Incorrect file size</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =============== Time =======================-->
+    <!-- TODO show time from scope on update-->
+    <div class="sub-header">
+      <h3>Time</h3>
+    </div>
+    <div class="colorcover">
+      <create-class-time time="currentClass.time" ></create-class-time>
+      <p>{{createClassTime}}</p>
+    </div>
+
+    <!-- =============== Reminder =======================-->
+    <div class="sub-header">
+      <h3>Reminder</h3>
+    </div>
+    <div class="colorcover reminder">
+      <div class="color">
+        <div class="choose-semester">
+          <div class="dig-prop">
+              <div class="dig-img">
+                  <img src="images/modal/icon-bell_3x.png">
+              </div>
+            <label class="dig-label">Set reminder</label>
+              <custom-selector class="{{role + '-color'}}" options="options"
+                               selected-option="currentClass.reminder" bottom="1">
+
+              </custom-selector>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+    <p ng-show="invalidTimeMessage" class="error-message">Lesson duration should be higher than 30 min.</p>
+    <p ng-show="showErrorMessage" class="error-message">Something went wrong</p>
+    <button class="btn-createClass {{userData.background}}"
+            type="submit"
+            ng-click="submitted = true; ok()">{{$ctrl.modalConstant.buttonSubmit}}
+    </button>
+
+  </div>
+</form>

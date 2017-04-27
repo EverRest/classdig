@@ -1,0 +1,181 @@
+<form name="CreateExamModal" ng-submit="submitCreateClassModal()" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">{{$ctrl.modalConstant.header}}</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()" style = "">+</button>
+  </div>
+
+  <!-- =============== Class Details =======================-->
+  <div class="sub-header" style = "display:flex">
+    <h3>Exam Description</h3>
+    <h3 style = "margin-left:178px">Date and Time</h3>
+  </div>
+
+  <div class="colorcover">
+    <div class="color">
+      <div class="choose-semester exams-help-block">
+
+        <!-- =====  Exam Name ===== -->
+        <div class="dig-prop ">
+          <!--<label class="dig-label" for = "examName">Exam name</label>-->
+          <!--<input-->
+            <!--id = "examName"-->
+            <!--class="{{userData.color}} "-->
+            <!--ng-model='exam.title'-->
+            <!--name='ExamName'-->
+            <!--ng-minlength="2"-->
+            <!--ng-maxlength="50"-->
+            <!--required>-->
+          <input
+            id = "examName"
+            ng-model='exam.title'
+            name='ExamName'
+            ng-minlength="2"
+            ng-maxlength="50"
+            placeholder="Exam name"
+            style = "font-size:22px; color: #b2b2b2;"
+            required>
+        </div>
+        <hr>
+        <p ng-show="CreateExamModal.ExamName.$dirty && CreateExamModal.ExamName.$error.minlength" class="help-block">Exam name is too short.</p>
+        <p ng-show="CreateExamModal.ExamName.$dirty && CreateExamModal.ExamName.$error.maxlength" class="help-block">Exam name is too long.</p>
+        <p ng-show="submitted && CreateExamModal.ExamName.$error.required" class="help-block">Exam name is required.</p>
+
+
+        <!-- ===== Location ===== -->
+        <div class="dig-prop" style="justify-content: initial">
+          <!--<label class="dig-label" for="examLocation"><img src="images/modal/icon-location.png" style="">location</label>-->
+          <!--<input-->
+            <!--id ="examLocation"-->
+            <!--class="{{userData.color}} "-->
+            <!--ng-model='exam.location'-->
+            <!--name='Exam_location'-->
+            <!--ng-minlength="2"-->
+            <!--ng-maxlength="50"-->
+            <!--required>-->
+          <img src="images/modal/location-grey.svg">
+          <input id ="examLocation"
+                 class="locationInput greyFont"
+                 ng-model='exam.location'
+                 ng-minlength="2"
+                 ng-maxlength="50"
+                 placeholder="Location"
+                 name = Exam_location
+                  required>
+
+        </div>
+        <hr>
+        <p ng-show="CreateExamModal.Exam_location.$dirty && CreateExamModal.Exam_location.$error.minlength" class="help-block">Exam location is too
+          short.</p>
+        <p ng-show="CreateExamModal.Exam_location.$dirty && CreateExamModal.Exam_location.$error.maxlength" class="help-block">Exam location is too long.</p>
+        <p ng-show="submitted && CreateExamModal.Exam_location.$error.required" class="help-block">Exam location is required.</p>
+
+      </div>
+    </div>
+
+    <div class="color exam-date-time">
+      <!-- ===== Date ===== -->
+      <div class="dig-prop">
+        <label class="dig-label">Date</label>
+        <!-- TODO must be format -->
+        <input ng-model="monthDate" class="{{userData.color}} datetimepickerDate text-right cursorPointer">
+      </div>
+      <hr>
+      <div class="exam-time">
+      <!-- ===== Starts===== -->
+      <div class="dig-prop ">
+        <label class="dig-label">Starts</label>
+        <!-- TODO must be format -->
+        <input ng-model="exam.time_start" class="{{userData.color}} datetimepickerTimeFrom text-right cursorPointer">
+      </div>
+      <hr>
+      <!-- ===== Ends ===== -->
+      <div class="dig-prop">
+        <label class="dig-label">Ends</label>
+        <input ng-model="exam.time_end" class="{{userData.color}} datetimepickerTimeTo text-right cursorPointer">
+      </div>
+      <hr>
+      </div>
+
+      <div class="dig-prop">
+        <div class="dig-img">
+          <img src="images/modal/icon-bell_3x.png">
+        </div>
+        <label class="dig-label">Set reminder</label>
+        <custom-selector class="{{role + '-color'}}" options="options"
+                         selected-option="exam.reminder" bottom="0">
+
+        </custom-selector>
+      </div>
+      <hr>
+
+      </div>
+    </div>
+
+  <!-- =============== Color=======================-->
+  <div class="sub-header" style = "display:flex">
+    <h3>Color</h3>
+    <h3 style = "margin-left:280px">Attachment</h3>
+  </div>
+  <div class="colorcover ">
+
+    <!-- ===== Class Color ===== -->
+    <div class="color">
+      <h4>Choose color</h4>
+      <color-picker selected-color="exam.color" function-select-color="functionSelectColor"></color-picker>
+    </div>
+
+    <div class="addImg color" id="addImg" style="margin-top:0; margin-left: 24px">
+      <h4><img src="images/modal/icon-clip.png" style="width: 10px; margin-right:10px; margin-bottom: 4px">Add file</h4>
+      <div class="uploadImg  {{userData.color}}">
+        <div style="margin: 0; !important;" class='{{userData.border}} cursorPointer' ngf-select ng-model="UploadFile">
+          <img ng-src={{userData.iconPlus}} style="margin:9px;">
+          <p id="uploadFile">Upload file</p>
+        </div>
+        <div class='UploadFiles'>
+          <ul id='ListOfUploadFiles'>
+            <li id='{{item.id}}' ng-repeat="item in ArrayOfUploadFiles ">
+              <button ng-click="DeleteFileFromSyllabus($event)">x</button>
+              {{item.name}}
+            </li>
+            <li class="progress" ng-show="UploadFile.progress >= 0 && UploadFile.progress<100"
+                style="margin-top:{{UploadFileHeight+'px'}}; position:absolute; width:180px">
+              <progress-bar progress-number='progressNumber' style='margin:0; padding:0'></progress-bar>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =============== Note =======================-->
+  <div class="sub-header" style = "display:flex">
+    <h3>Note</h3>
+  </div>
+  <div class="exam-note">
+    <input id=""
+           ng-model="exam.note"
+           class="exam-note-input"
+           type="text"
+           name = 'Exam_note'
+           placeholder="Write your note"
+           >
+
+  </div>
+
+
+  <div class="modal-footer" style = "position:relative">
+    <button class="btn-cansel {{userData.color}} cursorPointer"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+    <div class = 'exam-server-error help-block' ng-show = "ExamServerError" style = "position: absolute;left: 415px;top: 18px; color:red;">Something went wrong</div>
+    <button class="btn-createClass {{userData.background}}"
+            style = "cursor:pointer"
+            type="submit"
+            ng-click="submitted=true; ok(CreateExamModal.$invalid)">{{$ctrl.modalConstant.buttonSubmit}}
+    </button>
+
+  </div>
+</form>
+

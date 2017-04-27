@@ -1,0 +1,167 @@
+.holder-settings {
+  background-color: transparent;
+  margin-top: 10px;
+  .settings-block {
+    height: 75vh;
+    overflow-x: hidden;
+    .settings-title {
+      width: 100%;
+      margin: 0 0 10px 0 !important;
+    }
+    .list-holder {
+      padding-top: 14px;
+      .settings-chapter {
+        width: 50%;
+        .title {
+          text-align: center;
+          font-size: 18px;
+        }
+      }
+      .beh-list-item {
+        margin: 5px 5px 5px 25px;
+        width: 85%;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        .beh-name {
+          font-size: 18px;
+          margin-left: 5px;
+        }
+        .attendance-icon {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          background-color: #00aeff;
+        }
+        .controll-button {
+          width: 10%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+          margin-right: 5px;
+          button {
+            border: none;
+            outline: none;
+            background-color: #fff;
+            &:focus, &:hover, &:active, &:visited, &:active:focus {
+              outline: none;
+              background-color: transparent;
+              box-shadow: none;
+            }
+            img {
+              margin: 0 auto;
+            }
+          }
+          .inside-menu {
+            padding-top: 9px;
+            position: absolute;
+            width: 113px;
+            height: 68px;
+            left: -100px;
+            top: -5px;
+            min-width: 113px;
+            .menu-option {
+              width: 100%;
+              height: 25px;
+              padding-left: 5px;
+              font-size: 16px;
+              color: #7b7b7b;
+              background-color: #ffffff;
+              &:hover {
+                background-color:  #f0f0f0;
+              }
+            }
+            .menu-option-past {
+              cursor: pointer;
+              width: 100%;
+              height: 25px;
+              padding-left: 5px;
+              font-size: 16px;
+              color: #7b7b7b;
+              background-color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+settings-class-list{
+  width: 100%;
+}
+.settings-class-list-container{
+  width: 100%;
+  padding: 5px;
+}
+.settings-class-list {
+  padding: 5px 0;
+  border-bottom: solid 1px #e0e0e0;
+  .settings-class-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .class-image-container {
+      margin: 0 10px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background-origin: border-box;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+  .settings-class-name{
+    font-family: 'Lato',sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #202020;
+    padding: 20px 0;
+    line-height: 1;
+  }
+}
+list-of-gradable-items{
+  width: 100%;
+.gradable-items-not-exist{
+  height: auto !important;
+}
+
+  .controll-button{
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    button{
+      border: none;
+      outline: none;
+      background-color: #fff;
+    }
+    .inside-menu{
+      padding-top: 9px;
+      position: absolute;
+      width: 113px;
+      height: 68px;
+      left: -95px;
+      top: -20px;
+      min-width: 113px;
+      .menu-option {
+        width: 100%;
+        height: 25px;
+        padding-left: 5px;
+        font-size: 16px;
+        color: #7b7b7b;
+        background-color: #ffffff;
+        &:hover {
+          background-color:  #f0f0f0;
+        }
+      }
+    }
+  }
+}
+
+.SettingsBackArrow{
+  display: flex;
+  margin: 0 10px;
+}

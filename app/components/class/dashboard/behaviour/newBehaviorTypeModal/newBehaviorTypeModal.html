@@ -1,0 +1,101 @@
+<form name="CreateBehaviorModal" class="groups-form"  ng-submit="" novalidate>
+
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title"  ng-if="newBehaviorType.type === 1">Create new positive behavior type</h3>
+    <h3 class="modal-title"  ng-if="newBehaviorType.type === 2">Create new negative behavior type</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+  </div>
+
+
+
+  <div class="colorcover custom-behavior-top-block">
+    <div class="color">
+      <div class="choose-semester">
+        <div class="dig-prop">
+          <input
+            id = "behaviorName"
+            class="class-name greyFont"
+            ng-model='newBehaviorType.description'
+            name='behaviorName'
+            ng-minlength="2"
+            ng-maxlength="32"
+            placeholder="Behavior name"
+            required>
+        </div>
+        <hr>
+        <p ng-show="CreateBehaviorModal.behaviorName.$dirty && CreateBehaviorModal.behaviorName.$error.minlength" class="help-block fixed-error-massage">Behavior name is too short.</p>
+        <p ng-show="CreateBehaviorModal.behaviorName.$dirty && CreateBehaviorModal.behaviorName.$error.maxlength" class="help-block fixed-error-massage">Behavior name is too long.</p>
+        <p ng-show="submited && CreateBehaviorModal.behaviorName.$error.required" class="help-block fixed-error-massage">Behavior name is required.</p>
+
+        <hr>
+      </div>
+    </div>
+
+
+    <!--<div class="color">-->
+      <!--<div class="addImg">-->
+        <!--<h4>-->
+          <!--<img src="images/modal/icon-camera_3x.jpg" style="margin-right:10px;width: 16px;-->
+    <!--height: 12px;margin-bottom: 1px">-->
+          <!--Add image-->
+        <!--</h4>-->
+        <!--<div class="uploadImg {{userData.color}}">-->
+          <!--<div class="{{userData.border}} from-disk cursorPointer"-->
+               <!--name = "pictureUpload"-->
+               <!--ngf-select-->
+               <!--ng-model="picFile"-->
+               <!--ngf-min-widht="240"-->
+               <!--ngf-min-height="160"-->
+               <!--ngf-max-size="5MB"-->
+               <!--ngf-resize="{width: 240, height: 160, centerCrop: true}"-->
+               <!--ngf-accept="'image/*'" valid-file-->
+               <!--required>-->
+            <!--<img class="upload-pic" ng-src={{userData.iconPlus}} style="margin:9px">-->
+            <!--<p> {{ data.src }}Upload picture</p>-->
+          <!--</div>-->
+          <!--<div ng-show="picFile " class='UploadedPicture'-->
+               <!--ngf-select-->
+               <!--ng-model="picFile"-->
+               <!--ngf-accept="'image/*'">-->
+            <!--<img class="thumb" ngf-thumbnail="picFile"/></div>-->
+        <!--</div>-->
+        <!--<div ng-show="picFile.progress >=0 && picFile.progress<100"-->
+             <!--style="position: absolute;width: 82px;">-->
+          <!--<progress-bar progress-number='progressNumber'></progress-bar>-->
+        <!--</div>-->
+        <!--<div class="upload-file-error">-->
+          <!--<p style = "color:red;" class="help-block" ng-show="CreateBehaviorModal.pictureUpload.$error.maxSize">'Maximum picture size is 5 Mb</p>-->
+          <!--<p style = "color:red;" class="help-block" ng-show="CreateBehaviorModal.pictureUpload.$error.minHeight">Minimum picture size is 240 x 160 pixels</p>-->
+          <!--<p style = "color:red;" class="help-block" ng-show="CreateBehaviorModal.pictureUpload.$error.minWidth">Minimum picture size is 240 x 160 pixels</p>-->
+          <!--<p style = "color:red;" class="help-block" ng-show="submited && CreateBehaviorModal.pictureUpload.$error.required">Behavior image is required</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+  <div class="sub-header">
+    <h3>Chose icon</h3>
+  </div>
+  <div class="images-list">
+    <div class="image-container" ng-repeat="imgObj in images" ng-class="{'active-image' : imgObj.active}" style="background-image: url('{{imgObj.img}}');" ng-click="selectIcon($event, imgObj)">
+    </div>
+  </div>
+
+
+
+  <!-- FOOTER-->
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass {{userData.background}}"
+            style="width: auto;"
+            type="submit"
+            ng-click="submited = true; ok()">
+      <span ng-if="!editing">CREATE BEHAVIOR</span>
+      <span ng-if="editing">EDIT BEHAVIOR</span>
+    </button>
+
+  </div>
+</form>

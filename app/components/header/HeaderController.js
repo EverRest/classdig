@@ -1,20 +1,47 @@
-// module.directive('header', function () {
-//   return {
-//     restrict: 'A', //This menas that it will be used as an attribute and NOT as an element. I don't like creating custom HTML elements
-//     replace: true,
-//     scope: {user: '='}, // This is one of the cool things :). Will be explained in post.
-//     templateUrl: "app/components/header/header.html",
-//     controller: ['$scope', '$filter', function ($scope, $filter) {
-//       // Your behaviour goes here :)
-//     }]
-//   }
-// });
 var app = angular.module('classDigApp');
 
-app.controller('HeaderController', function ($scope) {
+app.controller('HeaderController', [
+    '$scope',
+    '$rootScope',
+    '$http',
+    '$location',
+    'localStorageService',
+    'AuthenticationService',
+    function ($scope, $rootScope, $http, $location, localStorageService, AuthenticationService) {
+        $scope.activeTab = $rootScope.activeTab;
+        $scope.user = AuthenticationService.getUserData();
+        $scope.username = AuthenticationService.getUserName();
+        $scope.role = AuthenticationService.getUserRole();
+        $scope.unread = $rootScope.dialog.unread;
 
-  $scope.bgClass = "bg-teacher";
-  // $scope.bgClass = "bg-perents";
-  // $scope.bgClass = "bg-student";
+        $scope.$on('dialog-unread-success', function () {
+            $scope.unread = $rootScope.dialog.unread;
+        });
+        $rootScope.role = AuthenticationService.getUserRole();
 
-});
+
+        $scope.onMessageClick = function (e, par) {
+          e.preventDefault();
+        };
+
+        if ($rootScope.role === "teacher") {
+            $rootScope.bgClass = "bg-teacher";
+            $rootScope.bgIcon = "bg-icon-teacher";
+        }
+        else if ($rootScope.role === "student") {
+            $rootScope.bgClass = "bg-student";
+            $rootScope.bgIcon = "bg-icon-student";
+        }
+        else {
+            $rootScope.bgClass = "bg-parents";
+            $rootScope.bgIcon = "bg-icon-parents";
+        }
+
+        // ============= Logout =============
+        $scope.logout = function () {
+            $http.defaults.headers.common['Authorization'] = null;
+            AuthenticationService.logout();
+            $location.path('/');
+        };
+
+    }]);

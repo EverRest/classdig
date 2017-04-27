@@ -5,6 +5,14 @@
   bottom: 10px;
   outline: none;
 }
+.img-hover {
+  width: 124%;
+  height: 124%;
+  top: -4px;
+  left: -5px;
+  position: absolute;
+  display: none;
+}
 
 .custom_button {
   border-radius: 50%;
@@ -15,6 +23,10 @@
   font-size: 30px;
   border: none;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.24);
+    div{
+        margin-left: 1px !important;
+    }
+
 }
 
 .custom_button {
@@ -24,11 +36,11 @@
 .custom-button-ul {
   list-style: none;
   display: inline;
-}
+  li {
+    text-align: right;
+    margin-top: -100px;
+  }
 
-.custom-button-ul li {
-  text-align: right;
-  margin-top: -100px;
 }
 
 .custom-button-ul li:first-child {
@@ -39,7 +51,7 @@
   margin-right: 10px;
   border-radius: 3px;
   background-color: #696969;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;;
   font-size: 18px;
   font-weight: 500;
   font-style: normal;
@@ -47,6 +59,9 @@
   text-align: center;
   color: #ffffff;
   display: inline-block;
+  padding: 0 5px;
+  position: relative;
+  top: 0 !important;
 }
 
 .button-inside {
@@ -57,10 +72,11 @@
   border: none;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   text-align: center;
+  outline: none;
 }
 
-.button-inside img {
-  margin-left: -2px;
+.button-inside .basic-img {
+  margin-left: 1px;
   max-width: 30px;
 }
 
@@ -68,4 +84,20 @@
   position: absolute;
   margin-left: -172px;
   width: 222px;
+}
+.customOption{
+  //margin-top: -100px;
+  background-color: white;
+  hr{
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+}
+.customOption:first-child{
+  margin-top: 0px;
+  background-color: white;
+}
+#customSelectorLabel{
+  outline: none;
 }

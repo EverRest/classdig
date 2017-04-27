@@ -1,0 +1,98 @@
+.modal-behaviour {
+  .modal-header {
+    .modal-title {
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.4;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.87);
+    }
+  }
+  .modal-body {
+    padding: 0;
+    .modal-feedback-items {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      border: none;
+      .holder {
+        padding: 15px;
+        width: 25%;
+        height: 200px;
+        border: solid 1px #f0f0f0;
+        .img-holder {
+          height: 60%;
+          width: 100%;
+          text-align: center;
+          img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+        .title-holder {
+          margin-top: 10px;
+          span {
+            display: block;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            color: black;
+          }
+        }
+      }
+      //div {
+      //  &:focus,
+      //  &:active {
+      //    border: none;
+      //    outline: none;
+      //  }
+      //  button {
+      //    border: none;
+      //    background-color: transparent;
+      //    &:focus,
+      //    &:active {
+      //      border: none;
+      //      outline: none;
+      //    }
+      //  }
+      //  .modal-feedback-item {
+      //    margin: 0 auto;
+      //    padding: 0 5px;
+      //    width: 134px;
+      //    height: 180px;
+      //    a {
+      //      outline: none;
+      //      text-decoration: none;
+      //      img {
+      //        display: block;
+      //        margin: 10px auto;
+      //        height: 100px;
+      //      }
+      //      span {
+      //        display: block;
+      //        text-align: center;
+      //        vertical-align: bottom;
+      //        font-family: 'Roboto', sans-serif;
+      //        font-size: 20px;
+      //        font-weight: normal;
+      //        font-style: normal;
+      //        font-stretch: normal;
+      //        text-align: center;
+      //        color: black;
+      //        height: 55px;
+      //      }
+      //      &:focus {
+      //        outline: none;
+      //      }
+      //    }
+      //  }
+      //}
+    }
+  }
+}

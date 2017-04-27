@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>64AC72C3-AF19-49D9-A0C9-02AB315A2162</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <circle id="path-1" cx="18.5" cy="18.5" r="18.5"></circle>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.684762968   0 0 0 0 0.684762968   0 0 0 0 0.684762968  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="ClassDig-Web-Teachers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-Resources" transform="translate(-567.000000, -853.000000)">
+            <g id="cross_circle" transform="translate(571.043353, 856.000000)">
+                <g id="Oval-8">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#F93640" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="ic_clear_black_24px" transform="translate(4.000000, 4.000000)">
+                    <g id="Group">
+                        <polygon id="Shape" fill="#FFFFFF" points="23.75 8.0125 21.9875 6.25 15 13.2375 8.0125 6.25 6.25 8.0125 13.2375 15 6.25 21.9875 8.0125 23.75 15 16.7625 21.9875 23.75 23.75 21.9875 16.7625 15"></polygon>
+                        <polygon id="Shape" points="0 0 30 0 30 30 0 30"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

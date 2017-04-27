@@ -1,0 +1,127 @@
+.modify-controls {
+  position: relative;
+  top: -5px;
+  .custom-select {
+    float: left;
+    height: 34px;
+    display: flex;
+    width: 135px;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    .custom-select-title {
+      color: #606060;
+      span {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+      }
+      i {
+        left: 6px;
+        position: relative;
+        font-size: 12px;
+      }
+    }
+    .custom-select-menu {
+      position: absolute;
+      background: #f0f0f0;
+      top: 30px;
+      width: 135px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      color: #606060;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+      border-radius: 0;
+      .custom-select-menu-option {
+        padding-left: 10px;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+          color: #000000;
+        }
+      }
+    }
+  }
+
+  .controll-shape-buttons {
+    float: right;
+    button {
+      width: 50%;
+    }
+    button:focus, button:hover, button:active, button:visited, button:active:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    .controll-shape {
+      background-color: #ffffff;
+      img {
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+.student-info {
+  height: 65vh;
+  overflow-y: auto;
+  .student-in-requests-container {
+    padding: 5px 20px;
+    .student-in-requests {
+      height: 100%;
+      border-bottom: 1px solid #d9d9d9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .container-flex {
+        //display: flex;
+        align-items: center;
+        position: relative;
+        padding-bottom: 5px;
+        .student-img {
+          float: left;
+          background-origin: border-box;
+          background-position: center;
+          background-size: cover;
+          width: 55px;
+          height: 55px;
+          border-radius: 50%;
+          border: solid 3px rgba(255, 255, 255, 0.3);
+        }
+        .student-name {
+          height: 55px;
+          float: left;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          font-size: 18.8px;
+          color: #333c48;
+          margin-left: 15px;
+        }
+        .buttons {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 55px;
+          float: right;
+          button {
+            background-color: #ffffff;
+          }
+          .white-color {
+            color: #ffffff;
+          }
+          button:focus, button:hover, button:active, button:visited, button:active:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+.fixed-appearance {
+  #datalist {
+    position: absolute;
+    margin-left: -230px;
+    width: 275px;
+  }
+}

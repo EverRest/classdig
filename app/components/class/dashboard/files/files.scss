@@ -1,0 +1,86 @@
+.file-menu-header{
+  display: flex;
+  justify-content: space-between;
+  .class-menu-item-context-menu{
+    margin-top: -20px;
+  }
+}
+.file-li-student {
+  &:hover {
+    border: solid 3px $bg-color-student !important;
+  }
+}
+.file-li-teacher {
+  &:hover {
+    border: solid 3px $bg-color-teacher !important;
+  }
+}
+.file-li-parent {
+  &:hover {
+    border: solid 3px $bg-color-parents !important;
+  }
+}
+
+.files-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .files-li{
+    margin: 10px;
+    width: 105px;
+    height: 105px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+    .active-file-container {
+     padding-left: 5px;
+    }
+    &.active {
+       .active-file-container {
+         opacity: 0.3;
+       }
+    }
+  }
+  .file-img-container{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+  }
+}
+.back-folder-button{
+  text-transform: uppercase;
+  font-size: 24px !important;
+  margin: 10px;
+}
+.border-teacher {
+  border: solid 3px $bg-color-teacher !important;
+}
+.border-student {
+  //outline: 3px solid $bg-color-student !important;
+  border: solid 3px $bg-color-student !important;
+}
+.border-parent {
+  //outline: 3px solid $bg-color-parents !important;
+  border: solid 3px $bg-color-parents !important;
+}
+.file-shadow .shadow {
+  margin:15px 15px -10px 15px;
+  .files-subheader {
+    box-shadow:3px 0px 10px 0px rgba(0, 0, 0, 0.4);;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 0px 20px;
+  }
+  .files-subheader-item{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: 2px solid white;
+  }
+}

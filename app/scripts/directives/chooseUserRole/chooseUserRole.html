@@ -1,0 +1,7 @@
+<div class = "choose-user-role"><div class="user-role outline">
+  <div ng-click="selectRole(r.url)" ng-repeat="r in roles" class="{{r.id}} outline"
+       ng-class="{'active {{'role-' + role}} {{'c-' + role}}': selectedRole == r.url}">
+    {{r.description}}
+  </div>
+</div>
+</div>

@@ -1,0 +1,51 @@
+<div class = "joinClass">
+<form name="CreateClassModal"  ng-submit="submitCreateClassModal()" novalidate>
+  <div class="modal-header {{userData.background}}" ng-show="!codeWasSend">
+    <h3 class="modal-title" id="modal-title">Invite {{currentUser.first_name}} {{currentUser.last_name}} parent</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+  </div>
+  <!-- =============== Class Details =======================-->
+  <div class="colorcover" ng-show="!codeWasSend">
+    <div class="color">
+      <div class="choose-semester">
+        <!-- ===== Name Class ===== -->
+        <div class="dig-prop">
+          <input
+            id = "className"
+            class="{{userData.color}} class-name"
+            ng-model='inviteParentEmail'
+            name='ClassName'
+            ng-minlength="2"
+            ng-maxlength="50"
+            placeholder="Enter email"
+            type="email"
+            required>
+        </div>
+        <hr>
+        <p ng-show="submitted && CreateClassModal.ClassName.$error.required" class="help-block">Email code is required.</p>
+        <p ng-show="submitted && CreateClassModal.ClassName.$invalid" class="help-block">Enter valid email.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer" ng-show="!codeWasSend">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+    <button class="btn-createClass {{userData.background}} invite-parent-button"
+            type="submit"
+            ng-click="submitted = true; ok()">Invite
+    </button>
+    <p ng-show="showErrorMessage" class="error-message">{{errorMessage}}</p>
+  </div>
+  <div ng-show="codeWasSend" class="dialog-on-code-send">
+    <div class="modal-header {{userData.background}}">
+      <!--<h3 class="modal-title" id="modal-title">Enter class code</h3>-->
+      <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+    </div>
+
+    <div class="text">Your request has been sent.</div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,6 @@
+<div style = "display: flex;justify-content: center;">
+  <div ng-if = "$index<3" ng-repeat ="member in membersArray" class = "vote-member">
+    <img ng-src="{{member.image || member.user.image}}">
+  </div>
+  <div ng-show = "(membersArray.length-3)>0" class = "vote-member number-participants {{background}}">+{{membersArray.length -3}}</div>
+</div>

@@ -1,0 +1,15 @@
+<div class='customSelector'>
+    <div ng-show='showOptions' id='allOptionList{{$id}}' class="allOptionList">
+        <div class="selected-hover customOption" ng-repeat="option in options">
+    <span class="select-item" ng-click='functionPushValue(option.val, option.option)'>
+        {{option.option}}
+    </span>
+        </div>
+    </div>
+    <div id='selectedArea'>
+        <label ng-click="functionShowOptions()" id='customSelectorLabel'>{{label}}
+            <span id = 'selector-right-icon' class="glyphicon glyphicon-chevron-down"></span>
+        </label>
+
+    </div>
+</div>

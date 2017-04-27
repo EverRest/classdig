@@ -1,0 +1,101 @@
+<div ng-if="requesstInProgress">
+  <div class="loader"></div>
+</div>
+
+<ul  class = "feed-list"
+     infinite-scroll='feeds.nextPage(feedUrl)'
+     infinite-scroll-container= '"#feedList"'
+     infinite-scroll-disabled='feeds.busy'
+     infinite-scroll-listen-for-event="list:filtered"
+     infinite-scroll-distance='1'>
+  <li ng-repeat="feed in feeds.items">
+    <div class = 'current-feed'>
+
+      <!------------- Feed header ------------------>
+      <div class="feed-header">
+        <div class="feed-header-info">
+          <div class="feed-header-img-container" style="background-image: url({{feed.owner.image}})"> </div>
+          <div>
+            <div class = 'feed-header-name'>{{feed.owner.first_name}} {{feed.owner.last_name}}</div>
+            <div class = 'feed-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
+          </div>
+        </div>
+
+
+        <div class="controll-button" ng-show="feed.owner.id===userId" >
+          <button class="btn-default btn"><img src="images/events/controll-button.svg"></button>
+          <div class="inside-menu dropdown-menu">
+            <!--<div class="menu-option" ng-click="editFeed()" >Edit</div>-->
+            <div class="menu-option" ng-click="deleteFeed(feed)">Delete</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!------------- End Feed header ------------------>
+
+      <!------------- Feed content ------------------>
+      <div class ="feed-content">
+
+        <div class="feed-content-data" ng-if="feed.file">
+
+          <div class="feed-content-data-img" ng-if="feed.type_file===1" >
+            <img ng-src="{{feed.file.link}}"  width="100%" height="auto">
+          </div>
+
+          <div class="feed-content-data-video" ng-if="feed.type_file===2" >
+            <video width="100%" height="auto" controls>
+              <source ng-src="{{feed.file.link}}" >
+              Your browser does not support the video.
+            </video>
+          </div>
+
+          <div class="feed-content-data-link " ng-if="feed.type_file===3" >
+            <a class="{{userData.color}}" target="_self" href={{feed.file.link}} download="feed.file.filename" >
+              <img ng-src="{{iconAddLink}}">
+              {{feed.file.filename}}
+            </a>
+          </div>
+
+        </div>
+
+        <div class="feed-content-link" ng-if="feed.link && !feed.youtube">
+          <a ng-href="{{showFeedLinkFunction(feed.link)}}" target="_blank" class="{{userData.color}}">{{feed.link}}</a>
+        </div>
+
+        <div class="feed-content-link" ng-if="feed.link && feed.youtube" style="display: flex; justify-content: center">
+          <youtube-video  video-id="feed.link"></youtube-video>
+        </div>
+
+
+        <div class="feed-content-text">{{feed.content}}</div>
+
+      </div>
+
+      <!------------- End Feed content ------------------>
+      <div class="feed-feedback">
+        <div class="feed-likes">
+          <img ng-if="!feed.is_liked" src="images/feed/icon-likes.svg" ng-click="addLikeFunction(feed)">
+          <img ng-if="feed.is_liked" src="images/feed/icon-liked.svg" ng-click="addLikeFunction(feed)">
+          {{feed.likes}}
+        </div>
+        <div class="feed-comment" ng-click="openModalAddComment(feed)">
+          <img ng-if="!feed.is_comment || feed.comments.data.length===0" src="images/feed/icon-comments.svg">
+          <img ng-if="feed.is_comment  && feed.comments.data.length>0 "  src="images/feed/icon-commented.svg">
+          {{feed.comments.data.length}}</div>
+      </div>
+
+      <div class="feed-comments">
+        <div class="comment" ng-repeat="comment in feed.comments.data" ng-if="$index<2 || showComment">
+          <div class ="comment-info">
+            <div class="comment-owner">{{comment.owner.first_name}} {{comment.owner.last_name}} </div>
+            <div class="comment-content">{{comment.content}}</div>
+          </div>
+          <div class="del-comment-button" ng-click="deleteFeedComment(comment,feed.comments.data, feed.comments_count )" ng-show="comment.owner.id===userId">x</div>
+        </div>
+        <div class="showComments" ng-click="showCommentsFunction()" ng-if="!showComment && feed.comments.data.length>2">Show more comments</div>
+        <div class="showComments" ng-click="hideCommentsFunction()" ng-if="showComment && feed.comments.data.length>2 ">Hide comments</div>
+      </div>
+    </div>
+  </li>
+</ul>

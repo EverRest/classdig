@@ -1,0 +1,21 @@
+<div  style = " display: flex; width: 150px;justify-content: space-between;">
+<div style = "display: flex; flex-direction: column;" >
+  <p class = "submit-student-assignment-subtitle" >Submitted</p>
+  <div style = "display: flex;justify-content: center; ">
+  <div ng-repeat ="member in membersArray" class = "vote-member" ng-show = 'member.submission==1 && member.id===currentId'>
+    <img ng-src="{{member.image || member.user.image}}">
+  </div>
+  <div class = "vote-member number-participants" style = "color: {{fontColor  | colorParse}}; text-align: center;background: white; padding-top: 2px;" ng-show="checkSubmitAssignment()>0">+{{checkSubmitAssignment()}}</div>
+  </div>
+  </div>
+
+<div style = "display: flex; flex-direction: column;">
+  <p class = "submit-student-assignment-subtitle" >Not Submitted</p>
+  <div style = "display: flex;justify-content: center; ">
+  <div ng-repeat ="member in membersArray" class = "vote-member" ng-show = 'member.submission===0 && member.id===currentId'>
+    <img ng-src="{{member.image || member.user.image}}">
+  </div>
+  <div class = "vote-member number-participants" style = "text-align: center;background:  white; padding-top: 2px; color: {{fontColor  | colorParse}}" ng-show="checkNotSubmitAssignment()>0" >+{{checkNotSubmitAssignment()}}</div>
+  </div>
+  </div>
+</div>

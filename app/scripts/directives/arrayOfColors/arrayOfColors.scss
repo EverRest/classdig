@@ -1,0 +1,66 @@
+@mixin color-pic-space{
+  margin: 0;
+  padding: 0;
+}
+
+.color-picker-section{
+  @include color-pic-space;
+  display:flex;
+  flex-wrap: wrap;
+}
+.color-picker-ul{
+  list-style:none;
+  display: flex;
+  flex-wrap: wrap;
+  width: 330px;
+  @include color-pic-space;
+
+  li {
+    @include color-pic-space;
+    display: inline;
+
+    .color-picker{
+      outline: none;
+      width: 33px;
+      height: 33px;
+      margin-left :7px;
+      margin-right:11px;
+      margin-top: 5px;
+      margin-bottom:5px;
+      border-radius: 50%;
+    }
+
+  }
+
+}
+#check{
+  outline: none;
+  width:33px;
+  height: 33px;
+  border-radius: 50%;
+  padding:3px;
+
+  #check-border{
+    padding:4px;
+    width: 27px;
+    height: 27px;
+    border: solid 2px #ffffff;
+    border-radius: 50%;
+
+    #check-sign{
+      width: 16px;
+      height: 9px;
+      border-left: solid 3px #ffffff;
+      border-bottom: solid 3px #ffffff;
+      border-radius: 2%;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+
+//////////////////////
+
+.bootstrap-datetimepicker-widget table td.active, .bootstrap-datetimepicker-widget table td.active:hover{
+  //background-color: #429c87;
+}

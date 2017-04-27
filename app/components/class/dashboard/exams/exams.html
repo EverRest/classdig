@@ -1,0 +1,84 @@
+<!-- Header -->
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/class/menuClass/menuClass.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}}" ng-controller="examsController">
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6 ">
+        <div class="{{'c-'+role}} ">Exams</div>
+    </div>
+    <div class="class-menu-item-main-subheader"></div>
+    <div class="class-menu-item-context-menu col-md-7 col-sm-7 col-xs-6 " ng-show="selection.length !== 0" ng-hide="hideCustomButton || role === 'parent'">
+      <context-menu></context-menu>
+    </div>
+
+  </div>
+
+  <div class="class-menu-item-container">
+
+    <div class="class-menu-item-block-center-container" style = "height:74vh">
+      <div class="class-menu-item-block-center" >
+        <div class="polls-main-container" style ="padding-top: 0 ">
+          <!---->
+          <!---->
+          <!---->
+          <div  ng-show="examNotExist" class="no-polls">
+            <div class="no-polls-img">
+              <img src="images/no_exams.svg">
+            </div>
+            <div class="no-polls-title"><span>You have no exams..</span></div>
+
+            <div class="polls-hint" ng-hide="hideCustomButton || role === 'parent'">
+              <div class="polls-hint-text"><span>Tap here to create your first exam</span></div>
+              <img src="images/brush_arrow.png">
+            </div>
+          </div>
+
+
+          <div ng-show="examExist" class="no-polls" style="overflow: auto; margin-top: 0">
+            <div ng-repeat="exam in listOfExams" class = "exam-li"
+                 ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(exam.id) != -1}"
+                 multi-select
+                 multi-select-item="exam"
+                 multi-select-selection='selection'
+                 ng-click="selectionWasChanged()"
+                 ng-dblclick="editExam(exam)">
+              <div class = "exam-header" style = "background-color: {{exam.color | colorParse}}">
+                <span class = "tittle-name" style = "text-transform: uppercase">
+                    <a  ng-show = "exam.attachments.length!==0" target="_self" href={{exam.attachments[0].link}} download="exam.attachments[0].filename" ><img src="images/modal/icon-clip.png" >
+                    {{exam.title}}</a>
+                    <span ng-show = "exam.attachments.length===0" class = "tittle-name">{{exam.title}}</span>
+                  </span>
+                <div class = "exam-information">
+                  <div>Date:{{changeDateFormat(exam.date ,exam.time_start)}}</div>
+                  <div><img src="images/location.png">{{exam.location}}</div>
+                </div>
+              </div>
+              <div class = "exam-definition">{{exam.note}}</div>
+
+            </div>
+          </div>
+          <div id='user-loader' class="loader more-menu-loader" style=""></div>
+          <div class="custom-button-container" ng-controller="examsController as $ctrl" ng-hide="hideCustomButton || role === 'parent'">
+            <custom-button ng-click="$ctrl.openModal()" ng-hide="hideButton"></custom-button>
+          </div>
+          <!---->
+          <!---->
+          <!---->
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="class-menu-item-block-right-container" ng-show="false">
+      <div class="class-menu-item-block-right">
+        <div class="class-menu-item-block-right-header">
+        </div>
+        <div class="student-info"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,65 @@
+<div class="user-additional-info">
+<div class="class-menu-item-block-right-body" ng-if="!requesstInProgress">
+  <div class="info-container" ng-if="userInformation.details.data.phone">
+    <div class="item-info-label" >Phone</div>
+    <div class="item-info">{{userInformation.details.data.phone}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">Email</div>
+    <div class="item-info">{{userInformation.email}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">User name</div>
+    <div class="item-info">{{userInformation.details.data.first_name}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">School</div>
+    <div class="item-info">{{userInformation.details.data.school_name}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">City</div>
+    <div class="item-info">{{userInformation.details.data.city}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">Country</div>
+    <div class="item-info">{{userInformation.details.data.country}}</div>
+  </div>
+</div>
+
+<div ng-if="userInformation.role==='student' && userInformation.parents.data.length>0" class="class-menu-item-block-right-body">
+ <h3 class="parent-title"> Parent</h3>
+<div ng-repeat="parent in userInformation.parents.data">
+<div class="main-parent-block" >
+  <div class="parents-ava" style="background-image: url({{parent.photo}})"></div>
+  <div class="main-parent-block-name">
+    <div class="info-container">
+      <div class="item-info-label">First Name</div>
+      <div class="item-info">{{parent.first_name}}</div>
+    </div>
+
+    <div class="info-container">
+      <div class="item-info-label">Last Name</div>
+      <div class="item-info">{{parent.last_name}}</div>
+    </div>
+  </div>
+
+</div>
+  <div class="info-container" ng-if="parent.phone">
+    <div class="item-info-label" >Phone</div>
+    <div class="item-info">{{parent.phone}}</div>
+  </div>
+
+  <div class="info-container">
+    <div class="item-info-label">Email</div>
+    <div class="item-info">{{parent.email}}</div>
+  </div>
+</div>
+
+
+</div>
+</div>

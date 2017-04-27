@@ -1,10 +1,14 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+<div class="jumbotron" ng-controller="HomeCtrl as ctrl">
+  <h1>Hello</h1>
+  <h1>{{ 'TITLE' | translate }}</h1>
+  <h3>{{ 'MESSAGE' | translate }}</h3>
+  <select ng-options="language | translate for language in ctrl.languages" ng-model="ctrl.language" ng-change="ctrl.updateLanguage()"></select>
+
+
+
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+    <img src="images/yeoman_3x.png" alt="I'm Yeoman"><br>
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
 <div class="row marketing">

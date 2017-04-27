@@ -1,0 +1,103 @@
+<form name="CreateGradableItem" ng-submit="submitCreateClassModal()" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">{{$ctrl.modalConstant.header}}</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()" style = "">+</button>
+  </div>
+
+  <!-- =============== CreateGradableItem =======================-->
+  <div class="sub-header" style = "display:flex">
+    <h3>GRADABLE ITEM DESCRIPTION</h3>
+  </div>
+
+  <div class="colorcover">
+    <div class="color new-grade-property">
+      <div class="choose-semester exams-help-block">
+
+        <!-- ===== Gradable item ===== -->
+        <div class="dig-prop" style="justify-content: initial">
+          <input id ="gradableItem"
+                 class="greyFont"
+                 ng-model='newGradableItem.name'
+                 ng-minlength="2"
+                 ng-maxlength="32"
+                 placeholder="Gradable item"
+                 name ="GradableItem"
+                  required>
+        </div>
+        <hr>
+        <p ng-show="CreateGradableItem.GradableItem.$dirty && CreateGradableItem.GradableItem.$error.minlength" class="help-block">Gradable item is too
+          short.</p>
+        <p ng-show="CreateGradableItem.GradableItem.$dirty && CreateGradableItem.GradableItem.$error.maxlength" class="help-block">Gradable item is too long.</p>
+        <p ng-show="submitted && CreateGradableItem.GradableItem.$error.required" class="help-block">Gradable item is required.</p>
+
+        <!-- ===== Max Grade ===== -->
+        <div class="dig-prop" style="justify-content: initial">
+          <input id ="maxGrade"
+                 class="greyFont"
+                 ng-model='newGradableItem.max_grade'
+                 ng-minlength="1"
+                 ng-maxlength="3"
+                 placeholder="Max Grade"
+                 name ="MaxGrade"
+                 required>
+        </div>
+        <hr>
+        <p ng-show="maxGradeIsNumb" class="help-block">Max Grade must be number.</p>
+        <p ng-show="submitted && CreateGradableItem.MaxGrade.$error.required" class="help-block">Max Grade is required.</p>
+
+
+        <!-- ===== Weight of ===== -->
+        <div class="dig-prop" style="justify-content: initial">
+          <input id ="weightOf"
+                 class="greyFont"
+                 ng-model='newGradableItem.weight'
+                 ng-minlength="1"
+                 ng-maxlength="3"
+                 placeholder="Weight of"
+                 name ="WeightOf"
+                 required>
+        </div>
+        <hr>
+        <p ng-show="weightIsNumb" class="help-block">Weight must be number.</p>
+        <p ng-show="submitted && CreateGradableItem.WeightOf.$error.required" class="help-block">Weight of is required.</p>
+
+        <!-- ===== Category===== -->
+        <div class="dig-prop">
+          <label class="dig-label">Category</label>
+          <custom-selector class="{{role + '-color'}}" options="options"
+          selected-option="newGradableItem.category_id" bottom="0">
+          </custom-selector>
+          </div>
+          <hr>
+
+        <!-- ===== Weight of ===== -->
+        <div class="dig-prop">
+          <input id ="addCategory"
+                 ng-model ='newCategory'
+                 class="greyFont"
+                 placeholder="Add category"
+                 name ="AddCategory"
+                >
+          <button class="addCategory {{userData.background}}" ng-click="createCategory()">Add</button>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    </div>
+
+  <div class="modal-footer" style = "position:relative">
+    <button class="btn-cansel {{userData.color}} cursorPointer"
+            type="button"
+            ng-click="cancel()">Cancel
+    </button>
+    <div class = 'grade-server-error help-block' ng-show = "ExamServerError" id="server-error-create-item">Something went wrong</div>
+    <button class="btn-createClass {{userData.background}}"
+            style = "cursor:pointer"
+            type="submit"
+            ng-click="submitted=true; ok(CreateExamModal.$invalid)">{{$ctrl.modalConstant.buttonSubmit}}
+    </button>
+
+  </div>
+</form>
+

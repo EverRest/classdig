@@ -1,0 +1,189 @@
+
+.distinguished-additional-info {
+  //height: calc(100% - 350px);
+  //overflow: auto;
+  .marks-cont {
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333c48;
+      text-transform: uppercase;
+      margin: 5px 0 0 5px;
+    }
+
+
+    .student-parent-marks {
+      margin-top: 0;
+      .nv-bar {
+        stroke-opacity: 1;
+        fill-opacity: 1 !important;
+        text {
+          font-size: 17px !important;
+        }
+      }
+      .nv-x text {
+        font-size: 12px !important;
+        font-weight: bold;
+        color: #000;
+      }
+      .nvd3 .nv-y .tick text {
+        display: none;
+      }
+      .nvd3 .nv-x .tick line {
+        display: none;
+      }
+      .nv-axisMaxMin text {
+        display: none;
+      }
+      .zero line {
+        display: none;
+      }
+      .nvd3 .nv-axis path {
+        stroke: #fff !important;
+      }
+      .student-parent-marks-legend {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .mark-table {
+          display: flex;
+          flex-direction: column;
+          .mark-item {
+            //width: 130px;
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            color: $text-color;
+            .mark-rectangle{
+              display: inline-block;
+              margin: 0 5px 0 5px;
+              height: 10px;
+              width: 10px;
+            }
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+
+
+  .student-parent-behavior{
+    .behavior-doughnut-legend {
+      display: flex;
+      justify-content: center;
+      height: auto;
+      margin-bottom: 20px;
+      .student-behiviour-item {
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: #606060;
+        width: 20%;
+        margin: 15px 7% 0;
+        .behavior-rectangle{
+          display: inline-block;
+          height: 10px;
+          width: 10px;
+          //background-color: blue;
+        }
+      }
+    }
+    .list-container {
+      height: auto;
+      padding: 0;
+      width: 90%;
+      margin: 0 0 0 auto;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      .behavior-doughnut-container {
+        margin: 0 15px 15px 15px;
+        width: 80px;
+        text-align: center;
+        font-size: 12px;
+        color: #000;
+        .attendance-pie {
+          width: 80px;
+          height: 80px;
+          position: relative;
+          .first-layer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+          }
+          .second-layer {
+            width: 70%;
+            height: 70%;
+            opacity: 0.23;
+            background-color: #ffffff;
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            z-index: 20;
+            border-radius: 50px;
+          }
+          .third-layer {
+            width: 30%;
+            height: 30%;
+            opacity: 0.23;
+            background-color: #ffffff;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            z-index: 30;
+            border-radius: 50px;
+          }
+          .fourth-layer {
+            width: 4%;
+            height: 4%;
+            background-color: #ffffff;
+            position: absolute;
+            top: 48%;
+            left: 48%;
+            z-index: 40;
+            border-radius: 50px;
+          }
+        }
+        .behavior-doughnut {
+          width: 160px;
+          height: 160px;
+          position: relative;
+          .first-layer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            .behavior-doughnut-title {
+              margin: 0 auto;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

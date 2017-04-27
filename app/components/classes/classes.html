@@ -1,0 +1,332 @@
+<!-- Header -->
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div ng-model="role" class="classes {{role}}" ng-controller="ClassesController" ng-init="init()">
+
+
+
+  <!--DEPENDS ON: countClass   and  selection-->
+  <div class="classes-header ">
+    <div ng-show="!selection.selectedItems.length" class="col-md-7 col-sm-7 col-xs-6 classes-main-header">
+      <h3 class="{{'c-'+role}}">Classes</h3>
+      <div class="classes-count" ng-show="countClass===0">No classes</div>
+      <div class="classes-count" ng-show="countClass===1">{{countClass}} class</div>
+      <div class="classes-count" ng-show="countClass>1">{{countClass}} classes</div>
+    </div>
+    <div ng-show="selection.selectedItems.length" class="col-md-7 col-sm-7 col-xs-6 classes-main-header classes-main-header-selection">
+      <div style="display: flex">
+        <i class="{{'c-'+role}} glyphicon glyphicon-arrow-left" ng-click="clear()"></i>
+        <div class="{{'c-'+role}} back" ng-click="clear()">BACK</div>
+        <div class="selection-number">{{selection.selectedItems.length}} files selected</div>
+      </div>
+    </div>
+    <div class="col-md-5 col-sm-5 col-xs-6 classes-context-menu" ng-show="selection.length !== 0">
+      <context-menu></context-menu>
+    </div>
+  </div>
+
+
+
+  <div class="classes-subheader-children" style = "display: flex; background-color: white; padding:0px 20px">
+    <div ng-repeat="child in childrenArray" id="{{child.first_name}}" class = 'children' ng-click = "changeChildren(child)" style = "
+         font-size: 14px;
+         font-weight: 500;
+         font-style: normal;
+         font-stretch: normal;
+         letter-spacing: 0.5px;
+         text-align: center;
+         padding: 15px 10px;
+         color: #cf515d;">{{child.first_name}}</div>
+  </div>
+  <div class="shadow">
+    <div ng-if="deletedClasses.length || !_.isEmpty(archivedClasses)" class="classes-subheader">
+      <div id="current" class="classes-subheader-item" ng-click = "changeView('current')">CURRENT</div>
+      <div id="archived" ng-hide="hideArchived" class="classes-subheader-item" ng-click ="changeView('archived')">ARCHIVED</div>
+      <div id="deleted" ng-show="deletedClasses.length" ng-hide="hideDeleted  || userData.role !== 'teacher'" class="classes-subheader-item" ng-click = "changeView('deleted')">DELETED</div>
+    </div>
+  </div>
+
+
+
+  <div class="classes-block">
+    <div class="classes-block-list" ng-if="currentView === 'current'" ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent' }">
+      <div class="classes-block-list-main-container" id="currentCont" ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent' }">
+      <div class="classes-add-class modal-demo" ng-show="!selection.selectedItems.length" ng-controller="ModalDemoController as $ctrl">
+        <custom-button></custom-button>
+      </div>
+
+      <div ng-show="classesNotExist" class="classes-not-exists">
+        <div class="class-background"><img href="#" src="images/classes/class_3x.png"></div>
+        <div class="classes-info">There are no classes added yet</div>
+        <div class="no-classes">
+          <div class="hint">
+            <div class="hint-text" ng-show="userData.role !=='parent'"><span>Tap here to create</br> your first class</span></div>
+            <div class="hint-text" ng-show="userData.role ==='parent'"><span>Tap here to join/br> your first class</span></div>
+            <img src="images/classes/brush_arrow.png">
+          </div>
+        </div>
+      </div>
+
+      <div ng-show="!classesNotExist" class="classes-exists"
+           infinite-scroll='cur.nextPage()'
+           infinite-scroll-container= '"#currentCont"'
+           infinite-scroll-disabled='cur.busy'
+           infinite-scroll-distance='0'>
+        <div class="class-item " ng-repeat="currentClass in currentClasses"
+             ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(currentClass.id) != -1}"
+             multi-select
+             multi-select-item="currentClass"
+             multi-select-selection='selection'
+             ng-dblClick="openClass(currentClass)"
+             ng-click="selectionWasChanged(currentClass)">
+          <div class="class-item-block">
+            <div class="class-image">
+              <div class="class-cover">
+                <img src="{{currentClass.image}}">
+              </div>
+            </div>
+            <div class=" class-description">
+              <div class="class-name" style = "color: {{currentClass.color | colorParse}}">{{currentClass.cated_name}}</div>
+              <div ng-show="!showChildren" class="class-members">{{currentClass.members}} members</div>
+              <div ng-show="showChildren" class="class-members">
+                <div style="display: flex;margin-left: 10px;" >
+                  <div ng-repeat = "member in currentClass.members"  style = "width:20px; height: 20px; border-radius: 50%;margin-left: -8px;">
+                    <img ng-src="{{member.image}}" style = "width: 100%;height: inherit;border-radius: inherit; ">
+                  </div>
+                  <div class = "two-children-sign"  style = "display: flex" ng-repeat = "member in currentClass.members" >{{ member.first_name }} <span ng-show="currentClass.members.length>1 && $index<currentClass.members.length-1"  > & </span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+        <div id="classes-loader" class="loader" style="display: none" ></div>
+    </div>
+    </div>
+
+
+    <div  ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent'}" class="classes-block-stattistic" ng-if="!selection.currentItem.length && currentView === 'current' && sharedUsers.length && role === 'teacher'">
+      <div class="statistic-title c-{{role}}">
+        <span>STUDENTS SHARED WITH YOU</span>
+      </div>
+
+      <div class="student-info" style="overflow: auto; height: calc(100% - 9vh);">
+        <div class="student-in-requests-container" ng-repeat="student in sharedUsers">
+          <div class="student-in-requests">
+            <div  class="container-flex">
+              <div class="student-img" ng-style="{'background-image':'url({{student.photo || student.image}})'}"></div>
+              <div class="student-name">
+                <div>
+                  {{student.first_name}} {{student.last_name}}
+                </div>
+              </div>
+              <div class="buttons">
+                <div>
+                  <button class="btn {{userInfo.color}} {{userInfo.border}}"  ng-click="reject(student)">Reject</button>
+                </div>
+              </div>
+              <div style="clear: both"></div>
+            </div>
+          </div>
+        </div>
+        <div class="shared-students-controls">
+          <div class="buttons">
+            <div class="holder">
+              <button class="btn {{userInfo.background}} white-color"  ng-click="accept()">Accept All</button>
+              <!--<button class="btn {{userInfo.color}} {{userInfo.border}}"  ng-click="acceptReject(2)">Reject All</button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent'}" ng-if="selection.currentItem.length >= 1 && currentView === 'current'" class="classes-block-stattistic">
+      <div class="statistic-title c-{{role}}">
+        <span>CLASS STATISTIC</span>
+      </div>
+      <div style="overflow: auto; height: calc(100vh - 18vh - 150px);">
+        <div ng-repeat="class in selection.currentItem" class="class-right-menu">
+          <div class="class-name" style="color: {{class.color | colorParse}}">{{class.name}}</div>
+          <div class="average-mark-block" ng-if="class.reports.grade">
+            <div class="average-mark-title">CLASS AVERAGE MARK</div>
+            <div class="class-average-mark">
+              <div class="progress">
+                <div class="progress-bar {{userInfo.background}}" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: {{class.reports.grade}}%">
+                  {{class.reports.grade}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="attendance-block" ng-if="class.reports.attendance[0] || class.reports.attendance[1] || class.reports.attendance[2]">
+            <div class="attendance-title">CLASS ATTENDANCE</div>
+            <div class="main-data">
+              <div class="holder">
+                <div class="diagram-holder">
+                  <div class="first-layer"></div>
+                  <div class="second-layer"></div>
+                  <div class="third-layer"></div>
+                  <div class="fourth-layer"></div>
+                  <canvas class="chart chart-pie"
+                          chart-data="class.reports.attendance"
+                          chart-labels="configChart.attendanceLabels"
+                          chart-options="configChart.options"
+                          chart-colors="configChart.attendanceBackgroundColor">
+                  </canvas>
+                </div>
+              </div>
+              <div class="holder">
+                <div class="student-attendance-items">
+                  <div class="student-attendance-item" ng-show="class.reports.attendance[0]>0">
+                    <span class="attendance-color attendance-present">{{class.reports.attendance[0]}}</span>
+                    <span class="attendance-text">  Present</span>
+                  </div>
+                  <div class="student-attendance-item" ng-show="class.reports.attendance[1]>0">
+                    <span class="attendance-color attendance-late">{{class.reports.attendance[1]}}</span>
+                    <span class="attendance-text">  Late</span>
+                  </div>
+                  <div class="student-attendance-item" ng-show="class.reports.attendance[2]">
+                    <span class="attendance-color attendance-absent">{{class.reports.attendance[2]}}</span>
+                    <span class="attendance-text">  Absent</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="positive-block" ng-if="class.reports.positiveBehavior">
+            <div class="positive-title">POSITIVE</div>
+              <div class="attendance-block">
+
+                <div class="diagram-behavior">
+                  <nvd3 options="configDiagram" data="class.reports.positiveBehavior" class="diagram-positive"></nvd3>
+                  <div class="diagram-bottom-bar">
+                      <div style="max-width: calc(100% / {{class.reports.positiveBehavior[0].values.length}}); min-width: calc(100% / {{class.reports.positiveBehavior[0].values.length}})" ng-repeat="value in class.reports.positiveBehavior[0].values" class="label-for-diagram">{{value.label}}</div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="need-to-woork-block" ng-if="class.reports.positiveBehavior">
+            <div class="need-to-woork-title">NEED TO WORK</div>
+              <div class="attendance-block">
+
+                <div class="diagram-behavior">
+                  <nvd3 options="configDiagram" data="class.reports.negativeBehavior" class="diagram-negative"></nvd3>
+                  <div class="diagram-bottom-bar">
+                      <div style="max-width: calc(100% / {{class.reports.negativeBehavior[0].values.length}}); min-width: calc(100% / {{class.reports.negativeBehavior[0].values.length}})" ng-repeat="value in class.reports.negativeBehavior[0].values" class="label-for-diagram">{{value.label}}</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="average-mark-block" ng-if="!class.reports.positiveBehavior && !class.reports.attendance[0] && !class.reports.attendance[1] && !class.reports.attendance[2] && !class.reports.grade">
+            <div class="average-mark-title">There is no statistic information by this class</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="classes-block">
+    <div class="classes-block-list" ng-if="currentView === 'deleted' && deletedClasses.length" ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent' }">
+      <div class="classes-block-list-main-container" id="deletedCont" ng-class="{'height-when-not-parent' : role !== 'parent', 'height-when-parent' : role === 'parent' }">
+      <div class="classes-exists"
+           infinite-scroll='del.nextPage()'
+           infinite-scroll-container= '"#deletedCont"'
+           infinite-scroll-disabled='del.busy'
+           infinite-scroll-distance='0'>
+        <div class="class-item " ng-repeat="currentClass in deletedClasses"
+             ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(currentClass.id) != -1}"
+             multi-select
+             multi-select-item="currentClass"
+             multi-select-selection='selection'
+             ng-dblClick="openClass(currentClass)"
+
+             ng-click="selectionWasChanged(currentClass)">
+          <div class="class-item-block">
+            <div class="class-image">
+              <div class="class-cover">
+                <img src="{{currentClass.image}}">
+              </div>
+            </div>
+            <div class=" class-description">
+              <div class="class-name" style = "color: {{currentClass.color | colorParse}}">{{currentClass.cated_name}}</div>
+              <div ng-show="!showChildren" class="class-members">{{currentClass.members}} members</div>
+              <div ng-show="showChildren" class="class-members">
+                <div style="display: flex;margin-left: 10px;" >
+                  <div ng-repeat = "member in currentClass.members"  style = "width:20px; height: 20px; border-radius: 50%;margin-left: -8px;">
+                    <img ng-src="{{member.image}}" style = "width: 100%;height: inherit;border-radius: inherit; ">
+                  </div>
+                  <div class = "two-children-sign"  style = "display: flex" ng-repeat = "member in currentClass.members" >{{ member.first_name }} <span ng-show="currentClass.members.length>1 && $index<currentClass.members.length-1"  > & </span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+        <div id="classes-del-loader" class="loader" style="display: none" ></div>
+      </div>
+      </div>
+  </div>
+
+  <div class="classes-block classes-block-archived"  ng-if="currentView === 'archived'" ng-class="{'height-archived-when-not-parent' : role !== 'parent', 'height-archived-when-parent' : role === 'parent' }">
+    <div class="classes-block-list-archived" ng-repeat="(semesterName, classes) in archivedClasses" ng-if="classes.length" >
+      <div class="chapter" ng-click="chapterIsOpen = !chapterIsOpen">
+        <div>
+          <div class="chapter-title {{'c-'+role}}">
+            <span style="text-transform: uppercase;">{{semesterName || 'Unnamed semester'}} </span>
+            <span>({{classes.length}} classes)</span>
+            </div>
+          <div class="chapter-control">
+            <i ng-show="chapterIsOpen" class="glyphicon glyphicon-chevron-up {{'c-'+role}} icon"></i>
+            <i ng-show="!chapterIsOpen" class="glyphicon glyphicon-chevron-down {{'c-'+role}} icon"></i>
+          </div>
+        </div>
+      </div>
+      <div class="list-holder" ng-show="chapterIsOpen">
+        <div class="class-item " ng-repeat="currentClass in classes"
+             ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(currentClass.id) != -1}"
+             multi-select
+             multi-select-item="currentClass"
+             multi-select-selection='selection'
+             ng-dblClick="openClass(currentClass)"
+             ng-click="selectionWasChanged(currentClass)">
+          <div class="class-item-block">
+            <div class="class-image">
+              <div class="class-cover">
+                <img src="{{currentClass.image}}">
+              </div>
+            </div>
+            <div class=" class-description">
+              <div class="class-name" style = "color: {{currentClass.color | colorParse}}">{{currentClass.cated_name}}</div>
+              <div ng-show="!showChildren" class="class-members">{{currentClass.members}} members</div>
+              <div ng-show="showChildren" class="class-members">
+                <div style="display: flex;margin-left: 10px;" >
+                  <div ng-repeat = "member in currentClass.members"  style = "width:20px; height: 20px; border-radius: 50%;margin-left: -8px;">
+                    <img ng-src="{{member.image}}" style = "width: 100%;height: inherit;border-radius: inherit; ">
+                  </div>
+                  <div class = "two-children-sign"  style = "display: flex" ng-repeat = "member in currentClass.members" >{{ member.first_name }} <span ng-show="currentClass.members.length>1 && $index<currentClass.members.length-1"  > & </span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+

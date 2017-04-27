@@ -1,0 +1,52 @@
+<div>
+    <div id="scedule">
+        <div class="repeat">
+            <p>Repeat</p>
+        </div>
+        <div>
+            <ul class="listDays">
+                <li ng-repeat="day in createClassTimeData"
+                    id={{day.day}}
+                    ng-click="selectDay(day)"
+
+                    ng-class = "{'{{background}}' : day.active}"
+                    selected-attr="{{day.active}}">
+                    {{day.dayTitle}}
+                </li>
+            </ul>
+        </div>
+
+        <div id="arrayOfCheckedDays">
+            <ul class="ul-days">
+                <li ng-show="subday.active" class="ul-item" ng-repeat="(id, subday) in createClassTimeData">
+                    <div class="checked-day"
+                         id={{subday.day}}>
+                      <p class="dayTitle">Every {{subday.fullDay}}</p>
+                        <div class="time-container">
+
+                        <div class="dig-prop">
+                            <label class="dig-label" for="{{'from' + subday.day}}">From</label>
+                            <input id="{{'from' + subday.day}}" type="text"
+                                   class="time-input date datetimepicker {{'c-' + role}} cursorPointer"
+                                   ng-model="subday.from">
+
+                        </div>
+                            <!--<div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="1"></div>-->
+                        <hr>
+                        </div>
+                        <div class="time-container">
+                        <div class="dig-prop">
+                            <label class="dig-label" for="{{'to' + subday.day}}">To</label>
+                            <input type="text" class="time-input date datetimepicker {{'c-' + role}} cursorPointer"
+                                   id="{{'to' + subday.day}}" ng-model='subday.to'>
+                        </div>
+                        <hr>
+                            </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+

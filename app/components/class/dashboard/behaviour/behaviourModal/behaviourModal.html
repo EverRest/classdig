@@ -1,0 +1,25 @@
+<form name="createBehaviour">
+
+  <div class="modal-behaviour">
+
+    <div class="modal-header {{userData.background}}">
+      <div class="modal-title">Choose {{positive ? 'positive' : 'negative'}} feedback</div>
+      <button class="modal-btn-close {{userData.background}}" type="button" ng-click="$ctrl.cancel()">+</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-feedback-items">
+        <div ng-repeat="behaviour in buttons" class="holder" ng-click="$ctrl.setBehaviour(behaviour)">
+          <div class="img-holder">
+            <img src="{{behaviour.image}}">
+          </div>
+          <div class="title-holder">
+            <span>{{behaviour.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</form>

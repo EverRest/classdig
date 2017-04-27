@@ -1,0 +1,20 @@
+.listOfClasses{
+  //max-height: 400px;
+  height: 45vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 60px;
+}
+
+.iconFeedMenu{
+  margin-left: 7px !important;
+}
+.iconArrowFeedMenu{
+  float: right;
+  margin-right: 7px;
+}
+.listOfCommunity{
+  height: calc(100vh - 64px - 58.6vh);
+  overflow-y: auto;
+  padding-left: 60px
+}

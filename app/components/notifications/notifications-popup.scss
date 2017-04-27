@@ -1,0 +1,16 @@
+.notif-controls {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  a {
+    height: 38px !important;
+  }
+  .control-left {
+    width: 40%;
+  }
+  .control-right {
+    width: 60%;
+    text-align: right;
+  }
+}

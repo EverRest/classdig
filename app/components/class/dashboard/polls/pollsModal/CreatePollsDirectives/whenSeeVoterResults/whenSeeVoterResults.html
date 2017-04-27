@@ -1,0 +1,26 @@
+<div class="when-see-result">
+
+  <div class = 'see-result-container' ng-show = "resultId===1">
+    <div class = "see-result-img">
+      <img ng-src='{{iconFlash}}'>
+    </div>
+    <p>Results can be seen right after voting.</p>
+  </div>
+
+
+  <div class = 'see-result-container' ng-show = "resultId===2">
+    <div class = "see-result-img">
+      <img ng-src="{{iconClock}}">
+    </div>
+    <p> Results can be seen when time runs out.</p>
+  </div >
+
+
+  <div class = 'see-result-container' ng-show = "resultId===3">
+    <div class = "see-result-img">
+      <img ng-src="{{iconExit}}">
+    </div>
+    <p>Results can never  be seen.</p>
+  </div>
+
+</div>

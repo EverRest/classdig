@@ -1,0 +1,146 @@
+<!-- Header -->
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/class/menuClass/menuClass.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}}" ng-controller="assignmentController">
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6 ">
+        <div class="{{'c-'+role}} ">Assignments</div>
+    </div>
+    <div class="class-menu-item-main-subheader"></div>
+    <div class="class-menu-item-context-menu col-md-7 col-sm-7 col-xs-6" ng-show="selection.length !== 0" ng-hide="hideCustomButton || role === 'parent'">
+      <context-menu></context-menu>
+    </div>
+
+  </div>
+
+  <div class="class-menu-item-container">
+
+    <div class="class-menu-item-block-center-container" style = "height:74vh">
+      <div class="class-menu-item-block-center" style = "position:relative">
+        <div class="polls-main-container" style =" position: static; padding-top: 0; overflow:auto; height: 74vh" id = "assignmentList">
+          <!---->
+          <!---->
+          <!---->
+          <div  ng-show="examNotExist"  style ="margin-top: 10%;" class="no-polls no-assignment">
+            <div class="no-assignment-img">
+              <img src="images//assignment/no-assignments.png">
+            </div>
+            <div class="no-polls-title assignment-tittle-text"><span>There are no created assignments.</span></div>
+
+            <div class="polls-hint" ng-show="role !== 'parent' && !hideCustomButton">
+              <div class="hint-text polls-hint-text "><span>Tap here to create your first assignment</span></div>
+              <img src="images/brush_arrow.png">
+            </div>
+          </div>
+
+          <div ng-show="examExist"
+               infinite-scroll='assignment.nextPage()'
+               infinite-scroll-container= '"#assignmentList"'
+               infinite-scroll-disabled='assignment.busy'
+               infinite-scroll-listen-for-event="list:filtered"
+               infinite-scroll-distance='1'
+               class="no-polls" style="margin-top: 0" >
+            <div ng-repeat="(id,assignment) in assignment.items  track by id" class = "exam-li"
+                 ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(assignment.id) != -1}"
+                 multi-select
+                 multi-select-item="assignment"
+                 multi-select-selection='selection'
+                 ng-click="selectionWasChanged(id)">
+              <div class = "exam-header" style = "background-color: {{assignment.color | colorParse}};">
+                <h3 class = "assignment-header">
+                  <span class = "tittle-name tittle-name-width">
+                    <a  ng-show = "assignment.attachments.length!==0" target="_self" href={{assignment.attachments[0].link}} download="assignment.attachments[0].filename" ><img src="images/modal/icon-clip.png" >
+                    {{assignment.title}}</a>
+                    <span ng-show = "assignment.attachments.length===0" class = "tittle-name">{{assignment.title}}</span>
+                    <span ng-show="assignment.priority ===1" class = "tittle-name">!</span>
+                    <span ng-show="assignment.priority ===2" class = "tittle-name">!!</span>
+                    <span ng-show="assignment.priority ===3" class = "tittle-name">!!!</span>
+                  </span>
+                  <!--<span ng-show="assignment.note!=='no notes'" class = "cursorPointer" tooltip-placement="bottom-right" uib-tooltip="{{assignment.note}}">Note-->
+                  <!--</span>-->
+
+                  <div class="assignmenttooltip cursorPointer" ng-show=" (assignment.note!=='' && assignment.note!=='no notes') && userData.role==='teacher'">Note
+                    <span class="tooltiptext">{{assignment.note}}</span>
+                  </div>
+                  <div ng-show="userData.role==='student' && assignment.participants.length>0 ">
+                    <student-check-assignment  font-color="assignment.color" members-array="assignment.participants" file-array ='assignment.participants' style = "font-size: 12px;"></student-check-assignment>
+                  </div>
+                 <div ng-show="userData.role==='parent'">
+                    <child-check-assignment ng-if="user.classData"  members-array="user.classData.members" file-array ='assignment.participants' style = "font-size: 12px;"></child-check-assignment>
+                  </div>
+
+                </h3>
+                <div class = "exam-information" >
+                  <div ng-class="{'assignment-due-date-{{role}}': assignment.participants.length>0}">Due date: {{ changeDateFormat(assignment.due_date ,assignment.due_time)}}</div>
+                  <div ng-show="assignment.hand_submission!==0 && userData.role==='teacher' " class = "cursorPointer" ng-click = "checkHandSubmission(assignment)">Check hand submitter</div>
+                </div>
+              </div>
+
+              <div class = "exam-definition" ng-show="userData.role==='teacher'">
+                <h3 class = "submit-title">Student's submitted</h3>
+                <div class = "listOfSubmittedStudents" >
+
+                  <div class = "submittedStudentItem" ng-repeat="student in assignment.participants" ng-show="student.submission===1" ng-click ="markAssignment(student)" style = "position:relative">
+                    <img ng-src = "{{student.user.image}}">
+                    <div class = "submit-check-mark" ng-show="student.files.length>0"><img src="images/usersList/checked-circle.svg"> </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class = "exam-definition" ng-show="userData.role==='teacher'">
+                <h3 class = "submit-title">Not submitted yet</h3>
+                <div class = "listOfSubmittedStudents" >
+                  <div class = "submittedStudentItem" ng-repeat="student in assignment.participants" ng-show="student.submission===0"><img ng-src = "{{student.user.image}}"></div>
+                </div>
+              </div>
+
+              <div class = "exam-definition" ng-show="userData.role!=='teacher'" style = "border-bottom: 1px solid #f0f0f0;">
+
+                <h3 class = "student-submit-title-note" ng-show="assignment.note !=='no notes' && userData.role!=='teacher'">{{assignment.note}}</h3>
+
+                <div ng-repeat = 'partic in assignment.participants' >
+                 <div ng-show="partic.id === userId">
+                   <a  ng-show="partic.files.length>0" target="_self" href={{partic.files[partic.files.length-1].link}} download="partic.files[partic.files.length-1].filename" class = "students-files" ><img src="images/modal/icon-clip.png" >
+                   {{partic.files[partic.files.length-1].filename}}</a></div>
+                </div>
+              </div>
+
+              <div class = "assignment-footer" ng-show="userData.role==='student'">
+              <button class="btn-cansel {{userData.color}}"
+                      type="button"
+                      id = '{{assignment.id}}'
+                      ng-click="submitAssignment(undefined,assignment.id, $index, assignment)"
+                      style = "background: white; text-transform: uppercase; border:none">{{getSubmitButtonValue(assignment)}}
+              </button>
+              </div>
+
+
+            </div>
+            <div style='clear: both;'></div>
+          </div>
+
+          <div id='user-loader' class="loader more-menu-loader"></div>
+
+          <div ng-show="!hideButton" class="class-menu-item-add" ng-controller="assignmentController as $ctrl" ng-hide="hideCustomButton || role === 'parent'">
+            <custom-button ng-click="$ctrl.openModal()" ></custom-button>
+          </div>
+          <!---->
+          <!---->
+          <!---->
+        </div>
+
+      </div>
+    </div>
+
+    <div class="class-menu-item-block-right-container" ng-show="false">
+      <div class="class-menu-item-block-right">
+        <div class="class-menu-item-block-right-header">
+        </div>
+        <div class="student-info"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

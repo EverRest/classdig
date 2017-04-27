@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>2175201A-C659-4076-94AB-6817A641724B</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <ellipse id="path-1" cx="27" cy="27" rx="27" ry="27"></ellipse>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.408825861 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="ClassDig-Web-Student" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="My-profile-Schedule" transform="translate(-1349.000000, -890.000000)">
+            <g id="Group-7" transform="translate(1361.000000, 902.000000)">
+                <g id="button">
+                    <g id="Oval-84">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#F83327" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+                <g id="ic_mode_edit_black_24px" transform="translate(13.000000, 13.000000)">
+                    <g id="Group">
+                        <path d="M3.5,20.125 L3.5,24.5 L7.875,24.5 L20.7783333,11.5966667 L16.4033333,7.22166667 L3.5,20.125 L3.5,20.125 Z M24.1616667,8.21333333 C24.6166667,7.75833333 24.6166667,7.02333333 24.1616667,6.56833333 L21.4316667,3.83833333 C20.9766667,3.38333333 20.2416667,3.38333333 19.7866667,3.83833333 L17.6516667,5.97333333 L22.0266667,10.3483333 L24.1616667,8.21333333 L24.1616667,8.21333333 Z" id="Shape" fill="#FFFFFF"></path>
+                        <polygon id="Shape" points="0 0 28 0 28 28 0 28"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

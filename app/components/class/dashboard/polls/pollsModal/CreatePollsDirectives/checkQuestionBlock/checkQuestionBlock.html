@@ -1,0 +1,16 @@
+<div>{{questionTitle}}</div>
+<div ng-repeat="answer in questionQuestions" class = 'poll-answer-item {{commonClass}}' ng-click="checkPollAnswer(answer.id, answer)" >
+
+  <div style = "display:flex">
+
+    <div  class = 'checker {{border}} {{tittleId}}' id = "{{answer.id}}">
+      <div class = 'sign-check'><div class="qwestion-index {{color}}" ng-show="checkOwner()">{{$index+1}}</div></div>
+    </div>
+
+    <div class = "poll-answers">{{answer.answer}}</div>
+
+  </div>
+  <div ng-show="answer.votes!==null && progressNumberGenerator(answer.votes)>0" style="margin: 10px 0;">
+    <progress-bar progress-number='progressNumberGenerator(answer.votes)' current-text="answer.votes + ' voted ' "></progress-bar>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="170px" height="204px" viewBox="0 0 170 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>2B431B08-4EE0-4F82-9BCE-A58305EBD7A4</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="ClassDig-Web-Teachers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-Resources" transform="translate(-1058.000000, -2133.000000)">
+            <g id="assignmentswt" transform="translate(1058.000000, 2133.000000)">
+                <rect id="Mask" fill="#FFFFFF" x="0" y="0" width="170" height="204" rx="4.14967742"></rect>
+                <g id="Group-8" transform="translate(39.000000, 37.000000)" fill="#4B93EB">
+                    <polygon id="Path-5" points="0.175278638 6.40939447 0.175278638 96.7349677 81.174411 96.7349677 81.174411 69.0689887 74.9869634 75.2242262 74.9869634 91.104656 5.75225533 91.104656 5.75225533 12.1980401 69.2132009 12.1980401 75.0366238 17.991148 75.0366238 34.8097156 81.0802878 28.7975132 81.0802878 15.2061491 71.905784 6.07940513"></polygon>
+                    <rect id="Rectangle-3" x="13.3134719" y="0" width="6.90328173" height="19.1304617" rx="3.45164087"></rect>
+                    <rect id="Rectangle-3" x="28.59931" y="0" width="6.90328173" height="19.1304617" rx="3.45164087"></rect>
+                    <rect id="Rectangle-3" x="43.8851482" y="0" width="6.90328173" height="19.1304617" rx="3.45164087"></rect>
+                    <rect id="Rectangle-3" x="59.1709863" y="0" width="6.90328173" height="19.1304617" rx="3.45164087"></rect>
+                    <polygon id="Path-6" points="47.0815756 42.3805641 60.5335758 55.762537 93.2727936 27.93308 103.42228 38.0297313 59.0846682 82.1365343 32.7529264 55.941868"></polygon>
+                </g>
+                <text id="Assignments" font-family="Roboto-Regular, Roboto" font-size="20" font-weight="normal" fill="#4E4E4E">
+                    <tspan x="25.6064453" y="173">Assignments</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,38 @@
+.members-from-groups {
+  .user-wants-to-join {
+    background-color: #f0f0f0;
+  }
+  .student{
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 78px;
+      float: right;
+      margin-right: 10px;
+      button {
+        background-color: #ffffff;
+      }
+      .white-color {
+        color: #ffffff;
+      }
+      button:focus, button:hover, button:active, button:visited, button:active:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .teacher-userListBorder{
+    border: 4px solid #4b93eb !important;
+    color: #4b93eb;
+  }
+  .student-userListBorder{
+    border: 4px solid #3d8e78 !important;
+    color: #3d8e78;
+  }
+  .parent-userListBorder{
+    border: 4px solid #cf515d !important;
+    color: #cf515d;
+  }
+
+}

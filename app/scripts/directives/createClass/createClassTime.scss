@@ -1,0 +1,134 @@
+#scedule{
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  color: #7b7b7b;
+  margin-left: 24px;
+  margin-top: 16px;
+
+  .repeat{
+    p{
+      height: 15px;
+      font-family: 'Roboto', sans-serif;;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 0.94;
+      color: #b2b2b2;
+    }
+  }
+  .listDays:not(.dropdown-menu){
+    display: inline;
+    list-style: none;
+    padding: 0;
+    li{
+      display:inline;
+      outline: none;
+      margin: 5px;
+      padding: 0 5px;
+      list-style: none;
+    }
+  }
+
+}
+
+[selected-attr='true']{
+  border-radius: 4px;
+  //background-color: #4b93ed;
+  color: #ffffff;
+}
+
+.checked-day{
+  display:block;
+  width:362px;
+
+  .time-container {
+    margin-right: 10px;
+    width: 150px;
+    display: inline-block;
+    .dig-prop {
+      margin-top: 0;
+    }
+    hr {
+      margin: 0;
+    }
+    .time-input{
+      width: 110px;
+      text-align: right;
+    }
+  }
+  .dayTitle{
+    display: block;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    color: #7b7b7b;
+  }
+
+}
+
+#arrayOfCheckedDays{
+  .ul-days:not(.dropdown-menu){
+    display: flex;
+    flex-wrap: wrap;
+    width: 660px;
+    list-style: none;
+    padding: 0;
+    p{
+      display: block;
+      width: 200px;
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.25;
+      color: #7b7b7b;
+    }
+    .ul-item{
+      margin-left: 0;
+      margin-top: 20px;
+      margin-right: 0;
+      padding: 0;
+      width: 324px;
+      list-style: none;
+    }
+  }
+}
+///////////////////
+
+
+.modal-header{
+  background-color: #4b93eb;
+  h4{
+    font-family: 'Roboto', sans-serif;;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.87);
+    opacity:1;
+  }
+  .close{
+    color: rgba(255, 255, 255, 0.87);
+    opacity:1;
+    font-weight: normal;
+  }
+}
+
+  //.create-class{
+  //  margin:20px;
+  //}
+
+
+

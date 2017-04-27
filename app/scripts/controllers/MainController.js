@@ -9,11 +9,7 @@
  */
 
 angular.module('classDigApp')
-  .controller('MainController', function () {
-    // console.log('work');
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+
+  .controller( 'MainController',['$rootScope', 'AuthenticationService', function ($rootScope, AuthenticationService) {
+
+  }]);

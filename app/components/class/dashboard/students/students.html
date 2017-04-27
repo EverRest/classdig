@@ -1,0 +1,106 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/class/menuClass/menuClass.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}}" ng-init="init()">
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6 ">
+      <div class="{{'c-'+role}}">Students</div>
+      <div class="amount-of-students">{{students.length}} students</div>
+    </div>
+    <div class="class-menu-item-main-subheader"></div>
+    <div class="col-md-7 col-sm-7 col-xs-6 class-menu-item-context-menu" ng-show="selection.length !== 0" ng-hide="hideCustomButton || role === 'parent'">
+      <div class="search-field-holder {{'c-'+role}}">
+        <label>
+          <img src="{{'images/context_menu/search-' + role + '.svg'}}">
+          <input type="text" ng-model="searchBy" style="border-color: {{currentUser.color}};" placeholder="{{role === 'teacher' ? 'Search student' : 'Search classmate'}}">
+        </label>
+      </div>
+      <context-menu></context-menu>
+    </div>
+  </div>
+
+  <div class="class-menu-item-container">
+    <div class="class-menu-item-block-center-container">
+
+      <div class="class-menu-item-block-center-header">
+        <div class="modify-controls">
+          <div class="dropdown custom-select">
+            <div class=" custom-select-title dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
+              <span class="nav-menu-text-profile">{{ sortBy }}</span>
+              <i class="glyphicon glyphicon-triangle-bottom"></i>
+            </div>
+            <div class="dropdown-menu custom-select-menu">
+              <div ng-repeat="item in sort" class="custom-select-menu-option dropdown-menu-text" ng-click="changeSortBy(item)">
+              {{item}}
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group controll-shape-buttons">
+            <button type="button" class="btn controll-shape" ng-click="list = true; displayChanged(list)" ng-class="{'{{currentUser.background}}': list === true}">
+              <img ng-if="list === false" src=" {{'../images/students/icon-row-' + role +'.png'}}">
+              <img ng-if="list === true" src="../images/students/icon-row-default.png">
+            </button>
+            <button type="button" class="btn controll-shape"  ng-click="list =false; displayChanged(list)" ng-class="{'{{currentUser.background}}': list === false}">
+              <img ng-if="list === false" src="../images/students/icon-table-default.png">
+              <img ng-if="list === true" src=" {{'../images/students/icon-table-' + role +'.png'}}">
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="class-menu-item-block-center has-header">
+
+        <div class="class-menu-item-notexist" ></div>
+
+        <div class="class-menu-item-exist">
+          <div class="class-menu-item ">
+            <pick-students></pick-students>
+          </div>
+       </div>
+
+        <div class="class-menu-item-add" ng-hide="hideCustomButton || role === 'parent' || pickedStudents.length">
+          <custom-button class="fixed-appearance"></custom-button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="class-menu-item-block-right-container" ng-hide="pickedStudents.length > 1">
+      <div class="class-menu-item-block-right" ng-show="pickedStudents.length === 1" style="overflow-y: auto !important; overflow-x: hidden">
+        <user-info selected-user="studentInformation" show-additional-info="true" on-students-page="true"></user-info>
+      </div>
+      <div class="class-menu-item-block-right " ng-show="role === 'teacher' && pickedStudents.length !== 1 && requestedStudents.length">
+        <div class="class-menu-item-block-right-header c-{{role}}">
+          REQUEST TO JOIN
+        </div>
+        <div class="student-info">
+          <div class="student-in-requests-container" ng-repeat="student in requestedStudents">
+            <div class="student-in-requests">
+              <div  class="container-flex">
+                <div class="student-img" ng-style="{'background-image':'url({{student.photo || student.image}})'}"></div>
+                <div class="student-name">
+                  <div>
+                    {{student.first_name}} {{student.last_name}}
+                  </div>
+                </div>
+                <div class="buttons">
+                  <div>
+                    <button class="btn {{currentUser.background}} white-color"  ng-click="aceptReject(student, 1)">Accept</button>
+                    <button class="btn {{currentUser.color}} {{currentUser.border}}"  ng-click="aceptReject(student, 2)">Reject</button>
+                  </div>
+                </div>
+                <div style="clear: both"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

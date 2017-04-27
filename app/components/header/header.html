@@ -1,9 +1,9 @@
 <!-- Add your site or application content here -->
 <header ng-controller="HeaderController">
-  <div class="header" ng-model="bgClass">
-    <div class="navbar navbar-default {{bgClass}}" role="navigation">
+  <div  class="header" >
+    <div ng-model="bgClass"  class="navbar navbar-default {{bgClass}} navbar-fixed-top" role="navigation">
       <!--<div class="container">-->
-      <div class="navbar-header">
+      <div ng-model="bgIcon" class="navbar-header {{bgIcon}}" >
 
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
           <span class="sr-only">ClassDig </span>
@@ -12,22 +12,67 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand ClassDig" href="#/">ClassDig</a>
+        <a class="navbar-brand classdig-logo" href="#/"><span class="icon-logo"></span></a>
       </div>
 
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+      <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-model="username">
 
         <ul class="nav navbar-nav">
-          <li><a href="#">CLASSES</a></li>
-          <li><a ng-href="#">FEED</a></li>
-          <li><a ng-href="#">GROUPS</a></li>
-          <li><a ng-href="#">PREMIUM</a></li>
+          <li><a href="#/classes" class="active-nav-menu" id = "nav-menu-classes"  ng-class = "{'active-nav-menu-active':activeTab==='class'}"><span class="nav-menu-icon icon-classes"></span><span
+            class="nav-menu-text">CLASSES</span></a></li>
+          <li><a ng-href="#/feed" class="active-nav-menu" ng-class ="{'active-nav-menu-active':activeTab==='feed'}"><span class="nav-menu-icon icon-story"></span><span
+            class="nav-menu-text">STORY</span></a></li>
+          <li><a ng-href="#/groups" class="active-nav-menu" ng-class ="{'active-nav-menu-active':activeTab==='groups'}"><span class="nav-menu-icon icon-groups"></span><span
+            class="nav-menu-text">GROUPS</span></a></li>
+          <li ng-show="user.data.role==='teacher'"><a ng-href="#/premium" class="active-nav-menu" ng-class ="{'active-nav-menu-active':activeTab==='premium'}"><span class="nav-menu-icon icon-prem"></span><span
+            class="nav-menu-text">PREMIUM</span></a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#/logout" class="btn-lg"><span class="glyphicon glyphicon-bell"></span></a></li>
-          <li><a href="#/login" class="btn-lg"><span class="glyphicon glyphicon-comment"></span></a></li>
-          <li><a href="#/" class="btn-lg"><img href="#" src="">Profile</a></li>
+          <li class="dropdown bg-{{role}}" ng-if="notificationsEnabled" ng-class ="{'active-icon':activeTab==='notifications'}">
+            <a href="#" id="not" ng-click="onMessageClick($event, 'n'); notifClicked($event, 'n')" class="btn-lg icon-link" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false" ng-class="{'active-mes-notif' : notificationsActive === true}">
+              <span class="nav-menu-icon" style="pointer-events: none">
+                <img src="images/nav_menu_icon/notif/notif.png" style="pointer-events: none">
+                <span class="unread_count notifications-unread-count" style="pointer-events: none" ng-if="newNotifications.length">{{newNotifications.length}}</span>
+              </span>
+            </a>
+            <div class="dropdown-menu">
+              <notifications-popup></notifications-popup>
+            </div>
+          </li>
+
+
+          <!--<li class="dropdown {{bgClass}}">-->
+
+
+
+          <li class="dropdown bg-{{role}}" ng-class ="{'active-icon': activeTab==='messages'}">
+            <a href="#" id="mes" ng-click="onMessageClick($event, 'm'); notifClicked($event, 'm')" class="btn-lg icon-link" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false" ng-class="{'active-mes-notif' : messagesActive === true}">
+                <span class="nav-menu-icon icon-messages" style="pointer-events: none">
+                    <span ng-show = "(unread !== -1 && unread !==0)" class="unread_count" style="pointer-events: none">{{unread}}</span>
+                </span>
+            </a>
+            <div class="dropdown-menu">
+              <message-popup></message-popup>
+            </div>
+          </li>
+
+          <li class="dropdown bg-{{role}}">
+            <a class="btn-lg profile dropdown-toggle ava-container-link" data-toggle="dropdown" role="button"
+               aria-haspopup="true" aria-expanded="false">
+              <span class="ava-container">
+                <span class="user-header-img" ng-style="{'background-image':'url({{user.data.details.data.photo}})'}"></span>
+              </span>
+              <span class="nav-menu-text-profile">{{user.data.details.data.first_name}} {{user.data.details.data.last_name}}</span><span class="caret"></span></a>
+            <ul class="dropdown-menu {{bgClass}}">
+              <li class="bg-grey"><a href="#/profile" class="dropdown-menu-text"><img src="images/nav_menu_icon/icon-dropdown-profile.svg">My profile</a></li>
+              <li class="bg-grey"><a href="#/settings" class="dropdown-menu-text"><img src="images/nav_menu_icon/icon-dropdown-setting.svg">Setting</a></li>
+              <li class="bg-grey"><a href="#/findPeople" class="dropdown-menu-text"><img src="images/nav_menu_icon/icon-dropdown-search.svg">Find people</a></li>
+              <li class="bg-grey" style="overflow: hidden;"><a href="#/logout"  ng-click="logout()" class="dropdown-menu-text"><img src="images/nav_menu_icon/icon-dropdown-logout.svg">Logout</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="170px" height="204px" viewBox="0 0 170 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>64D8E3C2-C488-411F-9A6D-042D01E99F95</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="ClassDig-Web-Teachers" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-Resources" transform="translate(-1947.000000, -2274.000000)">
+            <g id="gradesbl-copy-2" transform="translate(1947.000000, 2274.000000)">
+                <rect id="Mask" fill="#CF515D" x="0" y="0" width="170" height="204" rx="4.14967742"></rect>
+                <g id="Group-5" transform="translate(52.000000, 37.000000)">
+                    <g id="Group" fill="#FFFFFF">
+                        <g id="Shape">
+                            <g>
+                                <path d="M65.6827767,89.0955175 L65.6827767,3.20303497 C65.6827767,1.80772727 64.5575235,0.677643357 63.1681801,0.677643357 L7.8679925,0.677643357 C7.84637899,0.678321678 7.82476548,0.684426573 7.79977486,0.685104895 C7.70926829,0.688496503 7.61943715,0.697314685 7.53230769,0.709524476 C7.00750469,0.78006993 6.49621013,1.00934266 6.09028143,1.41701399 L1.06311445,6.46508392 C0.572082552,6.95958042 0.326904315,7.60534266 0.326904315,8.25042657 L0.326904315,94.0811818 C0.326904315,95.4758112 1.4521576,96.6058951 2.84082552,96.6058951 L58.1410131,96.6058951 C59.5303565,96.6065734 60.6556098,95.4758112 60.6556098,94.0811818 L60.6556098,8.2511049 C60.6556098,6.85715385 59.5303565,5.72706993 58.1410131,5.72706993 L58.142364,5.72639161 L5.35474672,5.72639161 L7.87001876,3.20167832 L10.4217636,3.20235664 L60.6556098,3.20235664 L60.8339212,3.20235664 C62.1638274,3.20235664 63.2465291,4.2367972 63.3390619,5.54799301 L63.3498687,5.54799301 L63.3498687,91.6100559 C64.6520826,91.5184825 65.6827767,90.4284196 65.6827767,89.0955175"></path>
+                            </g>
+                        </g>
+                    </g>
+                    <text id="Students" font-family="Lato-Black, Lato" font-size="45.2666667" font-weight="700" fill="#CF515D">
+                        <tspan x="13.9045992" y="61.1666667">A</tspan>
+                    </text>
+                </g>
+                <text id="Grades" font-family="Roboto-Regular, Roboto" font-size="20" font-weight="normal" fill="#FFFFFF">
+                    <tspan x="52.4667969" y="173">Grades</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

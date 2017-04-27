@@ -1,0 +1,119 @@
+.user-list {
+  overflow: auto;
+  height: 300px;
+  padding: 20px 20px 20px 0px;
+  .user {
+    width: 46%;
+    padding-top: 3px;
+    margin-left: 20px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid $modal-line-color;
+    display: inline-block;
+    .user-image {
+      width: 42px;
+      height: 42px;
+      border: solid 2px rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+    }
+    .name {
+      padding-top:8px;
+      padding-left: 12px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.13;
+      color: #333c48
+    }
+  }
+}
+.select-users {
+  display: flex;
+  .select-users-modal-subtitle {
+    width: 50%;
+  }
+  .select-users-select-all {
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-align: right;
+    padding-right: 50px;
+  }
+}
+
+.custom-toggle {
+  label {
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 0.94;
+  }
+  /* Base for label styling */
+  [type="checkbox"]:not(:checked),
+  [type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+  }
+  [type="checkbox"]:not(:checked) + label,
+  [type="checkbox"]:checked + label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    display: inline;
+  }
+
+  /* checkbox aspect */
+  [type="checkbox"]:not(:checked) + label:before,
+  [type="checkbox"]:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: -1px;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #010101;
+    background: #f8f8f8;
+  }
+  /* checked mark aspect */
+  [type="checkbox"]:not(:checked) + label:after,
+  [type="checkbox"]:checked + label:after {
+    content: '\2714';
+    position: absolute;
+    background-color: #4b93eb;
+    left: 100px;
+    top: -1px;
+    width: 17px;
+    height: 17px;
+    border: none;
+    font-size: 12px;
+    padding-top: 4px;
+    line-height: 0.8;
+    color: #ffffff;
+    text-align: center;
+  }
+  /* checked mark aspect changes */
+  [type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+  }
+  [type="checkbox"]:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.c-teacher [type="checkbox"]:not(:checked) +  label:after,
+.c-teacher [type="checkbox"]:checked + label:after {
+  background-color: $bg-color-teacher !important;
+}
+
+.c-student [type="checkbox"]:not(:checked) +  label:after,
+.c-student [type="checkbox"]:checked + label:after{
+  background-color: $bg-color-student !important;
+
+}
+
+.c-parent [type="checkbox"]:not(:checked) +  label:after,
+.c-parent [type="checkbox"]:checked + label:after{
+  background-color: $bg-color-parents !important;
+}

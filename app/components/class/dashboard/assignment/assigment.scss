@@ -1,0 +1,155 @@
+.no-assignment{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 110px;
+  align-items: center;
+}
+
+.no-assignment-img{
+  //width: 376.8px;
+  //height: 255.9px;
+  width: 50%;
+  img{
+    width: 100%;
+  }
+}
+
+.assignment-tittle-text {
+  text-align: center;
+  margin-top: 20px;
+  width: 240px;
+}
+
+.hint-text {
+  width: 157px!important;
+}
+ .assignment-header{
+
+
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   span{
+     font-size:12px;
+     text-transform:capitalize;
+   }
+ }
+.tittle-name , a, a:hover, a:visited, a:focus {
+  font-family: 'Roboto',sans-serif;
+  font-size: 17px!important;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  color: #ffffff;
+
+}
+.tittle-name-width{
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exam-definition .submit-title{
+  font-family: 'Roboto',sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  color: #b2b2b2;
+}
+
+.listOfSubmittedStudents{
+  display: flex;
+  flex-wrap: wrap;
+}
+.submittedStudentItem{
+  width: 70px;
+  height: 70px;
+  border-radius:50%;
+  margin: 5px 15px;
+  img{
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+  }
+}
+
+.student-submit-title{
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.19;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.student-submit-title-note{
+  //height: 15px;
+  object-fit: contain;
+  font-family: 'Lato',sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.94;
+  color: #7b7b7b;
+  height: auto;
+}
+.exam-definition .students-files{
+  font-family: 'Roboto',sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.07;
+  color: #b2b2b2;
+
+}
+.assignmenttooltip {
+  position: relative;
+  display: inline-block;
+  font-family: 'Roboto',sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.25;
+  color: #ffffff;
+
+}
+
+.assignmenttooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  left: -80px;
+  top: 15px;
+  overflow: hidden;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.assignmenttooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.submit-check-mark{
+  width: 30px;
+  position: absolute;
+  top: 4px;
+  right: -11px;
+}
+.submit-student-assignment-subtitle{
+  text-transform: none;
+}
+.assignment-due-date-student{
+  margin-top: -30px;
+}

@@ -1,0 +1,61 @@
+<form name="CreateClassModal"  ng-submit="" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">Add existing student</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="$ctrl.cancel()">+</button>
+  </div>
+
+  <div class="sub-header select-users" ng-show="showMembersHeader">
+    <h3 class="select-users-modal-subtitle">SELECT CLASS</h3>
+  </div>
+
+  <div class="class-picker">
+    <div class="title">
+      <span>Class</span>
+    </div>
+    <div class="picker">
+      <div class="dropdown custom-select c-{{role}}">
+        <div class=" custom-select-title dropdown-toggle" data-toggle="dropdown" role="button"
+             aria-haspopup="true" aria-expanded="false">
+          <i class="glyphicon glyphicon-menu-down"></i>
+          <span class="nav-menu-text-profile">{{ $ctrl.sortBy }}</span>
+        </div>
+        <div class="dropdown-menu custom-select-menu">
+          <div ng-repeat="item in $ctrl.sort  track by $index" class="custom-select-menu-option dropdown-menu-text" ng-click="$ctrl.changeSortBy(item)">
+            {{item.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="sub-header select-users">-->
+    <!--<h3 class="select-users-modal-subtitle">SELECT STUDENT</h3>-->
+    <!--<div class="select-users-select-all">-->
+      <!--<div class="custom-toggle">-->
+        <!--<input ng-click="$ctrl.selectAll()" type="checkbox" ng-model="$ctrl.allSelected" id="select-all" />-->
+        <!--<label for="select-all"><span class="{{'c-' + role}}">Select All</span></label>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+  <select-users></select-users>
+
+
+
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="$ctrl.cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass {{userData.background}}"
+            style="width: auto;"
+            type="submit"
+            ng-disabled="CreateClassModal.$invalid"
+            ng-click="$ctrl.ok()">ADD STUDENT
+    </button>
+
+  </div>
+</form>

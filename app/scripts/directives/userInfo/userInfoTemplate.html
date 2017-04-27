@@ -1,0 +1,112 @@
+<div ng-if="requesstInProgress">
+  <div class="loader"></div>
+</div>
+
+<div class="class-menu-item-block-right-header {{userData.profileBackground}}" ng-if="!requesstInProgress" style="display: block !important;">
+  <div class="main-user-data">
+    <div class="main-user-data-item" style="min-height: 45px;
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+    padding: 0 5%;
+    align-items: center;">
+      <div ng-if="userInformation.details.data.need_aid"><img src="images/students/aid.png"> Need aid</div>
+      <div ng-if="userInformation.details.data.concern"><img src="images/students/concern.png" style="height: 14px;
+    margin-bottom: 2px"> Concern</div>
+    </div>
+    <div class=" main-user-data-item user-data-ava">
+      <div ng-class="{'second-border':userInformation.role=='student'&& userInformation.parents.data.length>1}">
+        <div ng-class="{'first-border':userInformation.role=='student'&& userInformation.parents.data.length>0}">
+         <div class="user-ava-container" style="background-image: url({{userInformation.details.data.photo}})">
+
+        </div>
+          <div ng-if="userInformation.role=='student'&& userInformation.parents.data.length>0" class="user-ava-container user-first-addition-ava" style="background-image: url({{userInformation.parents.data[0].photo}})"></div>
+      </div>
+        <div ng-if="userInformation.role=='student'&& userInformation.parents.data.length>1" class="user-ava-container user-second-addition-ava" style="background-image: url({{userInformation.parents.data[1].photo}})"></div>
+      </div>
+    </div>
+
+    <div class="main-user-data-item user-data-info">
+      <div style="font-size: 26px !important">{{userInformation.details.data.first_name}} {{userInformation.details.data.last_name}}</div>
+      <!--<div></div>-->
+      <div ng-if="userInformation.details.data.school_name" class="user-data-info-location"><img src="images/location.png">{{userInformation.details.data.school_name}}</div>
+      <div ng-if="userInformation.details.data.city" style="font-size: 11px" class="user-data-info-location">{{userInformation.details.data.city}}, {{userInformation.details.data.country}}</div>
+    </div>
+
+  </div>
+  <div class="additional-user-data" >
+    <div class="additional-user-data-item" id = "add-user_info" ng-click = "switchAddUserInfo()">
+      <div class="count">{{userStatistic.countActivity}}</div>
+      <div class="description {{userData.color}}">Activity</div>
+    </div>
+    <div class="additional-user-data-item" id="followers" ng-click = "switchUserFollowers()">
+      <div class="count">{{userStatistic.countSubscribers}}</div>
+      <div class="description {{userData.color}}" >Followers</div>
+    </div>
+    <div class="additional-user-data-item" id = "user-follow" ng-click = "switchUserFollow()">
+      <div class="count">{{userStatistic.countFollows}}</div>
+      <div class="description {{userData.color}}">Follow</div>
+    </div>
+  </div>
+  <!--div class="additional-user-data-shadow"></div-->
+</div>
+
+<div class="container_user-additional-info" ng-show="showUserInfo">
+    <user-additional-info user-information="userInformation" ng-if="!requesstInProgress && showAdditionalInfo"></user-additional-info>
+    <distinguished-additional-info user-information="userInformation" ng-if="!requesstInProgress && showDistinguishedAdditionalInfo"></distinguished-additional-info>
+</div>
+
+<div class="container_user-followers" ng-show="showUserFollowers">
+    <ul class="user-follow_list">
+        <li class="followItem">
+            <div class="followItem-left">
+                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
+                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
+                <div class ="">Student</div>
+            </div>
+            <a href="#" class="followItem-right">FOLLOW</a>
+        </li>
+        <li class="followItem">
+            <div class="followItem-left">
+                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
+                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
+                <div class ="">Student 2</div>
+            </div>
+            <a href="#" class="followItem-right">FOLLOW</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container_user-follow" ng-show="showUserFollow" >
+    <ul class="user-follow_list">
+        <li class="followItem">
+            <div class="followItem-left">
+                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
+                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
+                <div class ="">SuperTeacher</div>
+            </div>
+            <a href="#" class="followItem-right">FOLLOW</a>
+        </li>
+        <li class="followItem">
+            <div class="followItem-left">
+                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
+                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
+                <div class ="">SuperTeacher 2</div>
+            </div>
+            <a href="#" class="followItem-right">FOLLOW</a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

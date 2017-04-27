@@ -1,0 +1,28 @@
+<div class="context-menu" ng-show="contextMenu.items">
+  <div class="context-menu-item"
+       ng-repeat="item in contextMenu.items"
+       ng-show="item.active && !item.distinguished"
+       ng-click="item.state && item.click(item.context)"
+       ng-class="{'context-menu-active' : item.state == true}"
+       ng-init="itemsrc = item.img" ng-mouseover="itemsrc = item.imgHover" ng-mouseout="itemsrc = item.img">
+    <a class="context-menu-button">
+      <img ng-if="item.state == false" class="context-menu-button-image" ng-src="{{item.imgDisabled}}">
+      <img ng-if="item.state == true" class="context-menu-button-image" ng-src="{{itemsrc}}">
+      <p class="context-menu-button-title" ng-class="item.state && '{{userData.background}} {{currentUser.background}}'"  ng-style="item.state && {'opacity' : '1'}"> {{item.text}}</p>
+    </a>
+  </div>
+
+  <div class="context-menu-item"
+       ng-repeat="item in contextMenu.items"
+       ng-show="item.active && item.distinguished"
+       ng-click="item.state && item.click(item.context)"
+       ng-class="{'context-menu-active' : item.state == true}"
+       ng-init="itemsrc = item.img" ng-mouseover="itemsrc = item.imgHover" ng-mouseout="itemsrc = item.img">
+    <a class="context-menu-button">
+      <img ng-if="item.state == false" class="context-menu-button-image" ng-src="{{item.imgDisabled}}">
+      <img ng-if="item.state == true" class="context-menu-button-image" ng-src="{{itemsrc}}">
+      <p class="context-menu-button-title context-menu-button-title" ng-show="item.itemPicked == 1 || item.itemPicked == 2"> {{item.text}}</p>
+    </a>
+  </div>
+</div>
+

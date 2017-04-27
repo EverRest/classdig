@@ -1,0 +1,9 @@
+<div class="settings-class-list-container">
+  <div ng-repeat="class in classList" class="settings-class-list" ng-click="selectClass(class)">
+    <div class='settings-class-list-item'>
+      <div class = 'class-image-container'  style="background-image: url({{class.image}})">
+      </div>
+      <div class="settings-class-name">{{class.name}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+<form name="CreatePollModal" ng-submit="submitCreatePollModal()" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title" ng-show = "createPollModal">{{$ctrl.modalConstant.header}}</h3>
+    <h3 class = "modal-title" ng-show = "addVoters">Select voters</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="$ctrl.cancel()" ng-show = "createPollModal">+</button>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancelVoteParticipants()"  ng-show = "addVoters">+</button>
+  </div>
+<div  ng-show = "createPollModal">
+  <div class="sub-header">
+    <h3>Question</h3>
+  </div>
+
+  <div class="poll-modal-create-question" >
+
+    <div class = "question" style ="padding-top: 0; width:100%">
+      <input id="poll-question" ng-model="newPoll.poll.name" class = "greyFont"  type="text"
+             placeholder="Poll title"
+             style = "font-size: 22px;"
+             name = "PollTittle"
+             ng-minlength="2"
+             ng-maxlength="250"
+             required>
+
+      <p ng-show="CreatePollModal.PollTittle.$dirty && CreatePollModal.PollTittle.$error.minlength" class="help-block red-help-block">Poll tittle is too short.</p>
+      <p ng-show="CreatePollModal.PollTittle.$dirty && CreatePollModal.PollTittle.$error.maxlength" class="help-block red-help-block">Poll tittle is too long.</p>
+      <!--<p ng-show="CreatePpllModal.PollTittle.$dirty && CreatePpllModal.PollTittle.$error.required" class="help-block">Class name is required.</p>-->
+      <p ng-show="submitted && CreatePollModal.PollTittle.$error.required" class="help-block red-help-block">Poll tittle is required.</p>
+
+      <div ng-repeat="(id,question) in newPoll.blocks track by id">
+        <div class = "poll-question-block">
+        <array-questions questions-array="question" form-submitted = "formSubmitted" question-id = 'id+"qwe"' style = "width:100%"></array-questions>
+        </div>
+      </div>
+      <div class = "add-option newQuestion {{userData.color}} add-new-qwe" style = "display: flex;">
+        <button class="add-question {{background}} " ng-click="addNewQuestion()" style = 'font-size:37px; font-weight: 100; padding: 0'><img ng-src={{userData.iconPlus}}></button> <span style = "padding-top: 10px; padding-left: 10px;">Add another question</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sub-header">
+    <h3>Details</h3>
+  </div>
+
+  <div class="poll-modal-create-question poll-modal-details">
+    <div class="question">
+
+      <!-- ===== Date ===== -->
+      <div class="poll-answears">
+        <h4 class="greyFont">Voting timeframe</h4>
+        <div class="poll-answears details">
+          <div class="answear details-section anonymouslyVoteCtrl" style = "border-bottom: 1px solid #d9d9d9">
+            <h4>Date</h4>
+            <input ng-model="timeFrame" class="{{userData.color}} datetimepickerDate" style="text-align:right; border: none; outline: none;">
+          </div>
+        </div>
+      </div>
+      <!-- ===== Time ===== -->
+      <div class="poll-answears">
+        <div class="poll-answears details">
+          <div class="answear details-section anonymouslyVoteCtrl" style = "border-bottom: 1px solid #d9d9d9">
+            <h4>Time</h4>
+            <input ng-model="timeFrameTime" class="{{userData.color}} datetimepickerTime" style="text-align:right; border: none; outline: none;">
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Anonymoustly vote ===== -->
+      <div class="poll-answears details">
+        <div class="answear details-section anonymouslyVoteCtrl">
+          <h4>Anonymously vote</h4>
+          <custom-switcher switch-value="newPoll.anonim" switch-id="anonim"></custom-switcher>
+        </div>
+      </div>
+      <hr>
+
+      <!-- ===== Multi select ===== -->
+      <div class="poll-answears">
+        <div class="answear details-section">
+          <h4>Allow multi-select</h4>
+          <custom-switcher switch-value="newPoll.poll.multi_select" switch-id="multiSelect"></custom-switcher>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== See result Id ===== -->
+    <div class="add-img-to-question details-img-section">
+      <see-results result-id="newPoll.poll.see_result_id"></see-results>
+    </div>
+
+  </div>
+
+
+  <div class="sub-header">
+    <h3>Voters</h3>
+  </div>
+
+  <div class="poll-modal-create-question poll-modal-details">
+    <div class="question">
+
+      <div class="poll-answears">
+        <div class="answear details-section votersCtrl" >
+
+          <h4>Voters</h4>
+          <span class ={{userData.color}}  ng-click = "showParticipantsList()" ng-show = "userData.role ==='student'" style = "padding-top: 9px">Only Students</span>
+          <span class ={{userData.color}}  ng-click = "showParticipantsList()" ng-show = "userData.role ==='teacher'" style = "padding-top: 9px">Students</span>
+          <!--<div><custom-selector class ={{userData.color}} options="votersOptions" ></custom-selector></div>-->
+        </div>
+
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class="sub-header">
+    <h3>Note</h3>
+  </div>
+
+  <div class="poll-modal-create-question poll-modal-note">
+
+    <div class=" question note">
+      <input id=""  class="answear-text greyFont" type="text" placeholder="Write your note" ng-model ='newPoll.poll.note'>
+    </div>
+  </div>
+
+
+
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="$ctrl.cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass add-poll {{userData.background}}"
+            type="submit"
+            ng-click="submitted=true; $ctrl.ok() ">{{$ctrl.modalConstant.buttonSubmit}}
+    </button>
+
+  </div>
+</div>
+
+
+  <div ng-show = "addVoters">
+
+    <div class="sub-header">
+      <h3>Choose role</h3>
+    </div>
+
+    <choose-user-role ></choose-user-role>
+    <select-users> </select-users>
+  </div>
+
+  <div class="modal-footer" ng-show = "addVoters">
+
+    <!--<div class="modal-footer">-->
+      <button class="btn-cansel {{userData.color}}"
+              type="button"
+              ng-click="cancelVoteParticipants()">Cancel
+      </button>
+
+      <button class="btn-createClass add-poll {{userData.background}}"
+              ng-click="addVoteParticipants()">Add voters
+      </button>
+
+    <!--</div>-->
+
+  </div>
+
+</form>

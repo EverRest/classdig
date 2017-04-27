@@ -1,0 +1,70 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/groups/group/menu/menu.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}} members-from-groups">
+
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6">
+        <div class="{{'c-'+role}} ">Members</div>
+    </div>
+    <div class="class-menu-item-context-menu col-md-7col-sm-7 col-xs-6" ng-show="selection.length !== 0">
+      <context-menu></context-menu>
+    </div>
+  </div>
+
+
+  <div class="class-menu-item-container">
+    <div class="class-menu-item-block-center-container">
+      <div class="class-menu-item-block-center">
+        <div class="class-menu-item-exist" style="overflow: hidden">
+
+          <div ng-class="'attendance-list-users-list-mode'">
+            <div class="student"
+                 ng-repeat="student in students"
+
+                 ng-class="{'user-wants-to-join ': student.status === 0}">
+              <div class="image" ng-click="pickStudent(student);" ng-style="{'background-image':'url({{student.photo || student.image}})'}"
+                   ng-class="{'{{userData.color}} {{role}}-userListBorder': selectedStudent.indexOf(student) != -1}">
+                <div class="name" ng-click="pickStudent(student);">
+                  {{student.first_name}} {{student.last_name}}
+                </div>
+              </div>
+
+              <div class="buttons" ng-if="admin">
+                <div ng-if="student.status === 0">
+                  <button class="btn {{userData.background}} white-color"  ng-click="accept(student)">Accept</button>
+                  <button class="btn {{userData.color}} {{userData.border}}"  ng-click="rejectRemove(student)">Reject</button>
+                </div>
+                <div ng-if="student.status === 1 && user.pickedGroup.user_id !== student.id">
+                  <button class="btn {{userData.background}} white-color"  ng-click="rejectRemove(student)">Remove</button>
+                </div>
+              </div>
+              <div class="buttons" ng-if="!admin">
+                <div ng-if="student.status === 1 && user.data.id === student.id">
+                  <button class="btn {{userData.background}} white-color"  ng-click="rejectRemove(student, true)">Leave group</button>
+                </div>
+              </div>
+              <div style="clear: both"></div>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="class-menu-item-block-right-container" ng-show="selectedStudent.length">
+      <div class="class-menu-item-block-right">
+        <div class="student-info" style="height: 100%">
+          <user-info selected-user="selectedStudent[0]" show-additional-info="true"></user-info>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>

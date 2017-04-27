@@ -1,0 +1,178 @@
+.class-menu {
+  display: block;
+  margin: 0px;
+  overflow: hidden;
+  height: calc(100% - 64px);
+
+  .class-item-header {
+    background-color: white;
+    position: relative;
+    //display: block;
+    height: 10vh;
+    box-shadow: 3px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    .class-menu-item-main-header {
+      padding: 0 0 0 25px;
+      div {
+        font-family: 'Roboto', sans-serif;
+        font-size: 4.5vh;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.25;
+        color: $active-link-teacher;
+      }
+    }
+    .class-menu-item-context-menu {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .search-field-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-right: 2vw;
+      label {
+        margin-bottom: 0;
+      }
+      input {
+        border: 0;
+        border-bottom: 2px solid;
+        outline: 0;
+      }
+    }
+  }
+
+  .class-menu-item-container {
+    .class-menu-item-block-center-container {
+      .has-header {
+        height: calc(74vh - 35px) !important;
+        margin: 0 15px 15px 15px !important;
+      }
+      .class-menu-item-block-center-header {
+        margin: 0 15px 0 15px;
+        height: 50px;
+        //text-align: center;
+        padding: 15px 0;
+        .class-menu-item-date {
+          background-color: $background;
+          display: block;
+          //padding: 10px;
+          text-align: center;
+          .dropdown {
+            font-family: 'Lato', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            color: $text-color;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .dateLabel {
+            padding: 0 5px;
+          }
+          ul {
+            text-align: center;
+            position: initial;
+            margin: 0 auto;
+          }
+
+        }
+      }
+      display: block;
+      width: 65%;
+      float: left;
+      .class-menu-item-block-center {
+        position: relative;
+        border: solid 1px #e1dede;
+        margin: 15px;
+        background-color: white;
+        height: 74vh;
+        .class-menu-item-notexist {
+        }
+        .class-menu-item-exist {
+          height: 100%;
+          overflow-y: auto;
+          //.class-menu-item-date {
+          //  background-color: $background;
+          //  display: block;
+          //  padding: 10px;
+          //  text-align: center;
+          //  .dropdown {
+          //    font-family: 'Lato', sans-serif;
+          //    font-size: 18px;
+          //    font-weight: 500;
+          //    font-style: normal;
+          //    font-stretch: normal;
+          //    color: $text-color;
+          //  }
+          //  .dateLabel {
+          //    padding: 0 5px;
+          //  }
+          //  ul {
+          //    text-align: center;
+          //    left: 33%;
+          //  }
+          //
+          //}
+          .class-menu-item {
+            .class-menu-item-holder {
+              //border: solid 1px #e1dede;
+              //height: 85vh;
+
+            }
+          }
+        }
+        .class-menu-item-add {
+          //background-color: white;
+          margin: 10px 25px 20px 20px;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          //border-radius: 50%;
+        }
+      }
+    }
+    .class-menu-item-block-right-container {
+      width: 35%;
+      float: left;
+      .class-menu-item-block-right {
+        margin: 10px 15px 15px 0px;
+        background-color: white;
+        height: calc(74vh + 5px);
+        overflow-y: hidden;
+        .class-menu-item-block-right-header {
+          text-transform: uppercase;
+          //padding-left: 24px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 24px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1;
+          height: 9vh;
+          border-bottom: solid 2px $border-grey;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          //color: $bg-color-teacher;
+        }
+        .behaviour-student-info {
+          border: solid 1px $border-grey;
+        }
+      }
+    }
+  }
+}
+
+.more-menu-loader{
+position:absolute !important;
+  top:20%;
+  right:50%;
+}
+

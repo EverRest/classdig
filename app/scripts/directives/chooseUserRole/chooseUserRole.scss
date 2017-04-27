@@ -1,0 +1,60 @@
+.choose-user-role {
+  margin-left:15px;
+  margin-bottom: 30px;
+  .user-role {
+    position: relative;
+    width: 332px;
+    height: 22px;
+    padding-top: 15px;
+  }
+
+  .student.role-student, .role-teacher {
+    border-bottom: solid 2px #3d8e78 !important;
+  }
+
+  .role-teacher {
+    border-bottom: solid 2px #4b93eb !important;
+  }
+  .student.role-student:before, .role-teacher:before{
+
+    border-bottom: solid 4px #3d8e78 !important;
+
+    content: '';
+    border-width: 0px 6px 6px 6px;
+    border-color: transparent transparent transparent transparent;
+    border-bottom-color: #d5d5d5;
+    border-style: solid;
+    left: 75px;
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .role-teacher:before {
+    border-bottom: solid 4px #4b93eb !important;
+  }
+
+  .student {
+    left: 4px;
+  }
+
+  .student , .parent{
+    width: 162px;
+    height: 100%;
+    display: inline-block;
+    border: none;
+    border-right: 0px;
+    border-bottom: 1px solid #d9d9d9;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.94;
+    text-align: center;
+  }
+
+  .parent {
+    right: 4px;
+  }
+}

@@ -1,0 +1,95 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/groups/group/menu/menu.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}} invite-members">
+
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6">
+        <div class="{{'c-'+role}} ">Invite member</div>
+    </div>
+    <div class="class-menu-item-context-menu col-md-7 col-sm-7 col-xs-6" ng-show="selection.length !== 0">
+      <context-menu></context-menu>
+    </div>
+  </div>
+
+
+  <div class="class-menu-item-container">
+    <div class="class-menu-item-block-center-container">
+      <div class="class-menu-item-block-center">
+        <div class="class-menu-item-exist" style="overflow: hidden">
+
+          <form name="CreateClassModal"  ng-submit="" novalidate>
+
+            <div class="sub-header select-users" ng-show="showMembersHeader">
+              <h3 class="select-users-modal-subtitle">SELECT CLASS</h3>
+            </div>
+
+            <div ng-if="!classForRequest" style="height: 100px">
+              <div class="loader"></div>
+            </div>
+
+            <div class="class-picker" ng-show="classForRequest">
+              <div class="title">
+                <span>Class</span>
+              </div>
+              <div class="picker">
+                <div class="dropdown custom-select c-{{role}}">
+                  <div class=" custom-select-title dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">
+                    <i class="glyphicon glyphicon-menu-down"></i>
+                    <span class="nav-menu-text-profile">{{ sortBy }}</span>
+                  </div>
+                  <div class="dropdown-menu custom-select-menu">
+                    <div ng-repeat="item in sort  track by $index" class="custom-select-menu-option dropdown-menu-text" ng-click="changeSortBy(item)">
+                      {{item.name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--<choose-user-role></choose-user-role>-->
+
+            <div class = "choose-user-role" ng-show="classForRequest">
+              <div class="user-role outline">
+              <div ng-click="selectRole(r.url)" ng-repeat="r in roles" class="{{r.id}} outline"
+                   ng-class="{'active {{'role-' + role}} {{'c-' + role}}': selectedRole == r.url}">
+                {{r.description}}
+              </div>
+            </div>
+            </div>
+
+
+            <select-users></select-users>
+
+            <div class="invite-members-footer">
+              <div class="modal-footer" style="padding: 9px">
+                <a class="btn-cansel {{userData.color}}"
+                        type="button"
+                        ng-href="#/groups">Cancel
+                </a>
+
+                <button class="btn-createClass {{userData.background}}"
+                        style="width: auto;"
+                        type="submit"
+                        ng-click="ok()">INVITE
+                </button>
+
+              </div>
+            </div>
+
+          </form>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>

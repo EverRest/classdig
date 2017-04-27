@@ -1,0 +1,38 @@
+<form name="CreateClassModal"  ng-submit="" novalidate>
+  <div class="modal-header {{userData.background}}">
+    <h3 class="modal-title" id="modal-title">Select students to distinguish</h3>
+    <button class="modal-btn-close {{userData.background}}" type="button" ng-click="$ctrl.cancel()">+</button>
+  </div>
+
+
+  <!--<div class="sub-header select-users">-->
+    <!--<h3 class="select-users-modal-subtitle">SELECT STUDENT</h3>-->
+    <!--<div class="select-users-select-all">-->
+      <!--<div class="custom-toggle">-->
+        <!--<input ng-click="$ctrl.selectAll()" type="checkbox" ng-model="$ctrl.allSelected" id="select-all" />-->
+        <!--<label for="select-all"><span class="{{'c-' + role}}">Select All</span></label>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+  <select-users></select-users>
+
+
+
+  <div class="modal-footer">
+    <button class="btn-cansel {{userData.color}}"
+            type="button"
+            ng-click="$ctrl.cancel()">Cancel
+    </button>
+
+    <button class="btn-createClass {{userData.background}}"
+            style="width: auto;"
+            type="submit"
+            ng-disabled="CreateClassModal.$invalid"
+            ng-click="$ctrl.ok()">DISTINGUISH STUDENT
+    </button>
+
+  </div>
+</form>

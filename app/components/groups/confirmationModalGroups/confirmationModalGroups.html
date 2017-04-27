@@ -1,0 +1,15 @@
+<div class = "joinClass">
+  <form name="CreateClassModal" novalidate>
+    <div class="dialog-on-code-send">
+      <div class="modal-header {{userData.background}}">
+        <button class="modal-btn-close {{userData.background}}" type="button" ng-click="cancel()">+</button>
+      </div>
+      <div ng-if="items === 'reject'" class="text">User was successfully removed. </div>
+      <div ng-if="items === 'accept'" class="text">User was successfully accepted. </div>
+      <div ng-if="items === 'invite1'" class="text">User was successfully invited. </div>
+      <div ng-if="items === 'invite2'" class="text">Users were successfully invited. </div>
+
+    </div>
+  </form>
+</div>
+

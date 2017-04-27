@@ -1,15 +1,100 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "slick-carousel/slick/slick.scss";
 // endbower
 
 @import "../shared/constant.scss";
 @import "../shared/mixins.scss";
+//@import "../shared/non-responsive.css";
+@import "../styles/classDig.scss";
+@import "../components/authentication/login/login.scss";
+@import "../components/authentication/registration/registration.scss";
+@import "../components/authentication/change-password/change-password.scss";
+@import "../components/authentication/forgot-password/forgot-password.scss";
 @import "../components/header/header.scss";
-@import "../components/footer/footer.scss";
+@import "../components/classes/classes.scss";
+@import "../scripts/directives/customSelector/customSelector.scss";
+@import "../components/message/message";
+
+@import "../components/notifications/notifications-popup";
+@import "../components/notifications/notifications";
+
+@import "../components/settings/settings";
+
+
+
+@import "../scripts/directives/selectUsers/selectUsers";
+@import "../scripts/directives/userInfo/userInfo";
+@import "../scripts/directives/userAdditionalInfo/userAdditionalInfo";
+@import "../scripts/directives/distinguishedAdditionalInfo/distinguishedAdditionalInfo";
+
+@import "../components/class/menuClass/menuClass.scss";
+@import "../components/class/dashboard/dashboard.scss";
+@import "../components/class/dashboard/attendance/attendance.scss";
+@import "../components/class/dashboard/behaviour/behaviour.scss";
+@import "../components/class/dashboard/behaviour/behaviourModal/behaviourModal.scss";
+@import "../components/class/dashboard/behaviour/newBehaviorTypeModal/newBehaviorTypeModal.scss";
+@import "../components/class/dashboard/events/calendar.scss";
+
+@import "../scripts/directives/contextMenu/contextMenu.scss";
 @import "../scripts/directives/customButton/floatingButton.scss";
 
+@import "../components/usersList/userList.scss";
 
+@import "../components/footer/footer.scss";
+@import "../scripts/directives/arrayOfColors/arrayOfColors.scss";
+@import "../scripts/directives/createClass/createClassTime";
+@import "../scripts/directives/CreateClassModalWindow/CreateClassModal.scss";
+@import "../scripts/directives/chooseUserRole/chooseUserRole.scss";
+
+@import "../components/message/message-popup";
+
+@import "../components/class/dashboard/polls/polls";
+@import "../components/class/dashboard/polls/pollsModal/pollsModal";
+@import "../components/class/dashboard/distinguished/distinguishedModal/distinguishedModal";
+@import "../components/class/dashboard/polls/pollsModal/CreatePollsDirectives/arrayOfQuestions";
+@import "../components/class/dashboard/polls/pollsModal/CreatePollsDirectives/seeVoterResults/seeVoterResults";
+
+@import "../components/class/dashboard/announcments/announcements";
+
+@import "../components/class/dashboard/exams/exams.scss";
+@import "../components/class/dashboard/exams/examsModal/examsModal.scss";
+
+@import "../components/class/dashboard/files/files.scss";
+
+@import "../components/class/dashboard/assignment/assigment.scss";
+@import "../components/class/dashboard/assignment/assignmentModal/assignmentModal.scss";
+
+@import "../components/class/dashboard/distinguished/distinguished.scss";
+
+@import "../components/class/dashboard/students/students.scss";
+@import "../components/class/dashboard/students/addExistingStudentModal/addExistingStudentModal.scss";
+@import "../components/class/dashboard/students/addStudentsFromPhotoModal/addStudentsFromPhotoModal.scss";
+@import "../components/class/dashboard/students/addNewStudentModal/addNewStudentModal.scss";
+
+
+@import "../components/class/dashboard/grades/grades.scss";
+
+@import "../components/class/dashboard/parents/parents.scss";
+@import "../components/class/dashboard/reports/reports.scss";
+
+@import "../components/feed/feed.scss";
+@import "../components/feed/menuFeed/MenuFeed.scss";
+
+@import "../components/classes/classExport/classExport.scss";
+
+@import "../components/premium/premium.scss";
+@import "../components/groups/groups.scss";
+@import "../components/groups/group/menu/menuGroup.scss";
+@import "../components/groups/group/dashboard/invite/invite.scss";
+@import "../components/groups/group/dashboard/members/members.scss";
+@import "../components/groups/group/dashboard/discussions/discussions.scss";
+
+@import "../components/groups/createGroup/createGroup.scss";
+
+@import "../components/profile/profile.scss";
+@import "../components/findPeople/findPeople.scss";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -18,9 +103,237 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
   padding: 0.2em 0;
 }
 
+html{
+  height: 100%;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
 body {
   padding: 0;
+  position: relative;
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  font-family: 'Lato', sans-serif;
 }
+.height {
+  height: 100%;
+}
+.relative {
+  position: relative;
+}
+.margin {
+  margin: 0;
+}
+.padding {
+  padding: 0;
+}
+.width{
+  width: 100%;
+}
+
+.content{
+  height:100%;
+}
+.classdig-people-header {
+  height: 54px;
+  border: none;
+}
+.classdig-ok-button {
+  border-radius: 2px;
+  color: white;
+  height: 36px;
+  float: right;
+  &:hover, &:focus {
+    color: white;
+  }
+}
+.classdig-cancel-button {
+  float: left;
+  background-color: white;
+  outline: none;
+}
+
+.classdig-close-button {
+ color: white;
+}
+.classdig-modal-footer {
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+.classdig-modal-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.87);
+  display: inline-block;
+}
+.classdig-ok-button:focus, .classdig-cancel-button:focus, .classdig-close-button:focus {
+  outline: none;
+}
+
+*:focus {
+  outline: none;
+}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 3px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(179,179,179, 0.2);
+  border-right: 1.1em solid rgba(179,179,179, 0.2);
+  border-bottom: 1.1em solid rgba(179,179,179, 0.2);
+  border-left: 1.1em solid #b3b3b3;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.modal-section {
+  min-height: 150px;
+  max-height: 350px;
+  .modal-section-header {
+    height: 41px;
+    background-color: $modal-section-header-background;
+    color: $modal-section-header-color;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    p {
+      padding: 15px
+    }
+    .user-role {
+      position: relative;
+      width: 332px;
+      height: 22px;
+      padding-top: 15px;
+    }
+    .role-block {
+      width: 162px;
+      height: 100%;
+      display: inline-block;
+      border: none;
+      border-right: 0px;
+      border-bottom: 1px solid $modal-line-color;
+      position: absolute;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 0.94;
+      text-align: center;
+
+    }
+    .active:before {
+      content: '';
+      border-width: 0px 6px 6px 6px;
+      border-color: transparent transparent transparent transparent;
+      border-bottom-color: #d5d5d5;
+      border-style: solid;
+      left: 75px;
+      position: absolute;
+      bottom: 0px;
+
+    }
+
+    .parent {
+      &.role-student:before {
+        @include set-color-role('student');
+      }
+      &.role-parent:before {
+        @include set-color-role('parent');
+      }
+      &.role-teacher:before {
+        @include set-color-role('teacher');
+      }
+      &.role-student {
+        @include set-color-role('student', 2px);
+      }
+      &.role-parent {
+        @include set-color-role('parent', 2px);
+      }
+      &.role-teacher {
+        @include set-color-role('teacher', 2px);
+      }
+      @extend .role-block;
+      right: 4px;
+
+    }
+    .student {
+      &.role-student:before {
+        @include set-color-role('student');
+      }
+      &.role-parent:before {
+        @include set-color-role('parent');
+      }
+      &.role-teacher:before {
+        @include set-color-role('teacher');
+      }
+      &.role-student {
+        @include set-color-role('student', 2px);
+      }
+      &.role-parent {
+        @include set-color-role('parent', 2px);
+      }
+      &.role-teacher {
+        @include set-color-role('teacher', 2px);
+      }
+      @extend .role-block;
+      left: 4px;
+    }
+
+  }
+
+}
+
+
+/* Make height 100% for Angular views*/
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -30,6 +343,9 @@ body {
   padding-right: 15px;
 }
 
+.modal-content {
+  border: none !important;
+}
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -96,4 +412,73 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+.dig-label{
+  font-family: 'Roboto', sans-serif;;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.94;
+  color: #b2b2b2;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 5px;
+  outline: none;
+  margin-right: auto;
+
+}
+.dig-prop{
+  display:flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin-top: 18px;
+  //height: 26px;
+  .dig-img {
+    width: 13px;
+    height: 14px;
+    margin-right: 8px;
+    img {
+      height: 100%;
+      margin-bottom: 3px;
+    }
+  }
+
+  input{
+    border: none;
+    outline: none;
+    margin-bottom: 3px;
+    width: 220px;
+    &.text-right {
+      text-align: right;
+    }
+  }
+  select{
+    background-color: white;
+    outline: none;
+    border: none;
+  }
+
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.auth, .auth-background input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white !important;
+}
+.auth, .auth-background input::-moz-placeholder { /* Firefox 19+ */
+  color: white !important;
+}
+.auth, .auth-background input:-ms-input-placeholder { /* IE 10+ */
+  color: white !important;
+}
+.auth, .auth-background input:-moz-placeholder { /* Firefox 18- */
+  color: white !important;
 }

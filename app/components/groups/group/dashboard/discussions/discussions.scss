@@ -1,0 +1,21 @@
+.groups-discussions {
+  .class-item-header {
+    .class-menu-item-main-header {
+      .classes-count {
+        padding: 2px 0px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        color: #878787;
+      }
+    }
+  }
+  .mess-block {
+    .container {
+      min-width: calc(100vw - 255px);
+    }
+  }
+}

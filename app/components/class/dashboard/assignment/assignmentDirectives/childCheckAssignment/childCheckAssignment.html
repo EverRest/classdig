@@ -1,0 +1,9 @@
+<div style = "display: flex;justify-content: center;">
+  <div ng-if = "$index<3" ng-repeat ="member in membersArray" class = "vote-member" ng-show = 'checkChildSubmitAssignment(member)'>
+    <img ng-src="{{member.image || member.user.image}}">
+
+  </div>
+
+  <div ng-repeat ="member in membersArray" ng-show = "!checkChildSubmitAssignment(member)  && role==='parent'" class = "vote-member number-participants" style = "text-align: center;border: 1.5px solid white; padding-top: 2px;">!</div>
+
+</div>

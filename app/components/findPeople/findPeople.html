@@ -1,0 +1,47 @@
+<div id="header" ng-include="'components/header/header.html'"></div>
+<div class="class-menu">
+  <div class="premium-header">
+    <div class="premium-header-title {{userData.color}}">Find people</div>
+  </div>
+
+  <div class = "class-menu-item-container findPeople-class-menu-item-container">
+
+    <div class = "class-menu-item-block-center-container findPeople-center-container">
+      <div class="class-menu-item-block-center ">
+        <h2 class="{{userData.color}} find-people-title">{{list_title}}</h2>
+        <div class="find-people-list-container">
+          <div class="find-people-list">
+          <div ng-repeat="userdata in listOfTheSameSchoolPeople" class="find-people-item" ng-class="{'find-people-active-item': userdata.user.id===activeUserId}">
+            <div class="user-information"  ng-click="activateUser(userdata.user)">
+              <div ng-class="{'{{userData.userPhotoBorder}}': userdata.user.id===activeUserId} " class="photo-container" style="background-image: url({{userdata.user.image}})"></div>
+              <div class="text-container">{{userdata.user.first_name+' '+ userdata.user.last_name}}</div>
+            </div>
+            <div class="button-follow">
+              <button ng-if="userdata.is_follow===false" class="follow-user {{userData.background}}" ng-click="followUser('POST',userdata.user.id, $index)" >Follow</button>
+              <button ng-if="userdata.is_follow===true" class="unfollow-user {{userData.color}} {{userData.border}}" ng-click="followUser('DELETE',userdata.user.id, $index)">Unfollow</button>
+            </div>
+          </div>
+        </div>
+          <div ng-if="listOfTheSameSchoolPeople.length===0" class="no-results-massage">
+            There are no results
+          </div>
+          <div class="hide-scroll"></div>
+        </div>
+        <div class="find-people-button" ng-click="openFindModal()">
+          <img src="images/icon-search.svg">
+        </div>
+      </div>
+    </div>
+
+    <div class = "class-menu-item-block-right-container" ng-show="activeUserId">
+      <div class="class-menu-item-block-right class-menu-item-block-right-profile">
+        <user-info selected-user="activeUser" show-additional-info="false"></user-info>
+        <div class="user-feeds-container">
+          <feed-list feed-url="feedUrl+'&page='"></feed-list>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<div class="color-picker-section">
+  <ul class="color-picker-ul">
+    <li ng-repeat="x in array_of_colors">
+      <div class="color-picker "
+           id={{x.id}}
+           style="background-color: {{x.color}}"
+           ng-click="functionSelectColor(x.color)"
+           check-attr={{x.check}}>
+        <div ng-if="x.color === selectedColor" id='check' ><div id = 'check-border' ><div id = 'check-sign'></div></div></div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!--<div id="color-default">-->
+  <!--<img src="../../../images/modal/icon-checked-color_3x.png"-->
+       <!--style="position: absolute;-->
+       <!--margin-top: -79px;-->
+       <!--margin-left: 288px;">-->
+  <!--<img src="../../../images/modal/icon-check-mark_3x.png"-->
+       <!--style="position: absolute;-->
+      <!--margin-top: -73px;-->
+      <!--margin-left: 293px;">-->
+<!--</div>-->

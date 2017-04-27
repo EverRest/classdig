@@ -1,0 +1,30 @@
+<div class="message-popup">
+    <div class="popup-block">
+        <div class="dialog-list">
+            <div class="dialog-wrapper">
+                <div ng-click="selectRoom(last.room, last)"
+                     ng-repeat='last in dialog.items | orderObjectBy:"date_time.date":true' class="dialog-last-mess" >
+                    <div class="mess-container"  >
+                        <div ng-if="last.unread_count" class="{{'unread bg-' + role }}">
+                            <span>{{last.unread_count}}</span>
+                        </div>
+                        <img class="{{'border-bg-' + role}}" ng-src="{{last.sender.image}}" alt="">
+                        <div class="content-block">
+                            <div class="sender-name">
+                                {{last.sender.first_name + ' ' + last.sender.last_name}}
+                                <span class="mess-date">{{last.date_time.date | datechat}}</span>
+                            </div>
+                            <div class="mes-content">
+                                {{last.content}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="all-message {{'border-top-' + role}}">
+            <a class="{{'c-' + role}}" ng-href="#/message">See all messages</a>
+          </div>
+        </div>
+    </div>
+
+</div>

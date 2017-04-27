@@ -1,0 +1,116 @@
+<!-- Header -->
+<div id="header" ng-include="'components/header/header.html'"></div>
+
+<div id="menuClass" ng-include="'components/class/menuClass/menuClass.html'"></div>
+
+<div ng-model="role" class="class-menu {{role}}" ng-controller="announcmentsController">
+  <div class="class-item-header ">
+    <div class="class-menu-item-main-header col-md-5 col-sm-5 col-xs-6 ">
+      <!--<div>-->
+        <div class="{{'c-'+role}} ">Announcements</div>
+      <!--</div>-->
+    </div>
+    <div class="class-menu-item-main-subheader"></div>
+    <div class="class-menu-item-context-menu col-md-7 col-sm-7 col-xs-6 " ng-show="selection.length !== 0" ng-hide="hideCustomButton || role === 'parent'">
+      <context-menu></context-menu>
+    </div>
+
+  </div>
+
+  <div class="class-menu-item-container">
+    <div class="class-menu-item-block-center-container" >
+      <div class="class-menu-item-block-center" style="position: relative; " >
+        <div class="polls-main-container" style="position: static; height: 74vh ; overflow: auto" id = "announcementList">
+          <!---->
+          <!---->
+          <!---->
+          <div class="no-polls" ng-show="pollsNotExist" >
+            <div class="no-polls-img" style="margin: 0">
+              <img src="images/announcements.svg" style = "float: left;">
+              <div class="no-polls-title" style = ""><span>You have no <br/> announcements.</span></div>
+            </div>
+
+            <div class="polls-hint" ng-hide="hideCustomButton || role === 'parent'">
+              <div class="polls-hint-text"><span>Tap here to create announcement</span></div>
+              <img src="images/brush_arrow.png">
+            </div>
+          </div>
+          <div class="class-menu-item-add" ng-controller="announcmentsController as $ctrl" ng-hide="hideCustomButton || role === 'parent'">
+            <custom-button ng-click="$ctrl.openModal()" ng-hide="showButtonSelection"></custom-button>
+          </div>
+          <div class="exist-polls"
+               infinite-scroll='announcementList.nextPage()'
+               infinite-scroll-container= '"#announcementList"'
+               infinite-scroll-disabled='announcementList.busy'
+               infinite-scroll-listen-for-event="list:filtered"
+               infinite-scroll-distance='1'
+               ng-show="pollsExist">
+            <div>
+              <ul>
+                <li ng-repeat="item in announcementList.items" class = 'poll-list '
+                    ng-class="{'active border-{{role}}': selection.selectedItems.indexOf(item.id) != -1}"
+                    multi-select
+                    multi-select-item="item"
+                    multi-select-selection='selection'
+                    ng-click="selectionWasChanged(); activateAnnouncement($index, item)" id ="{{$index}}" style = 'border-bottom-right-radius: 31px;'>
+                  <form>
+                    <div class="poll-header">
+                      <div class="poll-name">
+                        <h3><img src="images/announcement-icon.svg" class = 'announcement-icon'>{{item.title}}</h3>
+                        <p>Date: {{formatDataCreate(item.creation_date.date)}}</p>
+                        <!--<div class = "poll-img" ng-show = "pollItem.poll.attachments[0]"><img ng-src = "{{pollItem.poll.attachments[0].link}}"></div>-->
+                      </div>
+                      <div class="poll-participant">
+                        <h6>
+                          Seen by:
+                        </h6>
+                        <arrayof-members members-array="item.seen_by"></arrayof-members>
+                      </div>
+                    </div>
+
+                    <div class="poll-choices" style = "border:none">
+                      <p class = "announcement-description">{{item.description}}</p>
+
+
+                    </div>
+                    <div class = "announcement-page {{announcementPage}}" ></div>
+                    <div class = "announcement-page {{announcementPage}}" ></div>
+                    <div style = ""></div>
+                  </form>
+                </li>
+                <div style='clear: both;'></div>
+              </ul>
+            </div>
+
+            <!---->
+            <!---->
+            <!---->
+          </div>
+            <div id='announcement-loader' class="loader more-menu-loader"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="class-menu-item-block-right-container">
+      <div class="class-menu-item-block-right" ng-show="selection.selectedItems.length === 1">
+        <div class="class-menu-item-block-right-header">
+          <div class = 'active-poll-tittle '>
+            {{activeAnnouncement.title}}
+          </div>
+          <div class = 'active-announcement-subtitle'>{{activeAnnouncement.seem_by}}</div>
+        </div>
+        <div class = "active-poll-voters-list">
+          <select-users ng-show="activeAnnouncement.title"></select-users>
+        </div>
+
+        <div class="student-info"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="classes-add-class" ng-controller="ModalDemoController as $ctrl" class="modal-demo">
+        <custom-button ng-click="$ctrl.openModal()"></custom-button>
+</div>-->
