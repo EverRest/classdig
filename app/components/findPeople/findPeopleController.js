@@ -32,13 +32,13 @@ app.controller('findPeopleController', ['$scope',
       // headers: {'Content-Type': 'application/json'}
     })
       .then(function (response) {
+        //console.log(appSettings.link + 'users/school');
           $scope.listOfTheSameSchoolPeople = response.data.data;
-
           $scope.list_title = 'PEOPLE IN THE SAME SCHOOL'
         },
         function (response) {
-
         });
+
 
     $scope.activateUser = function (user) {
       if($scope.activeUserId === user.id){
@@ -54,6 +54,7 @@ app.controller('findPeopleController', ['$scope',
     };
 
     $scope.followUser = function (method,id,index) {
+
       $http({
         url: appSettings.link + 'follow/'+id,
         method: method,

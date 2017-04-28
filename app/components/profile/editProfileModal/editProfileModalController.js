@@ -1,6 +1,5 @@
 angular.module('classDigApp')
-  .controller('editProfileModalInstanceCtrl', function ($uibModalInstance, $rootScope,  items, $timeout, $http, appSettings, $log, $scope,Upload, $routeParams,localStorageService, $uibModal) {
-
+  .controller('editProfileModalInstanceCtrl', function ($uibModalInstance, $rootScope,  items, $timeout, $http, appSettings, $log, $scope,Upload, $routeParams, localStorageService, $uibModal) {
     $rootScope.userData = {
       'role': $rootScope.user.data.role,
       "iconPlus": 'images/modal/icon-plus-' + $rootScope.user.data.role + '_3x.png',
@@ -60,22 +59,6 @@ angular.module('classDigApp')
         $scope.user.gender = gender;
     };
 
-    // $scope.addNewStudent = function () {
-    //   $http.post(appSettings.link + 'class/'+ classId +'/add/new/user', {'users' : [ $scope.newStudent ]})
-    //     .success(function (response) {
-    //       console.log("added new student", response.data);
-    //       if(items){
-    //         $rootScope.$broadcast('student-from-photo-added-successful', items)
-    //       } else {
-    //         $rootScope.$broadcast('student-added-to-class');
-    //       }
-    //       $uibModalInstance.close();
-    //     })
-    //     .error(function () {
-    //       console.log('error');
-    //     })
-    // };
-
 
     $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
@@ -102,8 +85,10 @@ angular.module('classDigApp')
               $uibModalInstance.close();
               $scope.localStorageData =  localStorage.getItem('ls.storage');
               $scope.localStorageData = JSON.parse($scope.localStorageData);
+              $scope.localStorageData.data.updated = new Date();
               $scope.localStorageData.data.details = response.data;
               localStorageService.set('storage', $scope.localStorageData);
+              window.localStorage.changes = JSON.stringify($scope.localStorageData);
             },
             function (response) {
 

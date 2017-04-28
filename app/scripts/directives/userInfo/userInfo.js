@@ -15,7 +15,6 @@ angular.module('classDigApp')
         $scope.userData.profileBackground = 'profile-bg-'+$rootScope.user.data.role;
         $scope.userInformation = {};
         $scope.$watch('selectedUser',function () {
-          console.log($scope.selectedUser);
 
           $scope.requesstInProgress = true;
           if($scope.selectedUser){
@@ -26,14 +25,13 @@ angular.module('classDigApp')
           }
         });
         function getInfo(id) {
-            console.log(appSettings.link + 'profile/indicator/');
-            console.log(appSettings.link + 'current-user/');
+            // console.log(appSettings.link + 'profile/indicator/');
+            // console.log(appSettings.link + 'current-user/');
           $q.all([
             $http.get(appSettings.link + 'profile/indicator/' + id),
             $http.get(appSettings.link + 'current-user/' + id)
           ]).then(function (values) {
             $scope.requesstInProgress = false;
-            console.log(values);
             $scope.userStatistic = values[0].data.data;
             $scope.userInformation = values[1].data.data;
             $scope.userData.profileBackground = 'profile-bg-'+$scope.userInformation.role;
@@ -43,6 +41,32 @@ angular.module('classDigApp')
 
             });
         }
+
+        function changeCounterFollow(id) {
+            $q.all([
+                $http.get(appSettings.link + 'profile/indicator/' + id),
+                $http.get(appSettings.link + 'current-user/' + id)
+            ]).then(function (values) {
+                  $scope.userStatistic.countFollows = $scope.userStatistic.countFollows - 1;
+            },
+                function (values) {
+
+                });
+        }
+
+          $scope.changeCounterActions = function(id) {
+              $q.all([
+                  $http.get(appSettings.link + 'profile/indicator/' + id),
+                  $http.get(appSettings.link + 'current-user/' + id)
+              ]).then(function (values) {
+                      $scope.userStatistic.countActivity = $scope.userStatistic.countActivity - 1;
+
+                  },
+                  function (values) {
+
+                  });
+          }
+
 
           ///////////////////// SWITCH BETWEEN USER-INFO TABS ///////////////////
           $scope.showUserInfo=true;
@@ -71,22 +95,62 @@ angular.module('classDigApp')
               $scope.showUserFollowers = false;
               $scope.showUserFollow=true;
           };
-
           ///////////////////////////////////////////////////////////////////////
+
+          ///////////////////// FOLLOW LIST ////////////////////////////////////
+
+          var listUsers;
+          var followList = [];
+          var followItem;
+
+          $http({
+              url: appSettings.link + 'users/school',
+              method: "GET"
+              // headers: {'Content-Type': 'application/json'}
+          })
+              .then(function (response) {
+                  $scope.listUsers = response.data.data;
+                  listUsers = $scope.listUsers;
+
+                  for(i=0; i<listUsers.length; i++){
+                      followItem = listUsers[i].is_follow;
+
+                      if(followItem){
+                          followList.push(listUsers[i].user);
+                      }
+                      $scope.followList = followList;
+                      window.localStorage.followList = JSON.stringify($scope.followList);
+
+                  }
+              },
+              function (response) {
+              });
+          
+          $scope.unfollow = function(user, index) {
+              event.preventDefault();
+              followList.splice(index, 1);
+              followItem == false;
+
+              $http({
+                  url: appSettings.link + 'follow/'+user.id,
+                  method: "DELETE"
+                  // headers: {'Content-Type': 'application/json'}
+              })
+                  .then(function (response) {
+                          changeCounterFollow(user.id);
+
+                      },
+                      function (response) {
+                      });
+          };
+          //////////////////////////////////////////////////////////////////////////
+
+          ///////////////////// FOLLOWERS LIST ////////////////////////////////////
+
+          ////////////////////////////////////////////////////////////////////////
+
       }]
 
-        /*$scope.userFollowList=[
-          {
-              img: 'http://www.technocrazed.com/wp-content/uploads/2015/12/beautiful-wallpaper-download-11.jpg',
-              name: 'Sultan',
-              email: 'Sultan@test.com'
-          },
-          {
-              img: 'http://www.technocrazed.com/wp-content/uploads/2015/12/beautiful-wallpaper-download-11.jpg',
-              name: 'Petro',
-              email: 'Petro@test.com'
-          }
-      ];*/
     }
   }]);
 

@@ -61,7 +61,6 @@
         <li class="followItem">
             <div class="followItem-left">
                 <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
-                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
                 <div class ="">Student</div>
             </div>
             <a href="#" class="followItem-right">FOLLOW</a>
@@ -69,7 +68,6 @@
         <li class="followItem">
             <div class="followItem-left">
                 <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
-                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
                 <div class ="">Student 2</div>
             </div>
             <a href="#" class="followItem-right">FOLLOW</a>
@@ -79,21 +77,12 @@
 
 <div class="container_user-follow" ng-show="showUserFollow" >
     <ul class="user-follow_list">
-        <li class="followItem">
+        <li ng-repeat="user in followList track by $index" class="followItem">
             <div class="followItem-left">
-                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
-                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
-                <div class ="">SuperTeacher</div>
+                <div class="user-img" style="background-image: url({{user.image}})"><!--img src="{{user.image}}" alt=""--></div>
+                <div class ="">{{user.first_name}} {{user.last_name}} <span>@ {{user.first_name}}</span></div>
             </div>
-            <a href="#" class="followItem-right">FOLLOW</a>
-        </li>
-        <li class="followItem">
-            <div class="followItem-left">
-                <div class="user-img"><img src="http://api.classdig.com/upload/files/1492678701.jpg" alt=""></div>
-                <!--div class="user-img"><img src="http://loc.classdig.com.jpg" alt=""></div-->
-                <div class ="">SuperTeacher 2</div>
-            </div>
-            <a href="#" class="followItem-right">FOLLOW</a>
+            <a href="#" class="followItem-right" ng-click="unfollow(user, $index)">UNFOLLOW</a>
         </li>
     </ul>
 </div>

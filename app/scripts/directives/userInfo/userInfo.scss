@@ -92,11 +92,12 @@ user-info {
       background-image: url("../../images/profile/icon-profile-ava-background-top2.svg");
       background-size: cover;
       display: flex;
+      justify-content: center;
       /*padding: 5px;*/
 
       #followers {
-        border-right: 1px solid #fff;
-        border-left: 1px solid #fff;
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
+        border-left: 1px solid rgba(255, 255, 255, 0.5);
       }
 
       .additional-user-data-item {
@@ -119,15 +120,14 @@ user-info {
           font-weight: 300;
           font-style: normal;
           font-stretch: normal;
-          line-height: 1.58;
+          line-height: 2;
           letter-spacing: normal;
           text-align: center;
-          //color: #aecef5;
           text-transform: capitalize;
         }
 
         &.active {
-          background: #4a9bea;
+          background: #4b93eb;
           color: #fff;
 
           .description.teacher-color {
@@ -186,17 +186,19 @@ user-info {
     border-bottom: 1px solid #ccc;
 
     .followItem-right {
-      height: 40px;
-      background-color: #4a9bea;
+      height: 36px;
+      line-height: 36px;
+      background-color: #4b93eb;
       color: #fff;
       text-align: center;
       font-size: 14px!important;
-      font-weight: 600;
       text-decoration: none;
-      padding: 13px 10px 0;
+      padding: 0 10px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
+      font-weight: bold;
+      font-family: "RobotoBold", sans-serif;
 
       &:hover {
         background-color: #197dea;
@@ -207,17 +209,40 @@ user-info {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size:14px;
+      line-height: 18px;
+      color: #333c48;
+      font-family: "Roboto", sans-serif;
+
+      span {
+        color: #7f8a97;
+      }
     }
 
     .user-img {
-      width:50px;
-      height:50px;
+      width:42px;
+      height:42px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       margin-right: 10px;
+      position: relative;
+      border-radius: 50%;
 
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255 ,255, 0.3);
+      }
 
       img {
-        width: 50px;
-        height:50px;
+        width: 42px;
+        height:42px;
         object-fit: cover;
         border-radius: 50%;
       }

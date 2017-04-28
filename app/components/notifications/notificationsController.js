@@ -81,7 +81,7 @@ angular.module('classDigApp')
         notification.status = 1;
 
         $http.put('http://api.classdig.com/notifications', { 'notifications' : [notification.id]})
-        //$http.put('http://loc.classdig.com', { 'notifications' : [notification.id]})
+        // $http.put('http://loc.classdig.com', { 'notifications' : [notification.id]})
           .success(function (response) {
             $scope.updateNotifications(0);
           });

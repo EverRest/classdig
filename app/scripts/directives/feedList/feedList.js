@@ -70,7 +70,23 @@ angular.module('classDigApp')
               return 'http://'+link
             }
           };
-          //-------------- Delete Comment--------------------//
+
+            $scope.userChanges =  window.localStorage.changes;
+            $scope.followList = window.localStorage.followList;
+            $scope.changeProfileEvents = [];
+            $scope.changeProfileEvents.push($scope.userChanges);
+
+            $scope.changeProfileEvents.forEach(function(event, i) {
+              var user = {};
+                event = JSON.parse(event);
+                user.updated = event.data.updated;
+                user.firstName = event.data.details.data.first_name;
+                user.lastName = event.data.details.data.last_name;
+                user.gender = event.data.details.data.gender;
+                user.photo = event.data.details.data.photo;
+                // console.log(event.data);
+            });
+            //-------------- Delete Comment--------------------//
 
           $scope.openAreUSureModalComment = function (size,feed) {
             var modalInstance = $uibModal.open({
@@ -231,6 +247,7 @@ angular.module('classDigApp')
 
           $scope.deleteFeed = function (feed) {
             $scope.openAreUSureModal('sm',feed);
+
           };
 
           //-------------- End Delete feed--------------------//

@@ -413,6 +413,7 @@ angular.module('classDigApp')
 
           $http({
             url: 'http://api.classdig.com/class/request',
+            // url: 'http://loc.classdig.com/class/request',
             method: 'POST',
             data: $scope.classCode
           })

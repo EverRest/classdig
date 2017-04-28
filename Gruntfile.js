@@ -30,6 +30,7 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
+
     // fixturesPath: "fixtures",
 
     // Watches files for changes and runs tasks based on the changed files
@@ -65,7 +66,6 @@ module.exports = function (grunt) {
       html: {
         files: [
           'index.html',
-          '<%= yeoman.app %>/components/{,*/}*.html',
           '<%= yeoman.app %>/components/**/{,*/}*.html'],
         options: {
           livereload: true
@@ -74,8 +74,8 @@ module.exports = function (grunt) {
       js: {
         files: [
           '<%= yeoman.app %>/scripts/{,*/}*.js',
-          'index.html', '<%= yeoman.app %>/components/{,*/}*.js',
-          '<%= yeoman.app %>/components/**/{,*/}*.js'],
+          'index.html', '<%= yeoman.app %>/components/**/{,*/}*.js'
+      ],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -308,7 +308,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -319,10 +319,13 @@ module.exports = function (grunt) {
     // additional tasks can operate on them
     useminPrepare: {
       html: '<%= yeoman.app %>/index.html',
+
       options: {
         dest: '<%= yeoman.dist %>',
+
         flow: {
           html: {
+            nonull:true,
             steps: {
               js: ['concat', 'uglifyjs'],
               css: ['cssmin']
@@ -381,7 +384,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '**/{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -418,12 +421,19 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'ym1App',
+          module: 'classDigApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: ['components/{,*/}*.html', 'components/**/{,*/}*.html', 'shared/{,*/}*.html', 'shared/**/{,*/}*.html'],
+        src: [
+            'components/{,*/}*.html',
+            'components/**/{,*/}*.html',
+            'shared/{,*/}*.html',
+            'shared/**/{,*/}*.html',
+            'scripts/directives/{,*/}*.html',
+            'scripts/directives/**/{,*/}*.html'
+        ],
         dest: '.tmp/templateCache.js'
       }
     },
@@ -472,7 +482,14 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
-        }]
+        }
+          // {
+          //   expand: true,
+          //   cwd: '.',
+          //   src: ['bower_components/d3/d3.js', "bower_components/nvd3/build/nv.d3.js", "bower_components/angular-nvd3/dist/angular-nvd3.js", "bower_components/nvd3/build/nv.d3.css"],
+          //   dest: '<%= yeoman.dist %>'
+          // }
+          ]
       },
       styles: {
         expand: true,

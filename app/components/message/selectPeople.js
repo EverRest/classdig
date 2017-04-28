@@ -27,7 +27,7 @@ angular.module('classDigApp').controller('ModalMessageInstanceCtrl',
 
       $scope.getTeacher = function (id) {
         $http.get('http://api.classdig.com/current-user/' + id)
-        //$http.get('http://loc.classdig.com/current-user/' + id)
+        // $http.get('http://loc.classdig.com/current-user/' + id)
           .success(function (response) {
             $ctrl.teacher = response.data;
           })
