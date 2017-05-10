@@ -330,7 +330,7 @@ app.controller('studentsController',
 
           if(!$scope.shareS){
             $scope.shareS = true;
-            $http.post('http://api.classdig.com/class/share-students', {'users' : idArr, 'email' : email})
+            $http.post('http://api.classdig.oyihost.com/class/share-students', {'users' : idArr, 'email' : email})
             //$http.post('http://loc.classdig.com/class/share-students', {'users' : idArr, 'email' : email})
               .success(function (responce) {
                 $uibModal.open({
@@ -388,7 +388,7 @@ app.controller('studentsController',
           });
           if(!$scope.moveS) {
             $scope.moveS = true;
-            $http.post('http://api.classdig.com/class/move-students', {'users' : idArr, 'class_id' : classID})
+            $http.post('http://api.classdig.oyihost.com/class/move-students', {'users' : idArr, 'class_id' : classID})
             // $http.post('http://loc.classdig.com/class/move-students', {'users' : idArr, 'class_id' : classID})
               .success(function (response) {
                 $uibModal.open({

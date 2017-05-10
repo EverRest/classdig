@@ -17,7 +17,7 @@ angular.module('classDigApp')
     };
 
     $scope.createDiscussion = function () {
-      $http.post('http://api.classdig.com/group/discussion', $scope.newDiscussion)
+      $http.post('http://api.classdig.oyihost.com/group/discussion', $scope.newDiscussion)
       // $http.post('http://loc.classdig.com/group/discussion', $scope.newDiscussion)
         .success(function (response) {
             $log.log(response.data);

@@ -490,14 +490,15 @@ app.controller('HomeCtrl', function () {
 // =================== end. translate ====================
 
 app.value('appSettings', {
-    link: 'http://api.classdig.com/'
-    // link: 'http://loc.classdig.com/'
+    link: 'http://api.classdig.oyihost.com/'
+    // link: 'http://api.classdig.oyihost.com/'
 });
 
 app.factory('socket', function (appSettings) {
 
-    var socket = io('http://api.classdig.com:3001');
-    // var socket = io('http://loc.classdig.com:3001');
+    var socket = io('http://api.classdig.oyihost.com:3001');
+    // var socket = io('http://classdig.oyihost.com:3001');
+    console.log(socket);
     return {
         io: socket,
         socketUsers: {},

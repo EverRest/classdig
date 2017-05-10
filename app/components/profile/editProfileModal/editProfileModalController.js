@@ -38,8 +38,8 @@ angular.module('classDigApp')
         data: {file: file}
       });
       file.upload.then(function (response) {
-
         $scope.user['image_id'] = response.data.data.id;
+        window.localStorage.last_update = new Date();
       }, function (error) {
 
       });
@@ -85,17 +85,14 @@ angular.module('classDigApp')
               $uibModalInstance.close();
               $scope.localStorageData =  localStorage.getItem('ls.storage');
               $scope.localStorageData = JSON.parse($scope.localStorageData);
-              $scope.localStorageData.data.updated = new Date();
               $scope.localStorageData.data.details = response.data;
               localStorageService.set('storage', $scope.localStorageData);
-              window.localStorage.changes = JSON.stringify($scope.localStorageData);
             },
             function (response) {
 
             });
 
       } else if(!$scope.selfEdit) {
-        console.log($scope.user);
         if($scope.user.phone) $scope.user.phone = +$scope.user.phone;
         $http({
           url: appSettings.link + 'user/'+ items +'/details',

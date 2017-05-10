@@ -14,7 +14,7 @@ angular.module('classDigApp')
     $scope.join = function () {
       $log.log($scope.code);
       $http({
-             url: 'http://api.classdig.com/group/join/' + $scope.code,
+             url: 'http://api.classdig.oyihost.com/group/join/' + $scope.code,
             // url: 'http://loc.classdig.com' + $scope.code,
             method: 'GET'
           })

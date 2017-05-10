@@ -412,7 +412,7 @@ angular.module('classDigApp')
         $scope.joinClass = function(){
 
           $http({
-            url: 'http://api.classdig.com/class/request',
+            url: 'http://api.classdig.oyihost.com/class/request',
             // url: 'http://loc.classdig.com/class/request',
             method: 'POST',
             data: $scope.classCode

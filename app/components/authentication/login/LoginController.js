@@ -34,7 +34,7 @@ angular.module('Authentication')
 
             var token = response.authResponse.accessToken;
 
-            $http.post('http://api.classdig.com/login/facebook', {code : token})
+            $http.post('http://api.classdig.oyihost.com/login/facebook', {code : token})
               .success(function (response) {
                 AuthenticationService.setUserData(response);
                 Groups.init();

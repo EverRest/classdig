@@ -43,6 +43,20 @@ angular.module('classDigApp')
             $scope.feeds.nextPage($scope.feedUrl);
           });
 
+          //---------------------- GET CLASS ID ----------------------------//
+            $http({
+                url: appSettings.link + 'user/classes',
+                method: "GET"
+                // headers: {'Content-Type': 'application/json'}
+            })
+                .then(function (response) {
+                        var data = response.data.data;
+                        $scope.classId = data[0].id;
+                    },
+                    function (response) {
+                    });
+
+          //----------------------------------------------------------------//
 
           $scope.openModalAddComment = function (items) {
             var modalInstance = $uibModal.open({
@@ -71,21 +85,29 @@ angular.module('classDigApp')
             }
           };
 
-            $scope.userChanges =  window.localStorage.changes;
-            $scope.followList = window.localStorage.followList;
-            $scope.changeProfileEvents = [];
-            $scope.changeProfileEvents.push($scope.userChanges);
+          //console.log(window.localStorage);
 
-            $scope.changeProfileEvents.forEach(function(event, i) {
-              var user = {};
-                event = JSON.parse(event);
-                user.updated = event.data.updated;
-                user.firstName = event.data.details.data.first_name;
-                user.lastName = event.data.details.data.last_name;
-                user.gender = event.data.details.data.gender;
-                user.photo = event.data.details.data.photo;
-                // console.log(event.data);
-            });
+            $scope.userChanges =  window.localStorage.changes;
+
+            $scope.followList = window.localStorage.followList;
+
+            if (window.localStorage.changed) {
+
+              $scope.changeProfileEvents = [];
+              $scope.changeProfileEvents.push($scope.userChanges);
+
+              $scope.changeProfileEvents.forEach(function(event, i) {
+                var user = {};
+                  event = JSON.parse(event);
+                  user.updated = event.data.updated;
+                  user.firstName = event.data.details.data.first_name;
+                  user.lastName = event.data.details.data.last_name;
+                  user.gender = event.data.details.data.gender;
+                  user.photo = event.data.details.data.photo;
+                  // console.log(event.data);
+              });
+
+            }
             //-------------- Delete Comment--------------------//
 
           $scope.openAreUSureModalComment = function (size,feed) {
@@ -189,7 +211,6 @@ angular.module('classDigApp')
                     // console.log(response);
                   },
                   function (response) {
-                    // console.log('fail')
                   });
             }
             feed.is_liked=!feed.is_liked;
@@ -255,10 +276,7 @@ angular.module('classDigApp')
       }
 
       ]
-
     }
-
-
   }
 
   ])

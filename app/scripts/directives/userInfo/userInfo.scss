@@ -209,10 +209,14 @@ user-info {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size:14px;
+      font-size:14px!important;
       line-height: 18px;
       color: #333c48;
       font-family: "Roboto", sans-serif;
+
+      &:hover {
+        text-decoration: none;
+      }
 
       span {
         color: #7f8a97;

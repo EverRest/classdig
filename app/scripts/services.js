@@ -106,9 +106,6 @@ angular.module('classDigServices', [])
         }
     };
 
-
-
-
     // DialogMessages.prototype.setUnread = function (room, val) {
     //     for (var i = 0; i < this.items.length; i++) {
     //         var item = this.items[i];
@@ -283,7 +280,6 @@ angular.module('classDigServices', [])
             $rootScope.dialog.markRead(obj, true);
         }
     };
-
 
     DialogMessages.prototype.newRoom = function (users, success, error) {
         var url = appSettings.link + 'chat/channel';
@@ -679,5 +675,7 @@ angular.module('classDigServices', [])
 
     return obj;
   });
+
+
 
 

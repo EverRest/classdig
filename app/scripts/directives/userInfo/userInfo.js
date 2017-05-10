@@ -149,6 +149,19 @@ angular.module('classDigApp')
 
           ////////////////////////////////////////////////////////////////////////
 
+
+
+          $scope.showProfileUser = function (user) {
+              var current = user;
+              $scope.showUserMethod = function(user) {
+                  document.cookie ='clicked_user=' + user['id'];
+
+                  $rootScope.$emit("activateUser", {});
+              };
+              $scope.showUserMethod(current);
+
+          };
+
       }]
 
     }

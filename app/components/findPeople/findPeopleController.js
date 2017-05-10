@@ -39,19 +39,31 @@ app.controller('findPeopleController', ['$scope',
         function (response) {
         });
 
+      /*$rootScope.$on("activateUser", function(){
+          $scope.activateUser();
+      });*/
 
-    $scope.activateUser = function (user) {
-      if($scope.activeUserId === user.id){
-        $scope.activeUserId=undefined;
-      }
-      else {
-        $scope.activeUserId = user.id;
-        $scope.activeUser = user;
-        $scope.feedUrl = appSettings.link+'story/'+user.id
+      $scope.activateUser = function (user) {
+        /*var id;
+        if(user != undefined) {
+          id = user.id;
+        } else {
+          cookie = document.cookie;
+          var tmp = cookie.split('clicked_user=');
+          id = + tmp[1];
+        }*/
 
-      }
-
+        if($scope.activeUserId === id){
+          $scope.activeUserId = undefined;
+        }
+        else {
+          $scope.activeUserId = user.id;
+          $scope.activeUser = user;
+          $scope.feedUrl = appSettings.link+'story/'+id;
+        }
     };
+
+
 
     $scope.followUser = function (method,id,index) {
 

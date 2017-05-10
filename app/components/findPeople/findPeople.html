@@ -11,7 +11,7 @@
         <h2 class="{{userData.color}} find-people-title">{{list_title}}</h2>
         <div class="find-people-list-container">
           <div class="find-people-list">
-          <div ng-repeat="userdata in listOfTheSameSchoolPeople" class="find-people-item" ng-class="{'find-people-active-item': userdata.user.id===activeUserId}">
+          <div ng-repeat="userdata in listOfTheSameSchoolPeople" data-id="{{userdata.user.id}}" class="find-people-item" ng-class="{'find-people-active-item': userdata.user.id===activeUserId}">
             <div class="user-information"  ng-click="activateUser(userdata.user)">
               <div ng-class="{'{{userData.userPhotoBorder}}': userdata.user.id===activeUserId} " class="photo-container" style="background-image: url({{userdata.user.image}})"></div>
               <div class="text-container">{{userdata.user.first_name+' '+ userdata.user.last_name}}</div>
