@@ -24,6 +24,7 @@ angular.module('classDigApp')
 
           $rootScope.$on('addNewPost', function (event,data) {
             $scope.feeds.items.unshift(data);
+              console.log(data);
             if(data.link){
               var matches1 = (data.link).match(/^http:\/\/(?:www\.)?youtube.com\/watch\?(?=.*v=\w+)(?:\S+)?$/);
               var matches2 = (data.link).match(/^https:\/\/(?:www\.)?youtube.com\/watch\?(?=.*v=\w+)(?:\S+)?$/);
@@ -217,6 +218,18 @@ angular.module('classDigApp')
           };
 
           //-------------- End Like feed --------------------//
+
+           /* $scope.showprofile = function (feed) {
+
+                $scope.chldmth = function(feed) {
+                    console.log(feed);
+                    $rootScope.$emit("activateUser", feed);
+                };
+                $rootScope.activeUserId = feed.id;
+                $rootScope.activeUser = feed;
+                $rootScope.feedUrl = appSettings.link+'story/'+ feed.id;
+                $scope.chldmth();
+            };*/
 
 
           //-------------- Delete feed --------------------//

@@ -17,8 +17,8 @@
               <div class="text-container">{{userdata.user.first_name+' '+ userdata.user.last_name}}</div>
             </div>
             <div class="button-follow">
-              <button ng-if="userdata.is_follow===false" class="follow-user {{userData.background}}" ng-click="followUser('POST',userdata.user.id, $index)" >Follow</button>
-              <button ng-if="userdata.is_follow===true" class="unfollow-user {{userData.color}} {{userData.border}}" ng-click="followUser('DELETE',userdata.user.id, $index)">Unfollow</button>
+              <button ng-if="userdata.is_follow===false" class="follow-user {{userData.background}}" ng-click="followUser('POST',userdata.user, $index)" >Follow</button>
+              <button ng-if="userdata.is_follow===true" class="unfollow-user {{userData.color}} {{userData.border}}" ng-click="followUser('DELETE',userdata.user, $index)">Unfollow</button>
             </div>
           </div>
         </div>

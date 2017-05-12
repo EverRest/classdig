@@ -51,7 +51,6 @@ angular.module('classDigApp')
     }
 
     $scope.uploaded = function (files) {
-
       $scope.uploadPic(files[0]);
     };
 

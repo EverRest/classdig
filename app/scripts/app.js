@@ -486,19 +486,29 @@ app.controller('HomeCtrl', function () {
     // ctrl.updateLanguage = function () {
     //     $translate.use(ctrl.language);
     // };
+
+   /* $scope.activateUser = function (user) {
+        if($scope.activeUserId === user.id){
+            $scope.activeUserId = undefined;
+        }
+        else {
+            $scope.activeUserId = user.id;
+            $scope.activeUser = user;
+            $scope.feedUrl = appSettings.link+'story/'+ user.id;
+        }
+    };*/
 });
 // =================== end. translate ====================
 
 app.value('appSettings', {
-    link: 'http://api.classdig.oyihost.com/'
     // link: 'http://api.classdig.oyihost.com/'
+    link: 'http://api.classdig.loc/'
 });
 
 app.factory('socket', function (appSettings) {
 
-    var socket = io('http://api.classdig.oyihost.com:3001');
-    // var socket = io('http://classdig.oyihost.com:3001');
-    console.log(socket);
+    //var socket = io('http://api.classdig.loc:3001');
+    var socket = io('http://classdig.oyihost.com:3001');
     return {
         io: socket,
         socketUsers: {},
@@ -513,3 +523,6 @@ app.factory('socket', function (appSettings) {
         }
     }
 });
+
+
+

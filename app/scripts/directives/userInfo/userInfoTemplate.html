@@ -4,7 +4,7 @@
 
 <div class="class-menu-item-block-right-header {{userData.profileBackground}}" ng-if="!requesstInProgress" style="display: block !important;">
   <div class="main-user-data">
-    <div class="main-user-data-item" style="min-height: 45px;
+    <div class="main-user-data-item" style="min-height: 30px;
     display: flex;
     font-size: 15px;
     justify-content: space-between;
@@ -48,7 +48,6 @@
       <div class="description {{userData.color}}">Follow</div>
     </div>
   </div>
-  <!--div class="additional-user-data-shadow"></div-->
 </div>
 
 <div class="container_user-additional-info" ng-show="showUserInfo">
@@ -58,29 +57,25 @@
 
 <div class="container_user-followers" ng-show="showUserFollowers">
     <ul class="user-follow_list">
-        <li class="followItem">
-            <div class="followItem-left" >
-                <div class="user-img"><img src="http://api.classdig.oyihost.com/upload/files/1492678701.jpg" alt=""></div>
-                <div class ="">Student</div>
-            </div>
-            <a href="#" class="followItem-right">FOLLOW</a>
-        </li>
-        <li class="followItem">
-            <div class="followItem-left">
-                <div class="user-img"><img src="http://api.classdig.oyihost.com/upload/files/1492678701.jpg" alt=""></div>
-                <div class ="">Student 2</div>
-            </div>
-            <a href="#" class="followItem-right">FOLLOW</a>
+        <li ng-repeat="user in followersList track by $index" class="followItem">
+            <a data-id="{{user.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(user)">
+                <div class="user-img" style="background-image: url({{user.image}})"></div>
+                <div class ="">{{user.first_name}} {{user.last_name}} <span>@{{user.first_name}}</span></div>
+            </a>
+            <a href="#"  class="followItem-right" ng-if="user.is_follower===false"  ng-click="followUser('POST',user, $index)">FOLLOW</a>
+            <div href="#" class="followItem-right following" ng-if="user.is_follower===true">FOLLOWING</div>
+
         </li>
     </ul>
 </div>
 
-<div class="container_user-follow" ng-show="showUserFollow" >
+<div class="container_user-follow" ng-show="showUserFollow">
     <ul class="user-follow_list">
-        <li ng-repeat="user in followList track by $index" class="followItem">
-            <a data-id="{{user.id}}" ng-href="#/findPeople" class="followItem-left" ng-click="showProfileUser(user)">
-                <div class="user-img" style="background-image: url({{user.image}})"><!--img src="{{user.image}}" alt=""--></div>
-                <div class ="">{{user.first_name}} {{user.last_name}} <span>@ {{user.first_name}}</span></div>
+        <li ng-repeat="user in followList track by $index" class="followItem" data-id="{{user.user_id}}" class="find-people-item">
+            <!--<a data-id="{{user.id}}" href="#" class="followItem-left" ng-click="showProfileUser(user)">-->
+            <a data-id="{{user.user_id}}" href="#/findPeople" class="followItem-left" ng-click="show(user)">
+                <div class="user-img" style="background-image: url({{user.image}})"></div>
+                <div class ="">{{user.first_name}} {{user.last_name}} <span>@{{user.first_name}}</span></div>
             </a>
             <a href="#" class="followItem-right" ng-click="unfollow(user, $index)">UNFOLLOW</a>
         </li>

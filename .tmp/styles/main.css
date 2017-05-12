@@ -11966,7 +11966,14 @@ user-info .followItem .followItem-right {
 user-info .followItem .followItem-right:hover {
   background-color: #197dea;
 }
-/* line 208, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 206, ../../app/scripts/directives/userInfo/userInfo.scss */
+user-info .followItem .followItem-right.following {
+  cursor: default;
+  background: #fff;
+  color: #4b93eb;
+  border: 1px solid #4b93eb;
+}
+/* line 215, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .followItem-left {
   display: flex;
   justify-content: space-between;
@@ -11976,15 +11983,15 @@ user-info .followItem .followItem-left {
   color: #333c48;
   font-family: "Roboto", sans-serif;
 }
-/* line 217, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 224, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .followItem-left:hover {
   text-decoration: none;
 }
-/* line 221, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 228, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .followItem-left span {
   color: #7f8a97;
 }
-/* line 226, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 233, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .user-img {
   width: 42px;
   height: 42px;
@@ -11995,7 +12002,7 @@ user-info .followItem .user-img {
   position: relative;
   border-radius: 50%;
 }
-/* line 236, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 243, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .user-img::after {
   content: "";
   position: absolute;
@@ -12006,7 +12013,7 @@ user-info .followItem .user-img::after {
   border-radius: 50%;
   border: 5px solid rgba(255, 255, 255, 0.3);
 }
-/* line 247, ../../app/scripts/directives/userInfo/userInfo.scss */
+/* line 254, ../../app/scripts/directives/userInfo/userInfo.scss */
 user-info .followItem .user-img img {
   width: 42px;
   height: 42px;
@@ -19583,7 +19590,7 @@ feed-list {
   margin-left: 15px !important;
 }
 
-/* line 29, ../../app/components/profile/profile.scss */
+/* line 4, ../../app/components/profile/profile.scss */
 .edit-profile-button-container {
   position: absolute;
   bottom: 15px;
@@ -19591,7 +19598,7 @@ feed-list {
   z-index: 100;
 }
 
-/* line 35, ../../app/components/profile/profile.scss */
+/* line 10, ../../app/components/profile/profile.scss */
 .schedule-time-header {
   position: absolute;
   height: 8vh !important;
@@ -19604,7 +19611,7 @@ feed-list {
   font-size: 14px;
 }
 
-/* line 48, ../../app/components/profile/profile.scss */
+/* line 23, ../../app/components/profile/profile.scss */
 .class-menu-item-block-center-container .profile-subheader {
   box-shadow: 3px 0px 10px 0px rgba(0, 0, 0, 0.4);
   display: flex;
@@ -19612,7 +19619,7 @@ feed-list {
   background-color: white;
   padding: 0px 20px;
 }
-/* line 54, ../../app/components/profile/profile.scss */
+/* line 29, ../../app/components/profile/profile.scss */
 .class-menu-item-block-center-container .profile-subheader .profile-subheader-item {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -19627,40 +19634,40 @@ feed-list {
   border-bottom: 2px solid white;
 }
 
-/* line 69, ../../app/components/profile/profile.scss */
+/* line 44, ../../app/components/profile/profile.scss */
 .upcoming-item-star-container {
   display: flex;
   margin: 10px;
 }
-/* line 72, ../../app/components/profile/profile.scss */
+/* line 47, ../../app/components/profile/profile.scss */
 .upcoming-item-star-container .star {
   opacity: 0.4;
 }
-/* line 75, ../../app/components/profile/profile.scss */
+/* line 50, ../../app/components/profile/profile.scss */
 .upcoming-item-star-container .mark-star:hover {
   opacity: 1;
 }
-/* line 78, ../../app/components/profile/profile.scss */
+/* line 53, ../../app/components/profile/profile.scss */
 .upcoming-item-star-container .mark-active-star:hover {
   opacity: 0.6;
 }
 
-/* line 83, ../../app/components/profile/profile.scss */
+/* line 58, ../../app/components/profile/profile.scss */
 .upcomingContainer {
   overflow: auto;
   height: calc(74vh - 48px);
 }
-/* line 88, ../../app/components/profile/profile.scss */
+/* line 63, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item {
   border-bottom: solid 1px #e0e0e0;
   display: flex;
   justify-content: space-between;
 }
-/* line 92, ../../app/components/profile/profile.scss */
+/* line 67, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-left {
   display: flex;
 }
-/* line 94, ../../app/components/profile/profile.scss */
+/* line 69, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-left .upcoming-item-date {
   width: 75px;
   height: 75px;
@@ -19669,11 +19676,11 @@ feed-list {
   padding: 10px 23px;
   text-transform: uppercase;
 }
-/* line 101, ../../app/components/profile/profile.scss */
+/* line 76, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-left .upcoming-item-date span {
   font-size: 22px;
 }
-/* line 106, ../../app/components/profile/profile.scss */
+/* line 81, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-left .upcoming-item-title {
   font-family: 'Lato',sans-serif;
   font-size: 17px;
@@ -19682,17 +19689,17 @@ feed-list {
   padding: 20px 0;
   line-height: 1;
 }
-/* line 113, ../../app/components/profile/profile.scss */
+/* line 88, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-left .upcoming-item-title .upcoming-item-time {
   font-size: 12px;
   color: #b2b2b2;
 }
-/* line 120, ../../app/components/profile/profile.scss */
+/* line 95, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-right {
   margin: auto 20px;
   display: flex;
 }
-/* line 125, ../../app/components/profile/profile.scss */
+/* line 100, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-right .upcoming-item-class {
   font-family: 'Lato',sans-serif;
   font-size: 12px;
@@ -19700,7 +19707,7 @@ feed-list {
   color: #4799f3;
   margin-bottom: 5px;
 }
-/* line 132, ../../app/components/profile/profile.scss */
+/* line 107, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-right .upcoming-item-location {
   font-family: 'Lato',sans-serif;
   font-size: 12px;
@@ -19709,12 +19716,12 @@ feed-list {
   color: #8c8c8c;
   text-align: right;
 }
-/* line 133, ../../app/components/profile/profile.scss */
+/* line 108, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .upcoming-item-right .upcoming-item-location img {
   height: 12px;
   margin-right: 5px;
 }
-/* line 146, ../../app/components/profile/profile.scss */
+/* line 121, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .controll-button {
   width: 10%;
   display: flex;
@@ -19722,13 +19729,13 @@ feed-list {
   justify-content: center;
   position: relative;
 }
-/* line 152, ../../app/components/profile/profile.scss */
+/* line 127, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .controll-button button {
   border: none;
   outline: none;
   background-color: #fff;
 }
-/* line 157, ../../app/components/profile/profile.scss */
+/* line 132, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .controll-button .inside-menu {
   padding-top: 9px;
   position: absolute;
@@ -19738,7 +19745,7 @@ feed-list {
   top: -20px;
   min-width: 113px;
 }
-/* line 165, ../../app/components/profile/profile.scss */
+/* line 140, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .controll-button .inside-menu .menu-option {
   width: 100%;
   height: 25px;
@@ -19747,17 +19754,17 @@ feed-list {
   color: #7b7b7b;
   background-color: #ffffff;
 }
-/* line 172, ../../app/components/profile/profile.scss */
+/* line 147, ../../app/components/profile/profile.scss */
 .upcomingContainer .upcomingList .upcoming-item .controll-button .inside-menu .menu-option:hover {
   background-color: #f0f0f0;
 }
 
-/* line 182, ../../app/components/profile/profile.scss */
+/* line 157, ../../app/components/profile/profile.scss */
 #profileCalendar {
   height: calc( 64vh - 48px ) !important;
 }
 
-/* line 186, ../../app/components/profile/profile.scss */
+/* line 161, ../../app/components/profile/profile.scss */
 .profileCalendarDayHeader {
   font-size: 14px !important;
   font-weight: normal !important;
@@ -19770,12 +19777,12 @@ feed-list {
   text-transform: capitalize !important;
 }
 
-/* line 198, ../../app/components/profile/profile.scss */
+/* line 173, ../../app/components/profile/profile.scss */
 .gender-container .role-teacher {
   border-bottom: solid 2px #4b93eb !important;
 }
 
-/* line 202, ../../app/components/profile/profile.scss */
+/* line 177, ../../app/components/profile/profile.scss */
 .gender-container .role-teacher ::before {
   border-bottom: solid 4px #4b93eb !important;
   content: '';
@@ -19788,13 +19795,13 @@ feed-list {
   bottom: 0px;
 }
 
-/* line 214, ../../app/components/profile/profile.scss */
+/* line 189, ../../app/components/profile/profile.scss */
 .gender-container .role-student {
   border-bottom: solid 2px #429c87 !important;
   color: #429c87 !important;
 }
 
-/* line 219, ../../app/components/profile/profile.scss */
+/* line 194, ../../app/components/profile/profile.scss */
 .gender-container .role-student ::before {
   border-bottom: solid 4px #429c87 !important;
   content: '';
@@ -19807,13 +19814,13 @@ feed-list {
   bottom: 0px;
 }
 
-/* line 230, ../../app/components/profile/profile.scss */
+/* line 205, ../../app/components/profile/profile.scss */
 .gender-container .role-parent {
   border-bottom: solid 2px #cf515d !important;
   color: #cf515d !important;
 }
 
-/* line 235, ../../app/components/profile/profile.scss */
+/* line 210, ../../app/components/profile/profile.scss */
 .gender-container .role-parent ::before {
   border-bottom: solid 4px #cf515d !important;
   content: '';
@@ -19826,42 +19833,57 @@ feed-list {
   bottom: 0px;
 }
 
-/* line 247, ../../app/components/profile/profile.scss */
+/* line 222, ../../app/components/profile/profile.scss */
 .activitiesContainer {
   height: calc(74vh - 60px);
   overflow: auto;
   margin-top: 10px;
 }
-/* line 251, ../../app/components/profile/profile.scss */
+/* line 226, ../../app/components/profile/profile.scss */
 .activitiesContainer .feed-list {
   width: 60% !important;
   margin: auto !important;
 }
 
-/* line 258, ../../app/components/profile/profile.scss */
+/* line 232, ../../app/components/profile/profile.scss */
 .container-button-flex {
   display: flex;
   justify-content: space-between;
 }
-/* line 261, ../../app/components/profile/profile.scss */
+/* line 235, ../../app/components/profile/profile.scss */
 .container-button-flex .approve-btn {
   color: white;
   border: none;
   background: white;
 }
 
-/* line 267, ../../app/components/profile/profile.scss */
+/* line 241, ../../app/components/profile/profile.scss */
 .profile-menu-item-container {
   display: flex !important;
   justify-content: center;
 }
-/* line 271, ../../app/components/profile/profile.scss */
+/* line 245, ../../app/components/profile/profile.scss */
 .profile-menu-item-container .profile-right-container {
   width: 415px !important;
 }
-/* line 274, ../../app/components/profile/profile.scss */
+/* line 248, ../../app/components/profile/profile.scss */
 .profile-menu-item-container .profile-block-center-container {
   width: 50% !important;
+}
+
+/* line 255, ../../app/components/profile/profile.scss */
+.class-menu .usersProfileContainer .class-menu-item-block-right-container {
+  width: 70%;
+  float: none;
+  margin: 0 auto;
+}
+/* line 260, ../../app/components/profile/profile.scss */
+.class-menu .usersProfileContainer .class-menu-item-block-right {
+  height: 65vh !important;
+}
+/* line 262, ../../app/components/profile/profile.scss */
+.class-menu .usersProfileContainer .class-menu-item-block-right .class-menu-item-block-right-header {
+  height: 280px !important;
 }
 
 /* line 1, ../../app/components/findPeople/findPeople.scss */
@@ -20462,3 +20484,5 @@ body {
   /* Firefox 18- */
   color: white !important;
 }
+
+/*# sourceMappingURL=main.css.map */

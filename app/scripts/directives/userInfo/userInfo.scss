@@ -203,7 +203,14 @@ user-info {
       &:hover {
         background-color: #197dea;
       }
+      &.following {
+        cursor: default;
+        background: #fff;
+        color: #4b93eb;
+        border: 1px solid #4b93eb;
+      }
     }
+
 
     .followItem-left {
       display: flex;

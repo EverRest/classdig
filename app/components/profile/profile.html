@@ -64,6 +64,7 @@
         <div class="profile-subheader-item" id = "Upcoming" ng-click = "switchUpcoming()">Upcoming </div>
         <div class="profile-subheader-item" id = "Schedule" ng-click = "switchSchedule()">Schedule</div>
         <div class="profile-subheader-item" id = "Activities" ng-click = "switchActivities()">Activities</div>
+        <div class="profile-subheader-item" id = "Users" ng-click = "switchUser(user)"></div>
       </div>
 
       <div class="upcomingContainer" ng-show="showUpcoming">
@@ -100,7 +101,6 @@
         </div>
         <div ng-show="requestUpcomingInProgress" class="loader"></div>
       </div>
-
       <div class="scheduleContainer" ng-show="showSchedule" style="position: relative">
         <div class="schedule-time-header" ng-show="!requestInProgress">Time</div>
 
@@ -112,6 +112,16 @@
       <div class="activitiesContainer" id="feedList" ng-if="showActivities">
         <feed-list feed-url="feedUrl+'?page='"></feed-list>
 
+      </div>
+      <div class="usersProfileContainer" ng-show="showUser">
+        <div class = "class-menu-item-block-right-container">
+          <div class="class-menu-item-block-right class-menu-item-block-right-profile">
+            <user-info selected-user="activeUser" show-additional-info="false"></user-info>
+            <div class="user-feeds-container">
+              <feed-list feed-url="feedUrl+'&page='"></feed-list>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

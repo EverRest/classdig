@@ -16,8 +16,10 @@
         <div class="feed-header-info">
           <div class="feed-header-img-container" style="background-image: url({{feed.owner.image}})"> </div>
           <div>
+           <!-- <a data-id="{{feed.owner.id}}" href="#/findPeople" class="followItem-left" ng-click="showprofile(feed.owner)">-->
             <div class = 'feed-header-name'>{{feed.owner.first_name}} {{feed.owner.last_name}} <span> @ {{feed.owner.first_name}}</span></div>
-            <div class = 'feed-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
+              <div class = 'feed-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
+           <!-- </a>-->
           </div>
         </div>
 
@@ -105,7 +107,7 @@
       <div class="follow-header-info">
         <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493114094.jpg)"></div>
         <div>
-          <div class = 'follow-header-name'>Tester Tester <span> @ Tester</span></div>
+          <div class = 'follow-header-name'>Tester Tester <span> @Tester</span></div>
           <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
         </div>
       </div>
@@ -120,7 +122,7 @@
       <div class="follow-header-info">
         <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493133733.jpg)"></div>
         <div>
-          <div class = 'follow-header-name'>Teacher Super <span> @ Teacher</span> </div>
+          <div class = 'follow-header-name'>Teacher Super <span> @Teacher</span> </div>
           <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
         </div>
       </div>
@@ -135,7 +137,7 @@
       <div class="follow-header-info">
         <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493364191.jpg)"></div>
         <div>
-          <div class = 'follow-header-name'>Petro Petro <span> @ Petro</span> </div>
+          <div class = 'follow-header-name'>Petro Petro <span> @Petro</span> </div>
           <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
         </div>
       </div>
@@ -143,7 +145,7 @@
       <div class="follow-header-info">
         <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493114094.jpg)"></div>
         <div>
-          <div class = 'follow-header-name'>Tester Tester <span> @ Tester</span> </div>
+          <div class = 'follow-header-name'>Tester Tester <span> @Tester</span> </div>
           <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
         </div>
       </div>
@@ -156,10 +158,10 @@
 <!--ul class="activities-changeProfileEvents">
   <li ng-repeat="event in changeProfileEvents"></li>
 </ul>
-<ul class="ativities-teacherPosts">
+<ul class="activities-teacherPosts">
   <li ng-repeat="post in teacherPosts"></li>
 </ul>
-<ul class="ativities-followList">
+<ul class="activities-followList">
     <li class="followItem current-feed">
     <div class="follow-header">
       <div class="follow-header-info">

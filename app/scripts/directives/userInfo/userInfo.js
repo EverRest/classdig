@@ -14,19 +14,26 @@ angular.module('classDigApp')
         $scope.userData.color = $rootScope.user.data.role+'-color';
         $scope.userData.profileBackground = 'profile-bg-'+$rootScope.user.data.role;
         $scope.userInformation = {};
+          var role =$rootScope.user.data.role;
+          $scope.userProfileData ={
+              'color':role+'-color',
+              'border' : role+'-border',
+              'background' : role+'-background',
+              'userPhotoBorder': $rootScope.user.data.role + '-userPhotoBorder'
+          };
         $scope.$watch('selectedUser',function () {
 
           $scope.requesstInProgress = true;
           if($scope.selectedUser){
             getInfo($scope.selectedUser.id);
+            console.log('slect');
           }
           else if (!$scope.onStudentsPage) {
             getInfo($rootScope.user.data.id)
+              console.log($);
           }
         });
         function getInfo(id) {
-            // console.log(appSettings.link + 'profile/indicator/');
-            // console.log(appSettings.link + 'current-user/');
           $q.all([
             $http.get(appSettings.link + 'profile/indicator/' + id),
             $http.get(appSettings.link + 'current-user/' + id)
@@ -43,6 +50,8 @@ angular.module('classDigApp')
         }
 
         function changeCounterFollow(id) {
+            console.log('changeCounterFollow');
+            console.log(id);
             $q.all([
                 $http.get(appSettings.link + 'profile/indicator/' + id),
                 $http.get(appSettings.link + 'current-user/' + id)
@@ -54,7 +63,7 @@ angular.module('classDigApp')
                 });
         }
 
-          $scope.changeCounterActions = function(id) {
+         /* $scope.changeCounterActions = function(id) {
               $q.all([
                   $http.get(appSettings.link + 'profile/indicator/' + id),
                   $http.get(appSettings.link + 'current-user/' + id)
@@ -65,8 +74,7 @@ angular.module('classDigApp')
                   function (values) {
 
                   });
-          }
-
+          }*/
 
           ///////////////////// SWITCH BETWEEN USER-INFO TABS ///////////////////
           $scope.showUserInfo=true;
@@ -95,6 +103,33 @@ angular.module('classDigApp')
               $scope.showUserFollowers = false;
               $scope.showUserFollow=true;
           };
+          $scope.showProfileUser = function (user) {
+              event.preventDefault();
+              $scope.childmeth = function(user) {
+                  $rootScope.$emit("switchUser", user);
+              };
+              $scope.childmeth(user);
+              $rootScope.showUser=true;
+              $scope.activeUserId = user.id;
+              $rootScope.activeUser = user;
+              $scope.feedUrl = appSettings.link+'story/'+ user.id;
+          }
+
+          $scope.show = function (user) {
+              $scope.chldmeth = function(user) {
+                  $rootScope.$emit("activateUser", user);
+              };
+              $rootScope.activeUserId = user.user_id;
+              $rootScope.activeUser = user;
+              $rootScope.feedUrl = appSettings.link+'story/'+ user.user_id;
+              $scope.chldmeth(user);
+          };
+          $rootScope.$on("show", function(){
+              $scope.show();
+          });
+
+
+
           ///////////////////////////////////////////////////////////////////////
 
           ///////////////////// FOLLOW LIST ////////////////////////////////////
@@ -104,40 +139,34 @@ angular.module('classDigApp')
           var followItem;
 
           $http({
-              url: appSettings.link + 'users/school',
+              url: appSettings.link + 'users/follows/' + $rootScope.user.data.id,
               method: "GET"
               // headers: {'Content-Type': 'application/json'}
           })
               .then(function (response) {
-                  $scope.listUsers = response.data.data;
+                  $scope.listUsers = response.data.follows;
                   listUsers = $scope.listUsers;
 
-                  for(i=0; i<listUsers.length; i++){
-                      followItem = listUsers[i].is_follow;
-
-                      if(followItem){
-                          followList.push(listUsers[i].user);
+                      for(var i=0; i<listUsers.length; i++){
+                          followList.push(listUsers[i]);
+                          $scope.followList = followList;
+                          window.localStorage.followList = JSON.stringify($scope.followList);
                       }
-                      $scope.followList = followList;
-                      window.localStorage.followList = JSON.stringify($scope.followList);
-
-                  }
               },
               function (response) {
               });
-          
+
           $scope.unfollow = function(user, index) {
               event.preventDefault();
               followList.splice(index, 1);
               followItem == false;
-
               $http({
-                  url: appSettings.link + 'follow/'+user.id,
+                  url: appSettings.link + 'follow/'+ user.user_id,
                   method: "DELETE"
                   // headers: {'Content-Type': 'application/json'}
               })
                   .then(function (response) {
-                          changeCounterFollow(user.id);
+                         changeCounterFollow(user.user_id);
 
                       },
                       function (response) {
@@ -147,23 +176,54 @@ angular.module('classDigApp')
 
           ///////////////////// FOLLOWERS LIST ////////////////////////////////////
 
+          var listUsersFoolowers;
+          var followersList = [];
+          var followersItem;
+
+
+          $http({
+              url: appSettings.link + 'users/followers/' + $rootScope.user.data.id,
+              method: "GET"
+              // headers: {'Content-Type': 'application/json'}
+          })
+              .then(function (response) {
+                      $scope.listUsersFoolowers = response.data.followers;
+                      listUsersFoolowers = $scope.listUsersFoolowers;
+
+                      for(var i=0; i<listUsersFoolowers.length; i++){
+                          followersList.push(listUsersFoolowers[i]);
+                          $scope.followersList = followersList;
+                          //window.localStorage.followersList = JSON.stringify($scope.followersList);
+                      }
+                  },
+                  function (response) {
+                  });
+
+
+
+          $scope.followUser = function (method,user,index) {
+              event.preventDefault();
+
+              $http({
+                  url: appSettings.link + 'follow/'+ user.user_id,
+                  method: method,
+                  headers: {'Content-Type': 'application/json'}
+              })
+                  .then(function (response) {
+                          /*$scope.listOfTheSameSchoolPeople[index].is_follow=!$scope.listOfTheSameSchoolPeople[index].is_follow;*/
+                          //$scope.followList[index].is_follow=!$scope.followList[index].is_follow;
+                          $scope.followersList[index].is_follower=!$scope.followersList[index].is_follower;
+                          $scope.userStatistic.countFollows = $scope.userStatistic.countFollows + 1;
+                      },
+                      function (response) {
+
+                      });
+          };
+
           ////////////////////////////////////////////////////////////////////////
 
 
-
-          $scope.showProfileUser = function (user) {
-              var current = user;
-              $scope.showUserMethod = function(user) {
-                  document.cookie ='clicked_user=' + user['id'];
-
-                  $rootScope.$emit("activateUser", {});
-              };
-              $scope.showUserMethod(current);
-
-          };
-
       }]
-
     }
   }]);
 

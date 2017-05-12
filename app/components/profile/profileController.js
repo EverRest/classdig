@@ -31,6 +31,7 @@ app.controller('ProfileController', ['$scope',
     };
 
     $scope.userProfile = $rootScope.user.data;
+    $rootScope.activeUser;
 
     $scope.showUpcoming=true;
 
@@ -75,6 +76,7 @@ app.controller('ProfileController', ['$scope',
       $scope.showUpcoming=true;
       $scope.showSchedule = false;
       $scope.showActivities=false;
+      $scope.showUser=false;
     };
 
     $scope.switchSchedule = function () {
@@ -87,6 +89,7 @@ app.controller('ProfileController', ['$scope',
       $scope.showActivities=false;
       getSchedule();
       $scope.showSchedule=true;
+      $scope.showUser=false;
     };
 
       $scope.switchActivities = function () {
@@ -97,12 +100,28 @@ app.controller('ProfileController', ['$scope',
         $scope.showUpcoming=false;
         $scope.showSchedule = false;
         $scope.showActivities=true;
+        $scope.showUser=false;
       };
       $rootScope.$on("switchActivities", function(){
           $scope.switchActivities();
       });
 
+
+      $rootScope.showUser = false;
+
+      $scope.switchUser = function () {
+          $('.profile-subheader-item').css('border-bottom', '3px solid #fff');
+          $('.profile-subheader-item').css('color', '#797a7b');
+          $scope.showUpcoming=false;
+          $scope.showSchedule = false;
+          $scope.showActivities=false;
+          $scope.showUser = true;
+      };
+      $rootScope.$on("switchUser", function(){
+          $scope.switchUser();
+      });
     $scope.switchUpcoming();
+
     //////////////////////////////////////
 
 /////////////// ACTIONS WITH EVENT-ITEMS////////////////////////
