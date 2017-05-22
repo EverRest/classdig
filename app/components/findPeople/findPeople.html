@@ -36,8 +36,10 @@
     <div class = "class-menu-item-block-right-container" ng-show="activeUserId">
       <div class="class-menu-item-block-right class-menu-item-block-right-profile">
         <user-info selected-user="activeUser" show-additional-info="false"></user-info>
-        <div class="user-feeds-container">
-          <feed-list feed-url="feedUrl+'&page='"></feed-list>
+        <div class="user-feeds-container" ng-show="activitiesBlock">
+          <!--<feed-list feed-url="feedUrl+'&page='"></feed-list>-->
+          <activities></activities>
+
         </div>
       </div>
     </div>

@@ -16,7 +16,8 @@ app.controller('findPeopleController', ['$scope',
   'Upload',
   'Feed',
   'uiCalendarConfig',
-  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed,uiCalendarConfig) {
+  'socket',
+  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed,uiCalendarConfig, socket) {
     var $ctrl = this;
     $ctrl.animationsEnabled = true;
     var role =$rootScope.user.data.role;
@@ -42,6 +43,9 @@ app.controller('findPeopleController', ['$scope',
       $rootScope.activeUserId;
       $rootScope.activeUser;
       $rootScope.feedUrl;
+      $rootScope.activitiesBlock = true;
+      //$rootScope.showActivitiesFindPeople=true;
+
       $scope.activateUser = function (user) {
           if($scope.activeUserId === user.id){
               $rootScope.activeUserId = undefined;
@@ -50,8 +54,17 @@ app.controller('findPeopleController', ['$scope',
               $rootScope.activeUserId = user.id;
               $rootScope.activeUser = user;
               $rootScope.feedUrl = appSettings.link+'story/'+ user.id;
+              if (user.hasOwnProperty('id')) {
+                  $rootScope.refreshFollowersList(user.id);
+                  $rootScope.refreshFollowList(user.id);
+              }
+              if (user.hasOwnProperty('user_id')) {
+                  $rootScope.refreshFollowersList(user.user_id);
+                  $rootScope.refreshFollowList(user.user_id);
+              }
             }
         };
+
       $rootScope.$on("activateUser", function(){
           $scope.activateUser();
       });
@@ -63,18 +76,22 @@ app.controller('findPeopleController', ['$scope',
         headers: {'Content-Type': 'application/json'}
       })
         .then(function (response) {
+                $http({
+                    url: appSettings.link + 'newactivity',
+                    method: "POST",
+                    data: {'user_id': $scope.user.user_id, 'type': 'story', 'data': user}
+                }).then(function (data) {
+                    console.log(data);
+                });
+
+                socket.io.emit('newActivity', user);
+                console.log('new Activity - new follow');
             $scope.listOfTheSameSchoolPeople[index].is_follow=!$scope.listOfTheSameSchoolPeople[index].is_follow;
-                // console.log("hello");
           },
           function (response) {
 
           });
     };
-     /* $rootScope.$on("followUser", function(){
-          $scope.followUser();
-      });*/
-
-
 
     $rootScope.$on('detailedSearch',function (ev,data) {
       $scope.listOfTheSameSchoolPeople=data;
@@ -96,8 +113,21 @@ app.controller('findPeopleController', ['$scope',
           }
         }
       });
+    };
 
+    var href = window.location.href,
+        res = href.split('/');
+    if(res.length > 0) {
+     if (res[4] == "findPeople") {
+      angular.element(document).find(".class-menu-item-block-right-profile").addClass("profilepage");
+     }
+    } else {
+      console.log('href error');
     }
+
+
+
+
 
   }]);
 

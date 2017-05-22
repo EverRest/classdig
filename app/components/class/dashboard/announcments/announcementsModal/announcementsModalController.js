@@ -1,7 +1,8 @@
 angular.module('classDigApp')
-  .controller('announcementsModalInstanceCtrl', function ($uibModalInstance, $scope  ,$routeParams, $rootScope,Upload,appSettings,$http, $timeout,$log, items) {
+  .controller('announcementsModalInstanceCtrl', function ($uibModalInstance, $scope  ,$routeParams, $rootScope,Upload,appSettings,$http, $timeout,$log, items, socket) {
     var $ctrl = this;
-
+    /*$rootScope.postAnnouncement;
+      console.log($rootScope.postAnnouncement);*/
     //INIT DEFAULT VALUE
 
 if(items ===undefined){
@@ -48,14 +49,12 @@ else{
     $scope.showParticipantsList = function () {
       $scope.createPollModal =false;
       $scope.addVoters = true;
-
     };
 
     $scope.userRole = "users";
 
     $ctrl.cancel = function () {
       $uibModalInstance.dismiss('cancel');
-
     };
 
     $ctrl.ok = function () {
@@ -64,11 +63,20 @@ else{
         url: appSettings.link + 'announcement',
         method: "POST",
         data: $scope.newAnnouncement
-
       })
         .then(function (response) {
+                $http({
+                    url: appSettings.link + 'newactivity',
+                    method: "POST",
+                    data: {'user_id': $scope.user.user_id, 'type': 'story', 'data':  $scope.newAnnouncement}
+                }).then(function (data) {
+                    console.log(data);
+                });
+
             $rootScope.$broadcast('createAnnouncement', $scope.newAnnouncement);
             $uibModalInstance.close();
+            socket.io.emit('newActivity', $scope.newAnnouncement);
+            console.log('newActivity-announcement')
           },
           function (response) {
             $scope.formSubmitted = true;
@@ -96,6 +104,8 @@ else{
               $scope.formSubmitted = true;
             });
       }
+
+
     }
   });
 

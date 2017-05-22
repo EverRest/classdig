@@ -22,9 +22,8 @@ angular.module('classDigApp')
             });
           });
 
-          $rootScope.$on('addNewPost', function (event,data) {
+            $rootScope.$on('addNewPost', function (event,data) {
             $scope.feeds.items.unshift(data);
-              console.log(data);
             if(data.link){
               var matches1 = (data.link).match(/^http:\/\/(?:www\.)?youtube.com\/watch\?(?=.*v=\w+)(?:\S+)?$/);
               var matches2 = (data.link).match(/^https:\/\/(?:www\.)?youtube.com\/watch\?(?=.*v=\w+)(?:\S+)?$/);
@@ -43,7 +42,6 @@ angular.module('classDigApp')
             $scope.feeds = new Feed();
             $scope.feeds.nextPage($scope.feedUrl);
           });
-
           //---------------------- GET CLASS ID ----------------------------//
             $http({
                 url: appSettings.link + 'user/classes',
@@ -56,7 +54,6 @@ angular.module('classDigApp')
                     },
                     function (response) {
                     });
-
           //----------------------------------------------------------------//
 
           $scope.openModalAddComment = function (items) {
@@ -86,31 +83,26 @@ angular.module('classDigApp')
             }
           };
 
-          //console.log(window.localStorage);
+          $scope.userChanges =  window.localStorage.changes;
 
-            $scope.userChanges =  window.localStorage.changes;
+          $scope.followList = window.localStorage.followList;
 
-            $scope.followList = window.localStorage.followList;
+          if (window.localStorage.changed) {
 
-            if (window.localStorage.changed) {
+            $scope.changeProfileEvents = [];
+            $scope.changeProfileEvents.push($scope.userChanges);
 
-              $scope.changeProfileEvents = [];
-              $scope.changeProfileEvents.push($scope.userChanges);
-
-              $scope.changeProfileEvents.forEach(function(event, i) {
-                var user = {};
-                  event = JSON.parse(event);
-                  user.updated = event.data.updated;
-                  user.firstName = event.data.details.data.first_name;
-                  user.lastName = event.data.details.data.last_name;
-                  user.gender = event.data.details.data.gender;
-                  user.photo = event.data.details.data.photo;
-                  // console.log(event.data);
-              });
-
-            }
+            $scope.changeProfileEvents.forEach(function(event, i) {
+              var user = {};
+                event = JSON.parse(event);
+                user.updated = event.data.updated;
+                user.firstName = event.data.details.data.first_name;
+                user.lastName = event.data.details.data.last_name;
+                user.gender = event.data.details.data.gender;
+                user.photo = event.data.details.data.photo;
+            });
+          }
             //-------------- Delete Comment--------------------//
-
           $scope.openAreUSureModalComment = function (size,feed) {
             var modalInstance = $uibModal.open({
               animation: $ctrl.animationsEnabled,
@@ -219,19 +211,6 @@ angular.module('classDigApp')
 
           //-------------- End Like feed --------------------//
 
-           /* $scope.showprofile = function (feed) {
-
-                $scope.chldmth = function(feed) {
-                    console.log(feed);
-                    $rootScope.$emit("activateUser", feed);
-                };
-                $rootScope.activeUserId = feed.id;
-                $rootScope.activeUser = feed;
-                $rootScope.feedUrl = appSettings.link+'story/'+ feed.id;
-                $scope.chldmth();
-            };*/
-
-
           //-------------- Delete feed --------------------//
 
           $scope.deleteElementFromArray = function (array,element) {
@@ -261,18 +240,13 @@ angular.module('classDigApp')
           };
 
           $rootScope.$on('delete-was-approved', function (e, data) {
-
             $http({
               method: 'DELETE',
               url: appSettings.link + '/story/' + data.id,
               headers: {'Content-Type': 'application/json'}
             })
               .success(function (response) {
-                //$scope.deleteElementFromArray($scope.listOfFeeds,data);
                 $scope.deleteElementFromArray($scope.feeds.items,data);
-                //console.log($scope.listOfFeeds);
-                //$scope.clear();
-                // $scope.viewChanged($scope.currentView);
               })
               .error(function () {
 
@@ -283,9 +257,7 @@ angular.module('classDigApp')
             $scope.openAreUSureModal('sm',feed);
 
           };
-
           //-------------- End Delete feed--------------------//
-
       }
 
       ]

@@ -96,43 +96,17 @@
         .class-menu-item-exist {
           height: 100%;
           overflow-y: auto;
-          //.class-menu-item-date {
-          //  background-color: $background;
-          //  display: block;
-          //  padding: 10px;
-          //  text-align: center;
-          //  .dropdown {
-          //    font-family: 'Lato', sans-serif;
-          //    font-size: 18px;
-          //    font-weight: 500;
-          //    font-style: normal;
-          //    font-stretch: normal;
-          //    color: $text-color;
-          //  }
-          //  .dateLabel {
-          //    padding: 0 5px;
-          //  }
-          //  ul {
-          //    text-align: center;
-          //    left: 33%;
-          //  }
-          //
-          //}
           .class-menu-item {
             .class-menu-item-holder {
-              //border: solid 1px #e1dede;
-              //height: 85vh;
 
             }
           }
         }
         .class-menu-item-add {
-          //background-color: white;
           margin: 10px 25px 20px 20px;
           position: absolute;
           right: 0;
           bottom: 0;
-          //border-radius: 50%;
         }
       }
     }
@@ -165,9 +139,25 @@
         .behaviour-student-info {
           border: solid 1px $border-grey;
         }
+        .container_user-followers, .container_user-follow {
+          position: relative;
+        }
       }
     }
   }
+}
+
+.profilepage .container_user-followers:after,
+.profilepage .container_user-follow:after{
+  content: "";
+  position: absolute;
+  width: 40%;
+  top: 0;
+  left: 60%;
+  bottom:0;
+  right:0;
+  background: transparent;
+  z-index: 2;
 }
 
 .more-menu-loader{
@@ -175,4 +165,7 @@ position:absolute !important;
   top:20%;
   right:50%;
 }
+
+
+
 

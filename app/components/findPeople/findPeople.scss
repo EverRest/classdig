@@ -69,21 +69,40 @@
     justify-content: space-between;
     border-bottom: 1px solid #d9d9d9;
 
-  .follow-user{
-    width: 68px;
-    height: 29px;
-    border-radius: 5px;
-    border: none;
-    color: #ffffff;
-    font-size: 13px;
+    .follow-user{
+      /*width: 68px;
+      height: 29px;*/
+      height: 36px;
+      line-height: 36px;
+      width: 97px;
+      font-size: 13px;
+      border:none;
+      border-radius:5px;
+      background-color:#fff!important;
+      border-color:#e6ecf0;
+      border:1px solid #e6ecf0;
+      color:#4b93eb;
+      font-weight:bold;
+      &:hover {
+        background-color: #e6ecf0;
+        background-image: linear-gradient(#fff,#e6ecf0);
+        border-color: #e6ecf0;
+      }
+    }
+    .unfollow-user{
+      /*width: 68px;
+      height: 29px;*/
+      height: 36px;
+      line-height: 36px;
+      width: 97px;
+      color: #fff!important;
+      border-radius: 5px;
+      background-color:#e0245e;
+      border:1px solid #e0245e!important;
+    }
   }
-  .unfollow-user{
-    width: 68px;
-    height: 29px;
-    border-radius: 5px;
-    background: #fff;
-  }
-  }
+
+
   .find-people-active-item{
     background: #f0f0f0;
   }
@@ -132,4 +151,32 @@
   .feed-list{
     width: 100%!important;
   }
+  .activitieslist {
+    padding-left:0;
+    width:100%;
+    list-style: none;
+    .feed-header-date {
+      font-size: 10px;
+      line-height: 13px;
+      color: #7f8a97;
+      margin: 0;
+    }
+    .feed-header-date.tohide {
+      color: transparent;
+    }
+    .follow-header-img-container {
+      margin-right:5px;
+    }
+    .story {
+      .feed-header-date {
+        margin-left: 5px;
+      }
+    }
+  }
+
 }
+
+
+
+
+

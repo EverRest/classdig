@@ -56,14 +56,18 @@
 </div>
 
 <div class="container_user-followers" ng-show="showUserFollowers">
+
     <ul class="user-follow_list">
         <li ng-repeat="user in followersList track by $index" class="followItem">
             <a data-id="{{user.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(user)">
                 <div class="user-img" style="background-image: url({{user.image}})"></div>
                 <div class ="">{{user.first_name}} {{user.last_name}} <span>@{{user.first_name}}</span></div>
             </a>
-            <a href="#"  class="followItem-right" ng-if="user.is_follower===false"  ng-click="followUser('POST',user, $index)">FOLLOW</a>
-            <div href="#" class="followItem-right following" ng-if="user.is_follower===true">FOLLOWING</div>
+            <a href="#"  class="followItem-right" ng-if="user.is_follower===false"  ng-click="followUser('POST',user, $index)">Follow</a>
+            <div href="#" class="followItem-right following" ng-if="user.is_follower===true">
+                <span class="following-text">Following</span>
+                <span class="unfollow-text" ng-click="unfollow(user, $index); user.is_follower===false ">Unfollow</span>
+            </div>
 
         </li>
     </ul>
@@ -72,12 +76,14 @@
 <div class="container_user-follow" ng-show="showUserFollow">
     <ul class="user-follow_list">
         <li ng-repeat="user in followList track by $index" class="followItem" data-id="{{user.user_id}}" class="find-people-item">
-            <!--<a data-id="{{user.id}}" href="#" class="followItem-left" ng-click="showProfileUser(user)">-->
             <a data-id="{{user.user_id}}" href="#/findPeople" class="followItem-left" ng-click="show(user)">
                 <div class="user-img" style="background-image: url({{user.image}})"></div>
                 <div class ="">{{user.first_name}} {{user.last_name}} <span>@{{user.first_name}}</span></div>
             </a>
-            <a href="#" class="followItem-right" ng-click="unfollow(user, $index)">UNFOLLOW</a>
+            <a href="#" class="followItem-right following" ng-click="unfollow(user, $index)">
+                <span class="following-text">Following</span>
+                <span class="unfollow-text">Unfollow</span>
+            </a>
         </li>
     </ul>
 </div>

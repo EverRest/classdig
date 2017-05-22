@@ -33,20 +33,14 @@ var app = angular.module('classDigApp', [
     'ui.bootstrap.datetimepicker',
     'infinite-scroll',
     'ui.slimscroll',
-    'classDigServices',
+    // 'classDigServices',
     'chart.js',
     'slickCarousel',
     'nvd3',
     'rzModule',
     'socialLogin',
     'youtube-embed'
-
-
-
-    // 'ysilvela.socket-io',
-    // 'btford.socket-io'
 ]);
-// var app1 = angular.module('headerCtrl', ['ngRoute']);
 app.constant('_',
     window._
 );
@@ -69,9 +63,6 @@ app.config(function ($logProvider) {
 });
 
 app.config(function ($routeProvider) {
-    // $locationProvider.html5Mode(false).hashPrefix('!');
-    // use the HTML5 History API
-    // $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
             // controller: 'HomeController',
@@ -303,20 +294,7 @@ app.config(function ($routeProvider) {
         .otherwise({
             redirectTo: '/login'
         });
-    // $locationProvider.html5Mode(false).hashPrefix('!');
-    // use the HTML5 History API
-    // $locationProvider.html5Mode(true);
-
 });
-
-
-// ====================== localStorage =================
-// app.config(function (localStorageServiceProvider) {
-//   localStorageServiceProvider
-//     .setStorageType('localStorage');
-// });
-
-
 
 // ====================== login ========================
 app.run(['$rootScope', '$location', 'AuthenticationService', 'DialogMessages', 'socket', '$log', 'Chat', 'groupDiscussions', '$interval', '$http', 'appSettings', 'localStorageService',
@@ -341,6 +319,7 @@ app.run(['$rootScope', '$location', 'AuthenticationService', 'DialogMessages', '
         }
 
         socket.io.on('connect', function (data) {
+            console.log('connected to socket.io');
             if ($rootScope.user)
                 socket.init($rootScope.user.data.id, true);
         }).on('chat-message', function (data) {
@@ -402,7 +381,6 @@ app.run(['$rootScope', '$location', 'AuthenticationService', 'DialogMessages', '
                 if ($rootScope.dialog.items === null) {
                     $rootScope.dialog.nextPage(true);
                 }
-
             }
         }
 
@@ -423,92 +401,33 @@ app.run(['$rootScope', '$location', 'AuthenticationService', 'DialogMessages', '
                     }
                 }
             }
-
-
-            // if ((!$rootScope.user) || ($rootScope.user === null)) {
-            //     console.log($location);
-            //     if ($location.path() === '/auth/forgot' || $location.path() === '/auth/change') {
-            //
-            //     }
-            //     else {
-            //         console.log($location.path() !== '/auth/forgot');
-            //         if ($location.path() !== '/signup') {
-            //             $location.path('/login');
-            //         } else {
-            //             $location.path('/signup');
-            //         }
-            //     }
-            // }
-
-
-            // redirect to main page if try login
-            // if ($rootScope.user && (($location.path() === '/login') || ($location.path() === '/signup'))) {
-            //     $location.path('/');
-            // }
-            // else {
-            //     $location.path();
-            // }
         });
 
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             reloadScope();
-
         });
 
     }]);
 
-// =================== translate ====================
-// app.config(function ($translateProvider) {
-//
-//     $translateProvider
-//         .translations('en', {
-//             TITLE: 'Welcome!',
-//             MESSAGE: 'This app supports your lanaguage!',
-//             'Students': 'Students'
-//         })
-//         .translations('ua', {
-//             TITLE: 'Ласкаво просимо!',
-//             MESSAGE: 'Ця апка підтримує вашу мову!',
-//             'Students': 'Студенти'
-//
-//         });
-//
-//     $translateProvider.preferredLanguage('en');
-//
-// });
 
 app.controller('HomeCtrl', function () {
     var ctrl = this;
 
-    // ctrl.language = 'en';
-    // ctrl.languages = ['en', 'ua'];
-    // ctrl.updateLanguage = function () {
-    //     $translate.use(ctrl.language);
-    // };
-
-   /* $scope.activateUser = function (user) {
-        if($scope.activeUserId === user.id){
-            $scope.activeUserId = undefined;
-        }
-        else {
-            $scope.activeUserId = user.id;
-            $scope.activeUser = user;
-            $scope.feedUrl = appSettings.link+'story/'+ user.id;
-        }
-    };*/
 });
 // =================== end. translate ====================
 
 app.value('appSettings', {
-    // link: 'http://api.classdig.oyihost.com/'
-    link: 'http://api.classdig.loc/'
+    link: 'http://api.classdig.oyihost.com/'
+    //link: 'http://api.classdig.loc/'
+    //link: 'http://api.classdig.com/'
 });
 
 app.factory('socket', function (appSettings) {
-
-    //var socket = io('http://api.classdig.loc:3001');
-    var socket = io('http://classdig.oyihost.com:3001');
+     var socket = io('http://api.classdig.loc:3001');
+    //var socket = io('http://api.classdig.com:3001');
+    // var socket = io('http://classdig.oyihost.com:3001');
+    // console.log("socket is running");
     return {
         io: socket,
         socketUsers: {},
@@ -521,8 +440,17 @@ app.factory('socket', function (appSettings) {
                 this.socketUsers[user] = user;
             }
         }
-    }
+    };
 });
+
+
+
+
+
+
+
+
+
 
 
 

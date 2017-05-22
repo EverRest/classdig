@@ -10,7 +10,6 @@
      infinite-scroll-distance='1'>
   <li ng-repeat="feed in feeds.items">
     <div class = 'current-feed'>
-
       <!------------- Feed header ------------------>
       <div class="feed-header">
         <div class="feed-header-info">
@@ -22,8 +21,6 @@
            <!-- </a>-->
           </div>
         </div>
-
-
         <div class="controll-button" ng-show="feed.owner.id===userId" >
           <button class="btn-default btn"><img src="images/events/controll-button.svg"></button>
           <div class="inside-menu dropdown-menu">
@@ -31,9 +28,7 @@
             <div class="menu-option" ng-click="deleteFeed(feed)">Delete</div>
           </div>
         </div>
-
       </div>
-
       <!------------- End Feed header ------------------>
 
       <!------------- Feed content ------------------>
@@ -100,89 +95,9 @@
       </div>
     </div>
   </li>
-
-  <!--li ng-repeat="event in changeProfileEvents" class="current-feed"-->
-  <li class="current-feed">
-    <div class="follow-header">
-      <div class="follow-header-info">
-        <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493114094.jpg)"></div>
-        <div>
-          <div class = 'follow-header-name'>Tester Tester <span> @Tester</span></div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
-        </div>
-      </div>
-      <div class="follow-header-action">has changed her profile</div>
-    </div>
-    </div>
-  </li>
-
-  <!--li ng-repeat="post in teacherPosts" class="current-feed"-->
-  <li class="current-feed">
-    <div class="follow-header">
-      <div class="follow-header-info">
-        <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493133733.jpg)"></div>
-        <div>
-          <div class = 'follow-header-name'>Teacher Super <span> @Teacher</span> </div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
-        </div>
-      </div>
-      <div class="follow-header-action">has posted <a ng-href="#/class/{{classId}}/user/{{userId}}/announcments"> a new announcement</a></div>
-    </div>
-    </div>
-  </li>
-
-  <!--li ng-repeat="user in followList track by $index" class="followItem"-->
-  <li class="followItem current-feed">
-    <div class="follow-header">
-      <div class="follow-header-info">
-        <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493364191.jpg)"></div>
-        <div>
-          <div class = 'follow-header-name'>Petro Petro <span> @Petro</span> </div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}}</div>
-        </div>
-      </div>
-      <div class="follow-header-action">has followed</div>
-      <div class="follow-header-info">
-        <div class="follow-header-img-container" style="background-image: url(http://api.classdig.oyihost.com/upload/files/1493114094.jpg)"></div>
-        <div>
-          <div class = 'follow-header-name'>Tester Tester <span> @Tester</span> </div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </li>
-
 </ul>
 
-<!--ul class="activities-changeProfileEvents">
-  <li ng-repeat="event in changeProfileEvents"></li>
-</ul>
-<ul class="activities-teacherPosts">
-  <li ng-repeat="post in teacherPosts"></li>
-</ul>
-<ul class="activities-followList">
-    <li class="followItem current-feed">
-    <div class="follow-header">
-      <div class="follow-header-info">
-        <div class="follow-header-img-container" style="background-image: url({{user.image}})"></div>
-        <div>
-          <div class = 'follow-header-name'>{{feed.owner.first_name}} {{feed.owner.last_name}}</div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
-        </div>
-      </div>
-      <div class="follow-header-action">has followed</div>
-      <div class="follow-header-info">
-        <div class="follow-header-img-container"><img src="img/img-1.jpg"></div>
-        <div>
-          <div class = 'follow-header-name'>{{feed.owner.first_name}} {{feed.owner.last_name}}</div>
-          <div class = 'follow-header-date'>{{getFinishTime(feed.created_at.date )}} ago</div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </li>
-</ul-->
+
 
 
 

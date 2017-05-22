@@ -110,15 +110,295 @@
         </div>
       </div>
       <div class="activitiesContainer" id="feedList" ng-if="showActivities">
-        <feed-list feed-url="feedUrl+'?page='"></feed-list>
+        <ul class="activitieslist">
+          <li ng-repeat="activity in activities track by $index">
+            <div class="current-feed" ng-if="activity.type==='announcement'">
+              <div class="follow-header">
+                <div class="follow-header-info">
+                  <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                  <div>
+                    <div class = 'follow-header-name'>{{user.first_name}}{{user.last_name}} <span> @{{user.first_name}}</span> </div>
+                    <div class = 'follow-header-date'>{{getFinishTime(activity.created_at)}} ago</div>
+                  </div>
+                </div>
+                <div class="follow-header-action">has posted <a ng-href="#/class/{{classId}}/user/{{userId}}/announcments"> a new announcement</a></div>
+              </div>
+            </div>
+            <div class="current-feed"  ng-if="activity.type==='follows'">
+              <div class="follow-header">
+                <div class="follow-header-info">
+                  <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                  <div>
+                    <div class = 'follow-header-name'>{{user.first_name}}{{user.last_name}} <span> @{{user.first_name}}</span> </div>
+                    <div class = 'follow-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                  </div>
+                </div>
+                <div class="follow-header-action">has followed</div>
+                <div class="follow-header-info follow-user">
+                  <div class="follow-header-img-container" style="background-image: url({{activity.image}})"></div>
+                  <a data-id="{{activity.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(activity)">
+                    <div class = 'follow-header-name'>{{activity.first_name}} {{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                    <div class = 'follow-header-date tohide'>{{activity.updated_at}} ago</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="current-feed" ng-if="activity.type==='followers'">
+              <div class="follow-header">
+                <div class="follow-header-info">
+                  <div class="follow-header-img-container" style="background-image: url({{activity.image}})"></div>
+                  <div>
+                    <a data-id="{{activity.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(activity)">
+                      <div class = 'follow-header-name'>{{activity.first_name}}{{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                      <div class = 'follow-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                    </a>
+                  </div>
+                </div>
+                <div class="follow-header-action">has followed</div>
+                <div class="follow-header-info follow-user">
+                  <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                  <div>
+                    <div class = 'follow-header-name'>{{user.first_name}} {{user.last_name}} <span> @{{user.first_name}}</span></div>
+                    <div class = 'follow-header-date tohide'>{{activity.updated_at}} ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="current-feed story" ng-if="activity.type==='story'">
+              <!------------- Feed header ------------------>
+              <div class="follow-header">
+                <div class="follow-header-info">
+                  <div class="follow-header-img-container" style="background-image: url({{user.photo}})"> </div>
+                  <div>
+                    <div class = 'follow-header-name'>{{user.first_name}} {{user.last_name}} <span> @{{user.first_name}}</span></div>
+                    <div class = 'follow-header-date'>{{getFinishTime(activity.created_at.date )}} ago</div>
+                  </div>
+                </div>
+              </div>
+              <!------------- End Feed header ------------------>
 
+              <!------------- Feed content ------------------>
+              <div class ="feed-content">
+                <div class="feed-content-data" ng-if="activity.file">
+
+                  <div class="feed-content-data-img" ng-if="feed.type_file===1" >
+                    <img ng-src="{{activity.file.link}}"  width="100%" height="auto">
+                  </div>
+
+                  <div class="feed-content-data-video" ng-if="activity.type_file===2" >
+                    <video width="100%" height="auto" controls>
+                      <source ng-src="{{activity.file.link}}" >
+                      Your browser does not support the video.
+                    </video>
+                  </div>
+
+                  <div class="feed-content-data-link " ng-if="activity.type_file===3" >
+                    <a class="{{userData.color}}" target="_self" href={{activity.file.link}} download="activity.file.filename" >
+                      <img ng-src="{{iconAddLink}}">
+                      {{activity.file.filename}}
+                    </a>
+                  </div>
+                </div>
+
+                <div class="feed-content-link" ng-if="activity.link && !activity.youtube">
+                  <a ng-href="{{showFeedLinkFunction(activity.link)}}" target="_blank" class="{{userData.color}}">{{activity.link}}</a>
+                </div>
+
+                <div class="feed-content-link" ng-if="activity.link && activity.youtube" style="display: flex; justify-content: center">
+                  <youtube-video  video-id="activity.link"></youtube-video>
+                </div>
+
+                <div class="feed-content-text">{{activity.content}}</div>
+              </div>
+
+              <!------------- End Feed content ------------------>
+              <div class="feed-feedback">
+                <div class="feed-likes">
+                  <img ng-if="!activity.is_liked" src="images/feed/icon-likes.svg" ng-click="addLikeFunction(activity)">
+                  <img ng-if="activity.is_liked" src="images/feed/icon-liked.svg" ng-click="addLikeFunction(activity)">
+                  {{activity.likes}}
+                </div>
+                <div class="feed-comment" ng-click="openModalAddComment(activity)">
+                  <img ng-if="!activity.is_comment || activity.comments.data.length===0" src="images/feed/icon-comments.svg">
+                  <img ng-if="activity.is_comment  && activity.comments.data.length>0 "  src="images/feed/icon-commented.svg">
+                  {{activity.comments.data.length}}</div>
+              </div>
+
+              <div class="feed-comments">
+                <div class="comment" ng-repeat="comment in activity.comments.data" ng-if="$index<2 || showComment">
+                  <div class ="comment-info">
+                    <div class="comment-owner">{{comment.owner.first_name}} {{comment.owner.last_name}} </div>
+                    <div class="comment-content">{{comment.content}}</div>
+                  </div>
+                  <div class="del-comment-button" ng-click="deleteFeedComment(comment,activity.comments.data, activity.comments_count )" ng-show="comment.owner.id===userId">x</div>
+                </div>
+                <div class="showComments" ng-click="showCommentsFunction()" ng-if="!showComment && activity.comments.data.length>2">Show more comments</div>
+                <div class="showComments" ng-click="hideCommentsFunction()" ng-if="showComment && activity.comments.data.length>2 ">Hide comments</div>
+              </div>
+            </div>
+            <!--<div class="current-feed" ng-if="activity.type==='changeprofile'">
+              <div class="follow-header">
+                <div class="follow-header-info">
+                  <div class="follow-header-img-container" style="background-image: url({{activity.photo}})"></div>
+                  <div>
+                    <div class = 'follow-header-name'>{{activity.first_name}}{{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                    <div class = 'feed-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                  </div>
+                </div>
+                <div class="follow-header-action">has changed {{activity.gender}} profile</div>
+              </div>
+            </div>-->
+          </li>
+          <!--<li><feed-list feed-url="feedUrl+'?page='"></feed-list></li>    -->
+        </ul>
       </div>
       <div class="usersProfileContainer" ng-show="showUser">
         <div class = "class-menu-item-block-right-container">
           <div class="class-menu-item-block-right class-menu-item-block-right-profile">
             <user-info selected-user="activeUser" show-additional-info="false"></user-info>
-            <div class="user-feeds-container">
-              <feed-list feed-url="feedUrl+'&page='"></feed-list>
+            <div class="user-feeds-container" selected-user="activeUser">
+              <!--<feed-list feed-url="feedUrl+'&page='"></feed-list>-->
+              <ul selected-user="user" class="activitieslist">
+                <li ng-repeat="activity in activities track by $index">
+                  <div class="current-feed" ng-if="activity.type==='announcement'">
+                    <div class="follow-header">
+                      <div class="follow-header-info">
+                        <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                        <div>
+                          <div class = 'follow-header-name'>{{user.first_name}}{{user.last_name}} <span> @{{user.first_name}}</span> </div>
+                          <div class = 'follow-header-date'>{{getFinishTime(activity.created_at)}} ago</div>
+                        </div>
+                      </div>
+                      <div class="follow-header-action">has posted <a ng-href="#/class/{{classId}}/user/{{userId}}/announcments"> a new announcement</a></div>
+                    </div>
+                  </div>
+                  <div class="current-feed"  ng-if="activity.type==='follows'">
+                    <div class="follow-header">
+                      <div class="follow-header-info">
+                        <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                        <div>
+                          <div class = 'follow-header-name'>{{user.first_name}}{{user.last_name}} <span> @{{user.first_name}}</span> </div>
+                          <div class = 'follow-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                        </div>
+                      </div>
+                      <div class="follow-header-action">has followed</div>
+                      <div class="follow-header-info follow-user">
+                        <div class="follow-header-img-container" style="background-image: url({{activity.image}})"></div>
+                        <a data-id="{{activity.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(activity)">
+                          <div class = 'follow-header-name'>{{activity.first_name}} {{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                          <div class = 'follow-header-date tohide'>{{activity.updated_at}} ago</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="current-feed" ng-if="activity.type==='followers'">
+                    <div class="follow-header">
+                      <div class="follow-header-info">
+                        <div class="follow-header-img-container" style="background-image: url({{activity.image}})"></div>
+                        <div>
+                          <a data-id="{{activity.user_id}}" ng-href="#/findPeople" class="followItem-left" ng-click="show(activity)">
+                            <div class = 'follow-header-name'>{{activity.first_name}}{{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                            <div class = 'follow-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="follow-header-action">has followed</div>
+                      <div class="follow-header-info follow-user">
+                        <div class="follow-header-img-container" style="background-image: url({{user.photo}})"></div>
+                        <div>
+                          <div class = 'follow-header-name'>{{user.first_name}} {{user.last_name}} <span> @{{user.first_name}}</span></div>
+                          <div class = 'follow-header-date tohide'>{{activity.updated_at}} ago</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="current-feed story" ng-if="activity.type==='story'">
+                    <!------------- Feed header ------------------>
+                    <div class="follow-header">
+                      <div class="follow-header-info">
+                        <div class="follow-header-img-container" style="background-image: url({{user.photo}})"> </div>
+                        <div>
+                          <div class = 'follow-header-name'>{{user.first_name}} {{user.last_name}} <span> @{{user.first_name}}</span></div>
+                          <div class = 'follow-header-date'>{{getFinishTime(activity.created_at.date )}} ago</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!------------- End Feed header ------------------>
+
+                    <!------------- Feed content ------------------>
+                    <div class ="feed-content">
+                      <div class="feed-content-data" ng-if="activity.file">
+
+                        <div class="feed-content-data-img" ng-if="feed.type_file===1" >
+                          <img ng-src="{{activity.file.link}}"  width="100%" height="auto">
+                        </div>
+
+                        <div class="feed-content-data-video" ng-if="activity.type_file===2" >
+                          <video width="100%" height="auto" controls>
+                            <source ng-src="{{activity.file.link}}" >
+                            Your browser does not support the video.
+                          </video>
+                        </div>
+
+                        <div class="feed-content-data-link " ng-if="activity.type_file===3" >
+                          <a class="{{userData.color}}" target="_self" href={{activity.file.link}} download="activity.file.filename" >
+                            <img ng-src="{{iconAddLink}}">
+                            {{activity.file.filename}}
+                          </a>
+                        </div>
+                      </div>
+
+                      <div class="feed-content-link" ng-if="activity.link && !activity.youtube">
+                        <a ng-href="{{showFeedLinkFunction(activity.link)}}" target="_blank" class="{{userData.color}}">{{activity.link}}</a>
+                      </div>
+
+                      <div class="feed-content-link" ng-if="activity.link && activity.youtube" style="display: flex; justify-content: center">
+                        <youtube-video  video-id="activity.link"></youtube-video>
+                      </div>
+
+                      <div class="feed-content-text">{{activity.content}}</div>
+                    </div>
+
+                    <!------------- End Feed content ------------------>
+                    <div class="feed-feedback">
+                      <div class="feed-likes">
+                        <img ng-if="!activity.is_liked" src="images/feed/icon-likes.svg" ng-click="addLikeFunction(activity)">
+                        <img ng-if="activity.is_liked" src="images/feed/icon-liked.svg" ng-click="addLikeFunction(activity)">
+                        {{activity.likes}}
+                      </div>
+                      <div class="feed-comment" ng-click="openModalAddComment(activity)">
+                        <img ng-if="!activity.is_comment || activity.comments.data.length===0" src="images/feed/icon-comments.svg">
+                        <img ng-if="activity.is_comment  && activity.comments.data.length>0 "  src="images/feed/icon-commented.svg">
+                        {{activity.comments.data.length}}</div>
+                    </div>
+
+                    <div class="feed-comments">
+                      <div class="comment" ng-repeat="comment in activity.comments.data" ng-if="$index<2 || showComment">
+                        <div class ="comment-info">
+                          <div class="comment-owner">{{comment.owner.first_name}} {{comment.owner.last_name}} </div>
+                          <div class="comment-content">{{comment.content}}</div>
+                        </div>
+                        <div class="del-comment-button" ng-click="deleteFeedComment(comment,activity.comments.data, activity.comments_count )" ng-show="comment.owner.id===userId">x</div>
+                      </div>
+                      <div class="showComments" ng-click="showCommentsFunction()" ng-if="!showComment && activity.comments.data.length>2">Show more comments</div>
+                      <div class="showComments" ng-click="hideCommentsFunction()" ng-if="showComment && activity.comments.data.length>2 ">Hide comments</div>
+                    </div>
+                  </div>
+                  <!--<div class="current-feed" ng-if="activity.type==='changeprofile'">
+                    <div class="follow-header">
+                      <div class="follow-header-info">
+                        <div class="follow-header-img-container" style="background-image: url({{activity.photo}})"></div>
+                        <div>
+                          <div class = 'follow-header-name'>{{activity.first_name}}{{activity.last_name}} <span> @{{activity.first_name}}</span></div>
+                          <div class = 'feed-header-date'>{{getFinishTime(activity.updated_at)}} ago</div>
+                        </div>
+                      </div>
+                      <div class="follow-header-action">has changed {{activity.gender}} profile</div>
+                    </div>
+                  </div>-->
+                </li>
+                <!--<li><feed-list feed-url="feedUrl+'?page='"></feed-list></li>    -->
+              </ul>
             </div>
           </div>
         </div>

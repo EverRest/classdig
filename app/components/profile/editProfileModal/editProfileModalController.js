@@ -1,5 +1,5 @@
 angular.module('classDigApp')
-  .controller('editProfileModalInstanceCtrl', function ($uibModalInstance, $rootScope,  items, $timeout, $http, appSettings, $log, $scope,Upload, $routeParams, localStorageService, $uibModal) {
+  .controller('editProfileModalInstanceCtrl', function ($uibModalInstance, $rootScope,  items, $timeout, $http, appSettings, $log, $scope,Upload, $routeParams, localStorageService, $uibModal, socket) {
     $rootScope.userData = {
       'role': $rootScope.user.data.role,
       "iconPlus": 'images/modal/icon-plus-' + $rootScope.user.data.role + '_3x.png',
@@ -78,9 +78,14 @@ angular.module('classDigApp')
           headers: {'Content-Type': 'application/json'}
         })
           .then(function (response) {
-
+              socket.emit('newActivity', new Date());
+              console.log('newActivity - edit profile');
               $rootScope.user.data.details = response.data;
+              $rootScope.user.data.details.data.type = 'changeprofile';
+              //console.log( $rootScope.user.data.details.data);
               $rootScope.$broadcast('updateUserProfile', response.data);
+              //$rootScope.activities.push($rootScope.user.data.details.data);
+              //console.log($rootScope.activities);
               $uibModalInstance.close();
               $scope.localStorageData =  localStorage.getItem('ls.storage');
               $scope.localStorageData = JSON.parse($scope.localStorageData);

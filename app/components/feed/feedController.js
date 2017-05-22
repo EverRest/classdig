@@ -15,7 +15,8 @@ app.controller('FeedController', ['$scope',
   '_',
   'Upload',
   'Feed',
-  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed) {
+  'socket',
+  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed, socket) {
 
     var $ctrl = this;
     var role =$rootScope.user.data.role ;
@@ -119,6 +120,9 @@ app.controller('FeedController', ['$scope',
       });
     };
 
+      $scope.a = function(){
+          console.log($rootScope.activitiesContainer);
+      };
 
     $scope.postFeedFunction = function () {
       if(!$scope.newFeed.content && !$scope.newFeed.link && !$scope.newFeed.picFile){
@@ -145,25 +149,41 @@ app.controller('FeedController', ['$scope',
         else{
           $scope.url= 'story';
         }
-        console.log('post feed');
         $http({
           url: appSettings.link + $scope.url,
           method: "POST",
           data: $scope.newFeed
         })
           .then(function (response) {
+              $http({
+                  url: appSettings.link + 'newactivity',
+                  method: "POST",
+                  data: {'user_id': $scope.user.user_id, 'type': 'story', 'data': $scope.newFeed}
+              }).then(function (data) {
+                  console.log(data);
+              });
+
+              socket.io.emit('newActivity', $scope.newFeed);
+
+              console.log('newActivity-new Post');
+
+              // socket.io.on('activities', function (data) {
+              //     console.log(data);
+              // });
+
               $scope.listOfFeeds.unshift(response.data.data);
               $rootScope.$emit('addNewPost',response.data.data );
               $scope.feeds.items.unshift(response.data.data);
               $scope.newFeed = {};
-
+                 /* $scope.chldmeth = function() {
+                      $rootScope.$emit("activitiesContainer", data);
+                  };*/
+                  //$scope.chldmeth('from feed');
             },
             function (response) {
 
             });
       }
-
-
     };
 
     $scope.listOfFeeds=[];

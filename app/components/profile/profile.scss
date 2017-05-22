@@ -56,7 +56,7 @@
 }
 
 .upcomingContainer{
-  overflow: auto;
+  //overflow: auto;
   height: calc(74vh - 48px);
 
   .upcomingList{
@@ -223,10 +223,42 @@
   height: calc(74vh - 60px);
   overflow: auto;
   margin-top: 10px;
-  .feed-list {
-    width: 60%!important;
+  .activitieslist {
+    width: 90%!important;
     margin: auto!important;
+    padding-left:0;
+    li{
+      list-style: none;
+      margin-bottom:20px;
+    }
+    .follow-header-action {
+      margin: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      margin-top: 5px;
+      a {
+        margin-left: 5px;
+      }
+    }
+    .follow-header-info {
+      margin-right: 5px;
+      &.follow-user {
+        margin-left: 5px;
+      }
+    }
+    .follow-header-date.tohide {
+      color: transparent;
+    }
+    .feed-header-date {
+      font-size: 10px;
+      line-height: 13px;
+      color: #7f8a97;
+      margin: 0px 10px;
+    }
   }
+
 }
 
 .container-button-flex{
@@ -265,4 +297,5 @@
     }
   }
 }
+
 

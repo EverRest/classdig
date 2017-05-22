@@ -17,7 +17,10 @@ app.controller('ProfileController', ['$scope',
   'Feed',
   'uiCalendarConfig',
   '$compile',
-  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed,uiCalendarConfig, $compile) {
+  'socket',
+  function ($scope, $rootScope, $http, $resource, $location, $uibModal, AuthenticationService, ClassFactory, appSettings, classData, $timeout, DeletedClasses, CurrentClasses, $q,  _,Upload, Feed,uiCalendarConfig, $compile, socket) {
+
+
     var $ctrl = this;
     $scope.eventSources=[];
     $scope.showProfile = true;
@@ -30,9 +33,10 @@ app.controller('ProfileController', ['$scope',
       'border': $rootScope.user.data.role + '-border'
     };
 
+
     $scope.userProfile = $rootScope.user.data;
     $rootScope.activeUser;
-
+      $rootScope.showActivities;
     $scope.showUpcoming=true;
 
     $scope.seeRequestToFollow = function(){
@@ -60,13 +64,6 @@ app.controller('ProfileController', ['$scope',
     if($rootScope.userData.role === 'parent')  $scope.colorB = '#cf515d';
     if($rootScope.userData.role === 'student')  $scope.colorB = '#3d8e78';
 
-    // console.log($('.fc-row .fc-widget-header > table > thead > tr > .fc-axis').innerHTML);
-    // console.log($('.fc-row .fc-widget-header > table > thead > tr > .fc-axis').innerText);
-    // console.log($('.fc-row .fc-widget-header > table > thead > tr > .fc-axis')[0].innerHTML);
-    // console.log($('.fc-row .fc-widget-header > table > thead > tr > .fc-axis').eq(0).innerHTML);
-
-
-
 ////////// SWITCH BETWEEN TABS /////////////////////////
     $scope.switchUpcoming = function () {
       $('.profile-subheader-item').css('border-bottom', '3px solid #fff');
@@ -75,8 +72,9 @@ app.controller('ProfileController', ['$scope',
       $('#Upcoming').css('color', '#333c48');
       $scope.showUpcoming=true;
       $scope.showSchedule = false;
-      $scope.showActivities=false;
+        $rootScope.showActivities=false;
       $scope.showUser=false;
+
     };
 
     $scope.switchSchedule = function () {
@@ -86,7 +84,7 @@ app.controller('ProfileController', ['$scope',
       $('#Schedule').css('color', '#333c48');
       $scope.showUpcoming=false;
       //$scope.showSchedule = true;
-      $scope.showActivities=false;
+        $rootScope.showActivities=false;
       getSchedule();
       $scope.showSchedule=true;
       $scope.showUser=false;
@@ -99,7 +97,7 @@ app.controller('ProfileController', ['$scope',
         $('#Activities').css('color', '#333c48');
         $scope.showUpcoming=false;
         $scope.showSchedule = false;
-        $scope.showActivities=true;
+          $rootScope.showActivities=true;
         $scope.showUser=false;
       };
       $rootScope.$on("switchActivities", function(){
@@ -114,15 +112,13 @@ app.controller('ProfileController', ['$scope',
           $('.profile-subheader-item').css('color', '#797a7b');
           $scope.showUpcoming=false;
           $scope.showSchedule = false;
-          $scope.showActivities=false;
+          $rootScope.showActivities=false;
           $scope.showUser = true;
       };
       $rootScope.$on("switchUser", function(){
           $scope.switchUser();
       });
     $scope.switchUpcoming();
-
-    //////////////////////////////////////
 
 /////////////// ACTIONS WITH EVENT-ITEMS////////////////////////
     $scope.openAreUSureModal = function (size) {
@@ -163,7 +159,6 @@ app.controller('ProfileController', ['$scope',
     };
 
     $scope.editEvent = function(event,index){
-
       event.class_id= event.class.id;
         var modalInstance = $uibModal.open({
           animation: $ctrl.animationsEnabled,
@@ -213,16 +208,11 @@ app.controller('ProfileController', ['$scope',
 
      $scope.userInformation = $rootScope.user.data;
 
-    ///////////////////////////////////
-
-
    /////////// UPDATE USER PROFILE/////////////////
 
-    $rootScope.$on('updateUserProfile', function (event,data) {
+    $rootScope.$on('updateUserProfile', function (event, data) {
      $scope.updateUserProfile = $rootScope.user.data;
     });
-
-     ////////////////////////////////////////
 
     ////////////EDIT PROFILE/////////////////////
 
@@ -243,8 +233,6 @@ app.controller('ProfileController', ['$scope',
         }
       });
     };
-    ////////////////////////////////////
-
 
     //////////// GET LIST OF FOLLOWERS(PRIVATE ACCOUNT)//////////////
 
@@ -261,9 +249,6 @@ app.controller('ProfileController', ['$scope',
           function (response) {
           });
     }
-
-     //////////////////////////////
-
 
     /////////////ACCEPT/REJECT FOLLOWER////////////////
 
@@ -283,8 +268,6 @@ app.controller('ProfileController', ['$scope',
       $scope.showProfile= false;
 
     };
-
-    /////////////////////////////////////////////////
 
     ////////////// GET UPCOMING LIST/////////////////////
     $scope.requestUpcomingInProgress=true;
@@ -316,19 +299,6 @@ app.controller('ProfileController', ['$scope',
     ////////////////////////////////////////////////////////
 
     $scope.parseEventsData = function (data) {
-
-      // data.map(function (obj) {
-      //   obj.owner = false;
-      //   obj.future = true;
-      //   if(new Date(obj.due_date) < new Date()) {
-      //     console.log(obj.title);
-      //     obj.future = false;
-      //   }
-      //   if(obj.owner_id === $rootScope.user.data.id) {
-      //     obj.owner = true;
-      //   }
-      // });
-
       var events = [];
       $scope.eventsListOriginal = data;
       $scope.eventsList = data;
@@ -341,8 +311,6 @@ app.controller('ProfileController', ['$scope',
         $scope.eventsList[i].startEventDate = moment($scope.eventsList[i].due_date + " " + $scope.eventsList[i].time_start_24,"yyyy-MM-DD HH:mm:ss").toDate();
         $scope.eventsList[i].endEventDate = moment($scope.eventsList[i].due_date + " "+$scope.eventsList[i].time_end_24,"yyyy-MM-DD HH:mm:ss").toDate();
         events.push({
-          // start: new Date($scope.eventsList[i].due_date + " " +$scope.eventsList[i].time_start_24),
-          // end: new Date($scope.eventsList[i].due_date + " " +$scope.eventsList[i].time_end_24),
           start: $scope.eventsList[i].startEventDate,
           end: $scope.eventsList[i].endEventDate,
           allDay: false,
@@ -358,11 +326,6 @@ app.controller('ProfileController', ['$scope',
         obj.date_month = moment(obj.due_date, "YYYY-MM-DD").format("MMM");
       });
 
-      // if($scope.activeCalendarView === 'month') {
-      //   events = _.uniq(events, function (obj) {
-      //     return obj.date;
-      //   });
-      // }
 
       $scope.events = events;
       $scope.eventSources[0] = $scope.events;
@@ -436,6 +399,181 @@ app.controller('ProfileController', ['$scope',
     };
     $scope.events = [];
     $scope.eventSources = [$scope.events];
+    ////////////////////////////////////////
+      $scope.getFinishTime = function(timeEnd){
+          var timeDuration = 0;
+          var a = moment(new Date());//now
+          var b  = moment.utc(timeEnd).toDate();
+          if(a.diff(b, 'weeks')>0){
+              timeDuration = a.diff(b, 'weeks') + ' w. ';
+          }
+          else if(a.diff(b, 'days')>0){
+              timeDuration = a.diff(b, 'days')+ ' d. '+(a.diff(b, 'hours'))%24+ ' h. ';
+
+          }
+          else if(a.diff(b, 'hours')>0){
+              timeDuration=a.diff(b, 'hours')+ ' h. '+(a.diff(b, 'minutes'))%60+' min. ';
+          }
+          else if(a.diff(b, 'minutes')>0){
+              timeDuration = a.diff(b, 'minutes')+' min. '
+          }
+          return timeDuration
+      };
+
+      $scope.activitiesAnnouncementsArr = [];
+      $scope.activitiesPostArr = [];
+      $scope.followsArr=[];
+      $scope.followersArr=[];
+      $scope.user = $rootScope.user.data.details.data;
+      $scope.userId = $rootScope.user.data.id;
+      $rootScope.activities = [];
+
+      $scope.fillActivitiesAnnouncement = function() {
+          $http({
+              url: appSettings.link + 'user/announcements/' + $rootScope.user.data.id,
+              method: "GET"
+          })
+              .then(function (response) {
+                      $scope.announcementArr = response.data.announcements;
+                      //console.log($rootScope.user.data);
+                      for (var i = 0; i < $scope.announcementArr.length; i++) {
+                          $scope.announcementArr[i].type = 'announcement';
+                          $scope.activitiesAnnouncementsArr.push($scope.announcementArr[i]);
+                          $rootScope.activities.push($scope.announcementArr[i]);
+                      }
+                      //console.log('activitiesAnnouncementsArr');
+                      //console.log($scope.activitiesAnnouncementsArr);
+                  },
+                  function (response) {
+
+                  });
+      };
+
+      $scope.fillActivitiesStory = function() {
+          $http({
+              url: appSettings.link + 'story/' +  $rootScope.user.data.id,
+              method: "GET"
+          })
+              .then(function (response) {
+                      $scope.storytArr = response.data.data;
+                      $scope.feeds = new Feed();
+                      $rootScope.$emit('addNewPost',response.data.data );
+                      $scope.feeds.items.unshift(response.data.data);
+                      for(var i=0; i< $scope.storytArr.length; i++){
+                          $scope.storytArr[i].type = 'story';
+                          $scope.activitiesPostArr.push($scope.storytArr[i]);
+                          $rootScope.activities.push($scope.storytArr[i]);
+                      }
+                      /*console.log('activitiesPostArr');
+                      console.log($scope.activitiesPostArr);*/
+                  },
+                  function (response) {
+
+                  });
+      };
+
+      $scope.fillActivitiesFollows = function() {
+          $http({
+              url: appSettings.link + 'users/follows/' + $rootScope.user.data.id,
+              method: "GET"
+              // headers: {'Content-Type': 'application/json'}
+          })
+              .then(function (response) {
+                      $scope.listUsers = response.data.follows;
+                      for(var i=0; i<$scope.listUsers.length; i++){
+                          $scope.listUsers[i].type = 'follows';
+                          $scope.followsArr.push($scope.listUsers[i]);
+                          $rootScope.activities.push($scope.listUsers[i]);
+                      }
+                      // console.log('followsArr');
+                      // console.log($scope.followsArr);
+                  },
+                  function (response) {
+                  });
+      };
+
+      $scope.fillActivitiesFollowers = function() {
+          $http({
+              url: appSettings.link + 'users/followers/' + $rootScope.user.data.id,
+              method: "GET"
+              // headers: {'Content-Type': 'application/json'}
+          })
+              .then(function (response) {
+                      $scope.listUsersFoolowers = response.data.followers;
+
+                      for (var i = 0; i <  $scope.listUsersFoolowers.length; i++) {
+                          $scope.listUsersFoolowers[i].type ='followers';
+                          $scope.followersArr.push($scope.listUsersFoolowers[i]);
+                          $rootScope.activities.push($scope.listUsersFoolowers[i]);
+                      }
+                      // console.log('followersArr');
+                      // console.log($scope.followersArr);
+                  },
+                  function (response) {
+                  });
+      };
+
+      $scope.fillActivities = function (arr) {
+          setTimeout(function () {
+              for(var i=0; i<arr.length; i++){
+                  if (arr[i].type !== 'announcement') {
+                      if(!arr[i].hasOwnProperty('updated_at')) {
+                          arr[i].updated_at = arr[i].created_at;
+                          arr[i].updated_at = arr[i].updated_at.date;
+                      } else {
+                          arr[i].updated_at =  arr[i].updated_at.date;
+                      }
+                  }
+              }
+
+              arr.sort(function(a, b) {
+                  var x = new Date(a.updated_at);
+                  var y = new Date(b.updated_at);
+                  return y.getTime() - x.getTime();
+              });
+
+              $rootScope.$emit('activities', arr);
+
+              socket.io.emit('begin', arr);
+
+          }, 2000);
+      };
+
+      $scope.fillActivitiesAnnouncement();
+      $scope.fillActivitiesStory();
+      $scope.fillActivitiesFollows();
+      $scope.fillActivitiesFollowers();
+      $scope.fillActivities($rootScope.activities);
+
+      socket.io.on('act', function (data) {
+          //console.log(data);
+      });
+
+      //---------------------- GET CLASS ID ----------------------------//
+      $http({
+          url: appSettings.link + 'user/classes',
+          method: "GET"
+          // headers: {'Content-Type': 'application/json'}
+      })
+          .then(function (response) {
+                  var data = response.data.data;
+                  $scope.classId = data[0].id;
+              },
+              function (response) {
+              });
+      //----------------------------------------------------------------//
+
+      $scope.show = function (user) {
+          $scope.chldmeth = function(user) {
+              user.id = user.user_id;
+              $rootScope.$emit("activateUser");
+          };
+
+          $rootScope.activeUserId = user.user_id;
+          $rootScope.activeUser = user;
+          $rootScope.feedUrl = appSettings.link+'story/'+ user.user_id;
+          $scope.chldmeth(user);
+      };
 
   }]);
 
